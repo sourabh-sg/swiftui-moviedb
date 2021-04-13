@@ -19,9 +19,10 @@ struct ImageContentView: View {
                 
                 ForEach(imageArray, id: \.self) { imageName in
                     
-                    ZStack() {
+                    ZStack(alignment: .center) {
                         Image(imageName)
                             .resizable()
+                            .clipped()
                             .blur(radius: 5.0)
                         
                         Image(imageName)
@@ -31,7 +32,7 @@ struct ImageContentView: View {
                     }
                 }
             }
-        }.frame(width: 335, height: 200, alignment: .leading)
+        }.frame(height: 200, alignment: .leading)
         
     }
 }

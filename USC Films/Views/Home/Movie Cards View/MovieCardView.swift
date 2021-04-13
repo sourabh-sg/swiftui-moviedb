@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct MovieCardView: View {
+    var imageName: String
+    
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             
-            Image("tomandjerry")
+            Image(imageName)
                 .resizable()
-                .clipped()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 180, alignment: .center)
                 .cornerRadius(10)
             
-            Text("Tom and Jerry")
+            Text("Tom and Jerry Adventures")
                 .font(.headline)
                 .fontWeight(.bold)
+                .frame(width: 120)
+                .multilineTextAlignment(.center)
             
             Text("(2021)")
                 .font(.subheadline)
@@ -32,6 +36,6 @@ struct MovieCardView: View {
 
 struct MovieCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardView()
+        MovieCardView(imageName: "tomandjerry")
     }
 }

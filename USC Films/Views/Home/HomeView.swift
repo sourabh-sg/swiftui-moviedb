@@ -14,16 +14,24 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView{
-            VStack {
-                VStack(alignment: .leading, spacing: 10) {
-                    CarouselHeader(title: carouselTitle)
-                    ImageContentView()
-                }.padding(.leading, 20)
-                .padding(.trailing, 20)
-                
-                Spacer()
-                
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        CarouselHeader(title: carouselTitle)
+                        ImageContentView()
+                    }
+                    
+                    MovieCardContainerView(heading: "Top Rated")
+                    MovieCardContainerView(heading: "Popular")
+                    
+                    Text("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 10)
+                }
             }
+            .frame(width: 335)
             .navigationBarTitle("USC Films")
             .navigationBarItems(trailing:
                                     Button(action: {
@@ -62,7 +70,7 @@ struct CarouselHeader: View {
     var body: some View {
         Text(title)
             .font(.title)
-            .fontWeight(.semibold)
+            .fontWeight(.bold)
             .padding(.bottom)
     }
 }
