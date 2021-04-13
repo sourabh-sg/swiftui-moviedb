@@ -23,7 +23,7 @@ struct ContentView: View {
                     Text("Home")
                 }
             
-            WatchListView()
+            WatchListView(watchListArray: [])
                 .tabItem {
                     Image(systemName: "heart")
                     Text("WatchList")
