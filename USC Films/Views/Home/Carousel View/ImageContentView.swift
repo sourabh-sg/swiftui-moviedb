@@ -8,39 +8,30 @@
 import SwiftUI
 
 struct ImageContentView: View {
+    
+    let imageArray = ["tomandjerry", "kahonaapyaarhai"]
+    
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-            CarouselView(numberOfImages: 2) {
-                ZStack() {
-                    Image("tomandjerry")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: width, height: 200)
-                        .blur(radius: 25)
-                    
-                    Image("tomandjerry")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: width, height: 200)
-                }
+            CarouselView(numberOfImages: imageArray.count) {
                 
-                ZStack() {
-                    Image("kahonaapyaarhai")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: width, height: 200)
-                        .blur(radius: 25)
+                ForEach(imageArray, id: \.self) { imageName in
                     
-                    Image("kahonaapyaarhai")
-                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: width, height: 200)
+                    ZStack() {
+                        Image(imageName)
+                            .resizable()
+                            .blur(radius: 5.0)
+                        
+                        Image(imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: width, height: (height + 10))
+                    }
                 }
             }
-        }.frame(height: 200, alignment: .leading)
+        }.frame(width: 335, height: 200, alignment: .leading)
         
     }
 }

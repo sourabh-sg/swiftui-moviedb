@@ -13,13 +13,16 @@ struct HomeView: View {
     @State var carouselTitle = "Now Playing"
     
     var body: some View {
-        
         NavigationView{
-            List {
+            VStack {
                 VStack(alignment: .leading, spacing: 10) {
                     CarouselHeader(title: carouselTitle)
                     ImageContentView()
-                }
+                }.padding(.leading, 20)
+                .padding(.trailing, 20)
+                
+                Spacer()
+                
             }
             .navigationBarTitle("USC Films")
             .navigationBarItems(trailing:
@@ -42,7 +45,7 @@ struct HomeView: View {
                                                 .foregroundColor(.blue)
                                         }
                                     }
-            )
+                )
             )
         }
     }
@@ -60,6 +63,6 @@ struct CarouselHeader: View {
         Text(title)
             .font(.title)
             .fontWeight(.semibold)
-            .padding(.leading)
+            .padding(.bottom)
     }
 }

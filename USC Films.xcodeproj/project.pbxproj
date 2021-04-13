@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A5F262577DB007248D9 /* MovieCardView.swift */; };
 		5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */; };
 		5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DE2624A96F006683B0 /* ContentView.swift */; };
 		5E9EB1E12624A975006683B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9EB1E02624A975006683B0 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E5B0A5F262577DB007248D9 /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
 		5E9EB1D92624A96F006683B0 /* USC Films.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USC Films.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USC_FilmsApp.swift; sourceTree = "<group>"; };
 		5E9EB1DE2624A96F006683B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				5E9EB1EF2624B6CD006683B0 /* HomeView.swift */,
 				5E9EB2082624E470006683B0 /* Carousel View */,
+				5E5B0A5F262577DB007248D9 /* MovieCardView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				5E9EB2022624D311006683B0 /* MovieDetailsView.swift in Sources */,
 				5E9EB2052624D460006683B0 /* ImageContentView.swift in Sources */,
 				5E9EB1F02624B6CD006683B0 /* HomeView.swift in Sources */,
+				5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */,
 				5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */,
 				5E9EB1F82624BD34006683B0 /* WatchListView.swift in Sources */,
 				5E9EB1FF2624CAEA006683B0 /* CarouselView.swift in Sources */,
