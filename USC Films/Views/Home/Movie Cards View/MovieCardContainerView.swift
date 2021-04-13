@@ -20,7 +20,10 @@ struct MovieCardContainerView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 20) {
                     ForEach(imageArray, id: \.self) { item in
-                        MovieCardView(imageName: item)
+                        NavigationLink(
+                            destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
+                            MovieCardView(imageName: item)
+                            }
                     }
                 }
             }
