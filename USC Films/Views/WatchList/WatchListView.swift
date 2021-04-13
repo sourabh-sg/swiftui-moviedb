@@ -25,7 +25,7 @@ struct WatchListView: View {
                             // = (total / 3)
                             // (+ 1, if total % 3 is non-zero)
                             ForEach(0..<5) {_ in
-                                HStack(spacing: 4) {
+                                HStack(spacing: 3) {
                                     // 3 movies in a row
                                     ForEach(0..<3) {_ in
                                             WatchListMovieCard()

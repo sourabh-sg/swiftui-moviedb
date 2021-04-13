@@ -24,7 +24,8 @@ struct HomeView: View {
                     MovieCardContainerView(heading: "Top Rated")
                     MovieCardContainerView(heading: "Popular")
                     
-                    Text("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate")
+                        
+                    Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
                         .font(.headline)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
