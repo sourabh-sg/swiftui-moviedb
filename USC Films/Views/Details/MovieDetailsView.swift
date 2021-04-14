@@ -106,11 +106,10 @@ struct MovieDetailsView: View {
                                 ReviewCard()
                             })
                     }
-                    
-                }
+                }.padding(.bottom, 10)
                 
                 // Recommended Movies
-//                RecommendationSectionView()
+                RecommendationSectionView()
                 
             
             }.padding(.leading, 20)

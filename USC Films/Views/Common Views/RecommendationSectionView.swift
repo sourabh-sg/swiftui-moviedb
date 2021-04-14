@@ -18,12 +18,6 @@ struct RecommendationSectionView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 30) {
                     ForEach(imageArray, id: \.self) { item in
-                        Image(item)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 120, height: 180, alignment: .center)
-                            .cornerRadius(10)
-                        /*
                         NavigationLink(
                             destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
                             Image(item)
@@ -32,11 +26,10 @@ struct RecommendationSectionView: View {
                                 .frame(width: 120, height: 180, alignment: .center)
                                 .cornerRadius(10)
                             }
- */
                     }
                 }
             }
-            padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
         }
     }
 }
