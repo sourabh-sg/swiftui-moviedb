@@ -12,10 +12,10 @@ struct MovieDetailsView: View {
     var videoLink: String
     
     @State var limit = 3
+    @State var isBookmarked = false
     
     var body: some View {
         ScrollView() {
-            
             VStack(alignment: .leading, spacing: 10) {
                 // Youtube player
                 YouTubePlayer(text: videoLink)
@@ -106,16 +106,49 @@ struct MovieDetailsView: View {
                                 ReviewCard()
                             })
                     }
-                }.padding(.bottom, 10)
+                }
                 
                 // Recommended Movies
                 RecommendationSectionView()
+                    .padding(.top, 15)
                 
+                Spacer()
             
             }.padding(.leading, 20)
             .padding(.trailing, 20)
             
-        }
+        }.navigationBarItems(trailing:
+                                HStack {
+                                    
+                                    Button(action: {
+                                        isBookmarked.toggle()
+                                    }) {
+                                        if isBookmarked {
+                                            Image(systemName: "bookmark.fill")
+                                        } else {
+                                            Image(systemName: "bookmark")
+                                        }
+                                    }
+                                    .foregroundColor(.black)
+                                    
+                                    Button(action: {
+                                        // FB share
+                                    }) {
+                                        Image("facebook-app-symbol")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    }.frame(width: 20, height: 20, alignment: .center)
+                                    
+                                    Button(action: {
+                                       // Twitter share
+                                    }) {
+                                        Image("twitter")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    }.frame(width: 20, height: 20, alignment: .center)
+                                    
+                                }
+        )
     }
 }
 
