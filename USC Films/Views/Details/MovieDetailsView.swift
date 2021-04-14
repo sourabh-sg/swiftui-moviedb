@@ -24,10 +24,12 @@ struct MovieDetailsView: View {
                 Text("Kaho Naa...Pyaar Hai")
                     .font(.title)
                     .fontWeight(.bold)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                 // Year of release | Genres
                 Text("2000 | Drama, Romance")
                     .font(.callout)
+                    .foregroundColor(.black)
                 // Average star rating
                 HStack(spacing: 5) {
                     Image(systemName: "star.fill")
@@ -35,6 +37,7 @@ struct MovieDetailsView: View {
                         .font(.callout)
                     Text("4.9/5.0")
                         .font(.callout)
+                        .foregroundColor(.black)
                 }
                 // Description
                 Text("Sonia and Rohit love each other but Rohit is mysteriously killed. To divert her upset mind, Sonia moves to New Zealand, where she meets Rohit's lookalike Raj who helps her trace Rohit's killer.")
@@ -66,6 +69,7 @@ struct MovieDetailsView: View {
                     Text("Cast & Crew")
                         .font(.title2)
                         .fontWeight(.bold)
+                        .foregroundColor(.black)
                     
                     // Names
                     ScrollView(.horizontal) {
@@ -92,10 +96,15 @@ struct MovieDetailsView: View {
                     Text("Reviews")
                         .font(.title2)
                         .fontWeight(.bold)
+                        .foregroundColor(.black)
                     
                     // Review views
                     ForEach(0..<3) {_ in
-                        ReviewCard()
+                        NavigationLink(
+                            destination: FullReviewView(),
+                            label: {
+                                ReviewCard()
+                            })
                     }
                     
                 }
