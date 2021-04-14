@@ -16,7 +16,6 @@ struct MovieCardContainerView: View {
             Text(heading)
                 .font(.title)
                 .fontWeight(.bold)
-            
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 20) {
                     ForEach(imageArray, id: \.self) { item in
@@ -28,7 +27,6 @@ struct MovieCardContainerView: View {
                 }
             }
         }
-        
     }
 }
 

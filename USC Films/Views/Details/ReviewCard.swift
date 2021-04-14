@@ -9,21 +9,24 @@ import SwiftUI
 
 struct ReviewCard: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("A review by Amazon Customer")
-                .font(.headline)
-                .fontWeight(.bold)
+        VStack(alignment: .leading, spacing: 10) {
             
-            Text("Written by Amazon Customer on Oct 4, 2016")
-                .font(.headline)
-                .foregroundColor(.gray)
+            VStack(alignment: .leading, spacing: 5) {
+                Text("A review by Amazon Customer")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                Text("Written by Amazon Customer on Oct 4, 2016")
+                    .font(.headline)
+                    .foregroundColor(.gray)
+            }
             
             HStack(spacing: 5) {
                 Image(systemName: "star.fill")
                     .foregroundColor(.red)
-                    .font(.callout)
+                    .font(.system(size: 20))
                 Text("5.0/5.0")
-                    .font(.callout)
+                    .font(.system(size: 20))
             }
             
             // Description
@@ -31,9 +34,8 @@ struct ReviewCard: View {
                 .lineLimit(3)
             
         }
-        .padding(.all, 10)
-        .border(Color.gray)
-        .cornerRadius(10)
+        .padding(10)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1).padding(-5))
 
     }
 }

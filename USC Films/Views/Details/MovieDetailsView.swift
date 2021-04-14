@@ -88,7 +88,7 @@ struct MovieDetailsView: View {
                 }
                 
                 // Reviews
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 20) {
                     Text("Reviews")
                         .font(.title2)
                         .fontWeight(.bold)
@@ -99,6 +99,9 @@ struct MovieDetailsView: View {
                     }
                     
                 }
+                
+                // Recommended Movies
+//                RecommendationSectionView()
                 
             
             }.padding(.leading, 20)

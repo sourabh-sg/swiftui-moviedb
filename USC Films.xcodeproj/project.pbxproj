@@ -13,6 +13,7 @@
 		5E5B0A6E2625AE4A007248D9 /* YoutubePlayerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */; };
 		5E5B0A702625AF19007248D9 /* Pods_USC_Films.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABEC74BE0984031AB893D7F /* Pods_USC_Films.framework */; };
 		5E5B0A752625D1D9007248D9 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A742625D1D9007248D9 /* ReviewCard.swift */; };
+		5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */; };
 		5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */; };
 		5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DE2624A96F006683B0 /* ContentView.swift */; };
 		5E9EB1E12624A975006683B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9EB1E02624A975006683B0 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		5E5B0A6626258E9C007248D9 /* WatchListMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListMovieCard.swift; sourceTree = "<group>"; };
 		5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerWrapper.swift; sourceTree = "<group>"; };
 		5E5B0A742625D1D9007248D9 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
+		5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSectionView.swift; sourceTree = "<group>"; };
 		5E9EB1D92624A96F006683B0 /* USC Films.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USC Films.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USC_FilmsApp.swift; sourceTree = "<group>"; };
 		5E9EB1DE2624A96F006683B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,10 +75,18 @@
 			isa = PBXGroup;
 			children = (
 				5E9EB2012624D311006683B0 /* MovieDetailsView.swift */,
-				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
 				5E5B0A742625D1D9007248D9 /* ReviewCard.swift */,
+				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		5E5B0A772625EBFB007248D9 /* Common Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */,
+			);
+			path = "Common Views";
 			sourceTree = "<group>";
 		};
 		5E9EB1D02624A96F006683B0 = {
@@ -127,6 +137,7 @@
 				5E9EB1FB2624CAAB006683B0 /* Search */,
 				5E9EB1FC2624CAB3006683B0 /* WatchList */,
 				5E5B0A6C2625AE2C007248D9 /* Details */,
+				5E5B0A772625EBFB007248D9 /* Common Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +331,7 @@
 				5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */,
 				5E5B0A64262583BA007248D9 /* MovieCardContainerView.swift in Sources */,
 				5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */,
+				5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */,
 				5E9EB1F82624BD34006683B0 /* WatchListView.swift in Sources */,
 				5E9EB1FF2624CAEA006683B0 /* CarouselView.swift in Sources */,
 				5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */,
@@ -464,7 +476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.test.USC-Films";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -486,7 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.test.USC-Films";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
