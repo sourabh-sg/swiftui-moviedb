@@ -21,6 +21,7 @@ struct MovieCardView: View {
             
             Text("Tom and Jerry Adventures")
                 .font(.headline)
+                .foregroundColor(.black)
                 .fontWeight(.bold)
                 .frame(width: 120)
                 .multilineTextAlignment(.center)
