@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E427D4226273A5F00FDC65F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E427D4126273A5F00FDC65F /* SearchBar.swift */; };
 		5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A5F262577DB007248D9 /* MovieCardView.swift */; };
 		5E5B0A64262583BA007248D9 /* MovieCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A63262583BA007248D9 /* MovieCardContainerView.swift */; };
 		5E5B0A6726258E9C007248D9 /* WatchListMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A6626258E9C007248D9 /* WatchListMovieCard.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		5ABEC74BE0984031AB893D7F /* Pods_USC_Films.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USC_Films.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E427D4126273A5F00FDC65F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5E5B0A5F262577DB007248D9 /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
 		5E5B0A63262583BA007248D9 /* MovieCardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardContainerView.swift; sourceTree = "<group>"; };
 		5E5B0A6626258E9C007248D9 /* WatchListMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListMovieCard.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				5E9EB1F22624B8CE006683B0 /* SearchView.swift */,
+				5E427D4126273A5F00FDC65F /* SearchBar.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			files = (
 				5E9EB1F32624B8CE006683B0 /* SearchView.swift in Sources */,
 				5E5B0A6726258E9C007248D9 /* WatchListMovieCard.swift in Sources */,
+				5E427D4226273A5F00FDC65F /* SearchBar.swift in Sources */,
 				5E9EB2022624D311006683B0 /* MovieDetailsView.swift in Sources */,
 				5E9EB2052624D460006683B0 /* ImageContentView.swift in Sources */,
 				5E5B0A6E2625AE4A007248D9 /* YoutubePlayerWrapper.swift in Sources */,

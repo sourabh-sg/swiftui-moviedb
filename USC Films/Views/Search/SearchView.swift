@@ -11,12 +11,15 @@ struct SearchView: View {
     @State var searchString = ""
     var body: some View {
         NavigationView{
-            List {
-                TextField("Search Movies, TVs...", text: $searchString)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
+            VStack {
+                SearchBar(text: $searchString)
+                List {
 
-            }.navigationBarTitle("Search")
+                }
+
+                Spacer()
+            }
+            .navigationBarTitle("Search")
         }
             
     }
