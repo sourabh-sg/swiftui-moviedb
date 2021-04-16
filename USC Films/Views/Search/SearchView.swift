@@ -13,14 +13,36 @@ struct SearchView: View {
         NavigationView{
             VStack {
                 SearchBar(text: $searchString)
-                List {
-
+                    .padding(.bottom, 10)
+                    .padding(.top, 10)
+                
+                if searchString.count > 2 {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach (0..<5) { _ in
+                                NavigationLink(
+                                    destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
+                                    SearchResultMovieCard()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    HStack(alignment: .center) {
+                        // Two spacers added either side to align text at the center
+                        Spacer()
+                        Text("No Results")
+                        .font(.title)
+                        .fontWeight(.medium)
+                        .foregroundColor(.gray)
+                        Spacer()
+                    }.padding(30)
                 }
-
+                
                 Spacer()
             }
             .navigationBarTitle("Search")
-        }
+        }.background(Color.white)
             
     }
 }

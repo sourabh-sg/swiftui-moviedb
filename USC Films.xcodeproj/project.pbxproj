@@ -16,6 +16,7 @@
 		5E5B0A702625AF19007248D9 /* Pods_USC_Films.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABEC74BE0984031AB893D7F /* Pods_USC_Films.framework */; };
 		5E5B0A752625D1D9007248D9 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A742625D1D9007248D9 /* ReviewCard.swift */; };
 		5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */; };
+		5E8AFF2B2629BD9A001BA081 /* SearchResultMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */; };
 		5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */; };
 		5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB1DE2624A96F006683B0 /* ContentView.swift */; };
 		5E9EB1E12624A975006683B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9EB1E02624A975006683B0 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerWrapper.swift; sourceTree = "<group>"; };
 		5E5B0A742625D1D9007248D9 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSectionView.swift; sourceTree = "<group>"; };
+		5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMovieCard.swift; sourceTree = "<group>"; };
 		5E9EB1D92624A96F006683B0 /* USC Films.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USC Films.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9EB1DC2624A96F006683B0 /* USC_FilmsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USC_FilmsApp.swift; sourceTree = "<group>"; };
 		5E9EB1DE2624A96F006683B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				5E9EB1F22624B8CE006683B0 /* SearchView.swift */,
 				5E427D4126273A5F00FDC65F /* SearchBar.swift */,
+				5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */,
 				5E9EB1F82624BD34006683B0 /* WatchListView.swift in Sources */,
 				5E9EB1FF2624CAEA006683B0 /* CarouselView.swift in Sources */,
+				5E8AFF2B2629BD9A001BA081 /* SearchResultMovieCard.swift in Sources */,
 				5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */,
 				5E5B0A752625D1D9007248D9 /* ReviewCard.swift in Sources */,
 				5E427D4B2627452800FDC65F /* FullReviewView.swift in Sources */,
@@ -474,6 +478,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"USC Films/Preview Content\"";
+				DEVELOPMENT_TEAM = GMFBCG6443;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "USC Films/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -496,6 +501,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"USC Films/Preview Content\"";
+				DEVELOPMENT_TEAM = GMFBCG6443;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "USC Films/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

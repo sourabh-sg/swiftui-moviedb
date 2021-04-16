@@ -22,7 +22,7 @@ struct MovieCardContainerView: View {
                         NavigationLink(
                             destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
                             MovieCardView(imageName: item)
-                            }
+                        }
                     }
                 }
             }
