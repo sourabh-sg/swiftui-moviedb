@@ -70,7 +70,7 @@ struct CarouselHeader: View {
     var title: String
     var body: some View {
         Text(title)
-            .font(.title)
+            .font(.title2)
             .fontWeight(.bold)
             .padding(.bottom)
     }

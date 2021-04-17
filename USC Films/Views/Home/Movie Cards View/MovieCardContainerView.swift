@@ -14,7 +14,7 @@ struct MovieCardContainerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text(heading)
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.bold)
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 20) {
