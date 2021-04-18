@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WatchListView: View {
     var watchListArray : [String]
+    @State private var dragOffset = CGSize.zero
     
     var body: some View {
         NavigationView{
@@ -24,11 +25,12 @@ struct WatchListView: View {
                             // Here first calculate how many rows will be needed to display all the movies
                             // = (total / 3)
                             // (+ 1, if total % 3 is non-zero)
-                            ForEach(0..<5) {_ in
+                            ForEach(0..<5) { i in
                                 HStack(spacing: 3) {
                                     // 3 movies in a row
-                                    ForEach(0..<3) {_ in
-                                            WatchListMovieCard()
+                                    ForEach(0..<3) { j in
+                                        WatchListMovieCard(position: (i+j))
+                                            
                                         }
                                 }
                             }
