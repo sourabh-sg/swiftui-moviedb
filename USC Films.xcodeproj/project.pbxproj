@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E020733262C56AB00751357 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E020732262C56AB00751357 /* Share.swift */; };
 		5E020737262C5AB700751357 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5E020736262C5AB700751357 /* Alamofire */; };
+		5E02073B262DF06000751357 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 5E02073A262DF06000751357 /* SwiftyJSON */; };
 		5E427D4226273A5F00FDC65F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E427D4126273A5F00FDC65F /* SearchBar.swift */; };
 		5E427D4B2627452800FDC65F /* FullReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E427D4A2627452800FDC65F /* FullReviewView.swift */; };
 		5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A5F262577DB007248D9 /* MovieCardView.swift */; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E02073B262DF06000751357 /* SwiftyJSON in Frameworks */,
 				5E5B0A702625AF19007248D9 /* Pods_USC_Films.framework in Frameworks */,
 				5E020737262C5AB700751357 /* Alamofire in Frameworks */,
 			);
@@ -249,6 +251,7 @@
 			name = "USC Films";
 			packageProductDependencies = (
 				5E020736262C5AB700751357 /* Alamofire */,
+				5E02073A262DF06000751357 /* SwiftyJSON */,
 			);
 			productName = "USC Films";
 			productReference = 5E9EB1D92624A96F006683B0 /* USC Films.app */;
@@ -279,6 +282,7 @@
 			mainGroup = 5E9EB1D02624A96F006683B0;
 			packageReferences = (
 				5E020735262C5AB700751357 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5E020739262DF06000751357 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 5E9EB1DA2624A96F006683B0 /* Products */;
 			projectDirPath = "";
@@ -568,6 +572,14 @@
 				minimumVersion = 5.4.2;
 			};
 		};
+		5E020739262DF06000751357 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -575,6 +587,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5E020735262C5AB700751357 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		5E02073A262DF06000751357 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E020739262DF06000751357 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
