@@ -11,7 +11,7 @@ struct ImageContentView: View {
     
     let imageArray = ["tomandjerry", "kahonaapyaarhai"]
     
-//    let movies [Movie]
+//    @State var movies: [Movie]
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,6 +20,7 @@ struct ImageContentView: View {
             CarouselView(numberOfImages: imageArray.count) {
                 
                 ForEach(imageArray, id: \.self) { imageName in
+//                ForEach(movies, id: \.self) { movie in
                     
                     ZStack(alignment: .center) {
                         Image(imageName)
