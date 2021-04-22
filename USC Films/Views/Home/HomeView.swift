@@ -13,52 +13,59 @@ struct HomeView: View {
     @State var carouselTitle = "Now Playing"
     @ObservedObject var nowPlayingMovies = NowPlayingMoviesData(isMovie: false)
     @ObservedObject var topRatedMovies = TopRatedMoviesData(isMovie: false)
-        
+    @ObservedObject var popularMovies = PopularMoviesData(isMovie: false)
+    
     var body: some View {
         NavigationView{
             
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(spacing: 20) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        CarouselHeader(title: carouselTitle)
-                        ImageContentView(movies: nowPlayingMovies.movies)
-                    }
-                    
-                    MovieCardContainerView(heading: "Top Rated")
-                    MovieCardContainerView(heading: "Popular")
-                    
+            if nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0 {
+                Text("Loading...")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+            } else {
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 20) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            CarouselHeader(title: carouselTitle)
+                            ImageContentView(movies: nowPlayingMovies.movies)
+                        }
                         
-                    Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 10)
+                        MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies)
+                        MovieCardContainerView(heading: "Popular", movies: popularMovies.movies)
+                        
+                            
+                        Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 10)
+                    }
                 }
-            }
-            .frame(width: 335)
-            .navigationBarTitle("USC Films")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        //Action
-                                        tvselected.toggle()
-                                        
-                                        if tvselected {
-                                            carouselTitle = "Trending"
-                                        } else {
-                                            carouselTitle = "Now Playing"
+                .frame(width: 335)
+                .navigationBarTitle("USC Films")
+                .navigationBarItems(trailing:
+                                        Button(action: {
+                                            //Action
+                                            tvselected.toggle()
+                                            
+                                            if tvselected {
+                                                carouselTitle = "Trending"
+                                            } else {
+                                                carouselTitle = "Now Playing"
+                                            }
+                                            
+                                        }, label: {
+                                            if tvselected {
+                                                Text("TV shows")
+                                                    .foregroundColor(.blue)
+                                            } else {
+                                                Text("Movies")
+                                                    .foregroundColor(.blue)
+                                            }
                                         }
-                                        
-                                    }, label: {
-                                        if tvselected {
-                                            Text("TV shows")
-                                                .foregroundColor(.blue)
-                                        } else {
-                                            Text("Movies")
-                                                .foregroundColor(.blue)
-                                        }
-                                    }
+                    )
                 )
-            )
+            }
         }
     }
 }

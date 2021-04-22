@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ImageContentView: View {
     
@@ -19,21 +20,22 @@ struct ImageContentView: View {
             let height = geometry.size.height
             
             // Populate image Array
-            CarouselView(numberOfImages: imageArray.count) {
-                
-                ForEach(imageArray, id: \.self) { imageName in
-//                for row in movies.count {
+            let count = movies.count
+            CarouselView(numberOfImages: count) {
+                ForEach(0..<count) { row in
                     ZStack(alignment: .center) {
-                        Image(imageName)
+                        let movie = movies[row]
+                        KFImage(URL(string: movie.image)!)
                             .resizable()
                             .clipped()
                             .blur(radius: 5.0)
                         
-                        Image(imageName)
+                        KFImage(URL(string: movie.image)!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: (height + 10))
                     }
+            
                 }
             }
         }.frame(height: 200, alignment: .leading)
