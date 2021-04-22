@@ -10,6 +10,7 @@
 		5E020733262C56AB00751357 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E020732262C56AB00751357 /* Share.swift */; };
 		5E020737262C5AB700751357 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5E020736262C5AB700751357 /* Alamofire */; };
 		5E02073B262DF06000751357 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 5E02073A262DF06000751357 /* SwiftyJSON */; };
+		5E02073F262DF14200751357 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02073E262DF14200751357 /* ServiceManager.swift */; };
 		5E427D4226273A5F00FDC65F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E427D4126273A5F00FDC65F /* SearchBar.swift */; };
 		5E427D4B2627452800FDC65F /* FullReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E427D4A2627452800FDC65F /* FullReviewView.swift */; };
 		5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A5F262577DB007248D9 /* MovieCardView.swift */; };
@@ -19,6 +20,7 @@
 		5E5B0A702625AF19007248D9 /* Pods_USC_Films.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABEC74BE0984031AB893D7F /* Pods_USC_Films.framework */; };
 		5E5B0A752625D1D9007248D9 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A742625D1D9007248D9 /* ReviewCard.swift */; };
 		5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */; };
+		5E641F442631431200199451 /* NowPlayingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E641F432631431200199451 /* NowPlayingViewModel.swift */; };
 		5E8AFF2B2629BD9A001BA081 /* SearchResultMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */; };
 		5E8AFF72262ABD07001BA081 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8AFF71262ABD07001BA081 /* Movie.swift */; };
 		5E8AFF7E262AD172001BA081 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8AFF7D262AD172001BA081 /* Movies.swift */; };
@@ -37,6 +39,7 @@
 /* Begin PBXFileReference section */
 		5ABEC74BE0984031AB893D7F /* Pods_USC_Films.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USC_Films.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E020732262C56AB00751357 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
+		5E02073E262DF14200751357 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		5E427D4126273A5F00FDC65F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5E427D4A2627452800FDC65F /* FullReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReviewView.swift; sourceTree = "<group>"; };
 		5E5B0A5F262577DB007248D9 /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerWrapper.swift; sourceTree = "<group>"; };
 		5E5B0A742625D1D9007248D9 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSectionView.swift; sourceTree = "<group>"; };
+		5E641F432631431200199451 /* NowPlayingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModel.swift; sourceTree = "<group>"; };
 		5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMovieCard.swift; sourceTree = "<group>"; };
 		5E8AFF71262ABD07001BA081 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5E8AFF7D262AD172001BA081 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
@@ -78,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E02073D262DF12A00751357 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5E02073E262DF14200751357 /* ServiceManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		5E5B0A622625839B007248D9 /* Movie Cards View */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +139,7 @@
 		5E9EB1DB2624A96F006683B0 /* USC Films */ = {
 			isa = PBXGroup;
 			children = (
+				5E02073D262DF12A00751357 /* Networking */,
 				5E9EB1EE2624B6A2006683B0 /* ViewModel */,
 				5E9EB1ED2624B69A006683B0 /* Model */,
 				5E9EB1EC2624B691006683B0 /* Views */,
@@ -172,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				5E020732262C56AB00751357 /* Share.swift */,
+				5E641F432631431200199451 /* NowPlayingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -357,12 +371,14 @@
 				5E8AFF72262ABD07001BA081 /* Movie.swift in Sources */,
 				5E427D4226273A5F00FDC65F /* SearchBar.swift in Sources */,
 				5E9EB2022624D311006683B0 /* MovieDetailsView.swift in Sources */,
+				5E02073F262DF14200751357 /* ServiceManager.swift in Sources */,
 				5E020733262C56AB00751357 /* Share.swift in Sources */,
 				5E9EB2052624D460006683B0 /* ImageContentView.swift in Sources */,
 				5E5B0A6E2625AE4A007248D9 /* YoutubePlayerWrapper.swift in Sources */,
 				5E9EB1F02624B6CD006683B0 /* HomeView.swift in Sources */,
 				5E5B0A60262577DB007248D9 /* MovieCardView.swift in Sources */,
 				5E5B0A64262583BA007248D9 /* MovieCardContainerView.swift in Sources */,
+				5E641F442631431200199451 /* NowPlayingViewModel.swift in Sources */,
 				5E9EB1DF2624A96F006683B0 /* ContentView.swift in Sources */,
 				5E5B0A792625EC3D007248D9 /* RecommendationSectionView.swift in Sources */,
 				5E9EB1F82624BD34006683B0 /* WatchListView.swift in Sources */,

@@ -7,13 +7,13 @@
 
 import Foundation
 
-//struct Movies: Decodable {
-struct Movies {
-    let count: Int
+struct Movies: Decodable {
+//    let count: Int
     let all: [Movie]
     
     enum CodingKeys:  String, CodingKey {
-        case Count
+//        case count
         case all = "results"
     }
 }
+

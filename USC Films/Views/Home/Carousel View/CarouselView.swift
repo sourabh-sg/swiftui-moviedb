@@ -15,13 +15,13 @@ struct CarouselView<Content: View> : View {
     @State private var currentIndex: Int = 1
     
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
-    
     init(numberOfImages: Int, @ViewBuilder content: () -> Content) {
         self.numberOfImages = numberOfImages
         self.content = content()
     }
     
     var body: some View {
+        
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height

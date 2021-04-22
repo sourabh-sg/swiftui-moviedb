@@ -12,6 +12,8 @@ struct HomeView: View {
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
     
+    @ObservedObject var dataStorage = NowPlayingViewData()
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: true) {
