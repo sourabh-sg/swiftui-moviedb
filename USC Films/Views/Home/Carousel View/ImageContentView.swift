@@ -11,6 +11,8 @@ struct ImageContentView: View {
     
     let imageArray = ["tomandjerry", "kahonaapyaarhai"]
     
+//    let movies [Movie]
+    
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width

@@ -6,14 +6,19 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-struct Movies: Decodable {
+class Movies: JSONable {
 //    let count: Int
-    let all: [Movie]
+    let all: [Any]
     
+    required init?(parameter: JSON) {
+        all = parameter["results"].arrayValue
+    }
+    /*
     enum CodingKeys:  String, CodingKey {
 //        case count
         case all = "results"
-    }
+    }*/
 }
 

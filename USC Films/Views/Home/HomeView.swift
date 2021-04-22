@@ -12,7 +12,7 @@ struct HomeView: View {
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
     
-    @ObservedObject var dataStorage = NowPlayingViewData()
+    @ObservedObject var nowPlayingMovies = NowPlayingMoviesData()
     
     var body: some View {
         NavigationView{
