@@ -8,14 +8,12 @@
 import Foundation
 import SwiftyJSON
 
-// Codable protocol: By conforming your data models to Codable/Decodable, you get nearly automatic conversion from JSON to your data models and back.
-
 protocol JSONable {
     init?(parameter: JSON)
 }
 
 //struct Movie: Decodable {
-class Movie: JSONable {
+class Movie: JSONable, Identifiable {
     
     let id : Float //= 429617
     let title: String // = "Spider-Man: Far from Home"
@@ -25,7 +23,7 @@ class Movie: JSONable {
     let image: String
     
     // Image URL
-    // http://image.tmdb.org/t/p/w500/poster_path
+    // https://image.tmdb.org/t/p/w500/poster_path
     
     required init?(parameter: JSON) {
         id = parameter["id"].floatValue
@@ -33,7 +31,7 @@ class Movie: JSONable {
         rating = parameter["vote_average"].floatValue
         releaseDate = parameter["release_date"].stringValue
 //        genre = parameter["genre_ids"]
-        image = parameter["poster_path"].stringValue
+        image = "http://image.tmdb.org/t/p/w500/" + parameter["poster_path"].stringValue
     }
 }
 

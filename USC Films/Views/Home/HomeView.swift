@@ -11,16 +11,17 @@ struct HomeView: View {
     
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
-    
-    @ObservedObject var nowPlayingMovies = NowPlayingMoviesData()
-    
+    @ObservedObject var nowPlayingMovies = NowPlayingMoviesData(isMovie: false)
+    @ObservedObject var topRatedMovies = TopRatedMoviesData(isMovie: false)
+        
     var body: some View {
         NavigationView{
+            
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 20) {
                     VStack(alignment: .leading, spacing: 10) {
                         CarouselHeader(title: carouselTitle)
-                        ImageContentView()
+                        ImageContentView(movies: nowPlayingMovies.movies)
                     }
                     
                     MovieCardContainerView(heading: "Top Rated")

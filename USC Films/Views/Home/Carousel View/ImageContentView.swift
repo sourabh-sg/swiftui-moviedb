@@ -10,18 +10,19 @@ import SwiftUI
 struct ImageContentView: View {
     
     let imageArray = ["tomandjerry", "kahonaapyaarhai"]
-    
-//    @State var movies: [Movie]
+//    let imageArray: [String]
+    @State var movies: [Movie]
     
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
+            
+            // Populate image Array
             CarouselView(numberOfImages: imageArray.count) {
                 
                 ForEach(imageArray, id: \.self) { imageName in
-//                ForEach(movies, id: \.self) { movie in
-                    
+//                for row in movies.count {
                     ZStack(alignment: .center) {
                         Image(imageName)
                             .resizable()
@@ -42,6 +43,6 @@ struct ImageContentView: View {
 
 struct ImageContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageContentView()
+        ImageContentView(movies: [Movie]())
     }
 }
