@@ -10,8 +10,6 @@ import Kingfisher
 
 struct ImageContentView: View {
     
-    let imageArray = ["tomandjerry", "kahonaapyaarhai"]
-//    let imageArray: [String]
     @State var movies: [Movie]
     
     var body: some View {
@@ -25,15 +23,15 @@ struct ImageContentView: View {
                 ForEach(0..<count) { row in
                     ZStack(alignment: .center) {
                         let movie = movies[row]
-                        KFImage(URL(string: movie.image)!)
+                        KFImage(URL(string: movie.backdropImage)!)
                             .resizable()
-                            .clipped()
-                            .blur(radius: 5.0)
+                            .frame(width: width, height: height)
+                            .blur(radius: 5)
                         
                         KFImage(URL(string: movie.image)!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: width, height: (height + 10))
+                            .frame(width: width, height: height)
                     }
             
                 }

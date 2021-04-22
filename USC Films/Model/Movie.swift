@@ -21,6 +21,7 @@ class Movie: JSONable, Identifiable {
     let releaseDate: String // = "2019-06-28"
 //    let genre: [Float] // = ["Action", "Adventure", "Science Fiction"]
     let image: String
+    let backdropImage: String
     
     // Image URL
     // https://image.tmdb.org/t/p/w500/poster_path
@@ -32,6 +33,11 @@ class Movie: JSONable, Identifiable {
         releaseDate = parameter["release_date"].stringValue
 //        genre = parameter["genre_ids"]
         image = "http://image.tmdb.org/t/p/w500/" + parameter["poster_path"].stringValue
+        if parameter["backdrop_path"].stringValue != "" {
+            backdropImage = "http://image.tmdb.org/t/p/w500/" + parameter["backdrop_path"].stringValue
+        } else {
+            backdropImage = image
+        }
     }
 }
 

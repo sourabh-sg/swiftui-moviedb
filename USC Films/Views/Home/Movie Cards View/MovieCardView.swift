@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct MovieCardView: View {
-//    var imageName: String
     var movie: Movie
     
     var body: some View {
