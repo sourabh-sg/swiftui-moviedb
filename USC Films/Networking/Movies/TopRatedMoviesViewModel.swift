@@ -20,7 +20,7 @@ class TopRatedMoviesData: ObservableObject {
     }
     
     func getData() {
-        let urlString = ServiceManager.BASE_URL + (isTV ? "tv/" : "movie/") + "top_rated" + "?api_key=" + ServiceManager.API_KEY + "&language=en-US&page=1"
+        let urlString = Utils.BASE_URL + (isTV ? "tv/" : "movie/") + "top_rated" + "?api_key=" + Utils.API_KEY + "&language=en-US&page=1"
         print("Top Rated URL: \(urlString)")
         
         AF.request(urlString)
