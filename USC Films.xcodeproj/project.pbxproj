@@ -93,7 +93,6 @@
 		5E02073D262DF12A00751357 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				5E641F562631884100199451 /* Movies */,
 				5E888E452632FF3500C3142F /* APIService.swift */,
 			);
 			path = Networking;
@@ -125,13 +124,6 @@
 				5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */,
 			);
 			path = "Common Views";
-			sourceTree = "<group>";
-		};
-		5E641F562631884100199451 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Movies;
 			sourceTree = "<group>";
 		};
 		5E888E402632FC9300C3142F /* Utility */ = {
