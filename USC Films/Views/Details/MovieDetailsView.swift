@@ -146,10 +146,10 @@ struct MovieDetailsView: View {
                                         }.frame(width: 20, height: 20, alignment: .center)
                                         
                                         Button(action: {
-                                            let url = "https://www.themoviedb.org/movie/429617"
-                                            let text = "Check out this link : \(url) #CSCI571USCFilms"
+//                                            let url = "https://www.themoviedb.org/movie/429617"
+//                                            let text = "Check out this link : \(url) #CSCI571USCFilms"
                                            // Twitter share
-                                            Share().shareToTwitter(isMovie: true, id: "429617")
+//                                            Share().shareToTwitter(isMovie: true, id: "429617")
                                            
                                         }) {
                                             Image("twitter")

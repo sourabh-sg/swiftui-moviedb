@@ -10,7 +10,7 @@ import Kingfisher
 
 struct ImageContentView: View {
     
-    @State var movies: [Movie]
+    @State var movies: [MovieViewModel]
     
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +22,7 @@ struct ImageContentView: View {
             CarouselView(numberOfImages: count) {
                 ForEach(0..<count) { row in
                     ZStack(alignment: .center) {
-                        let movieModel = MovieViewModel(movieModel: movies[row])
+                        let movieModel = movies[row]
                         KFImage(URL(string: movieModel.backdropImage)!)
                             .resizable()
                             .frame(width: width, height: height)
@@ -43,6 +43,6 @@ struct ImageContentView: View {
 
 struct ImageContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageContentView(movies: [Movie]())
+        ImageContentView(movies: [MovieViewModel]())
     }
 }
