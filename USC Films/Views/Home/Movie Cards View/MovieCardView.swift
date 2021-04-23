@@ -9,25 +9,25 @@ import SwiftUI
 import Kingfisher
 
 struct MovieCardView: View {
-    var movie: Movie
+    var movieViewModel: MovieViewModel
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             
-            KFImage(URL(string: movie.image)!)
+            KFImage(URL(string: movieViewModel.image)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 180, alignment: .center)
                 .cornerRadius(10)
             
-            Text(movie.title)
+            Text(movieViewModel.title)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
                 .frame(width: 120)
                 .multilineTextAlignment(.center)
             
-            Text(movie.releaseDate)
+            Text(movieViewModel.releaseYear)
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .fontWeight(.bold)

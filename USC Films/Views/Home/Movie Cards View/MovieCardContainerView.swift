@@ -25,7 +25,8 @@ struct MovieCardContainerView: View {
                         if movies.count > row, let movie = movies[row] as? Movie {
                             NavigationLink(
                                 destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
-                                MovieCardView(movie: movie)
+                                let movieViewModel = MovieViewModel(movieModel: movie)
+                                MovieCardView(movieViewModel: movieViewModel)
                             }
                         }
                     }

@@ -22,13 +22,13 @@ struct ImageContentView: View {
             CarouselView(numberOfImages: count) {
                 ForEach(0..<count) { row in
                     ZStack(alignment: .center) {
-                        let movie = movies[row]
-                        KFImage(URL(string: movie.backdropImage)!)
+                        let movieModel = MovieViewModel(movieModel: movies[row])
+                        KFImage(URL(string: movieModel.backdropImage)!)
                             .resizable()
                             .frame(width: width, height: height)
                             .blur(radius: 5)
                         
-                        KFImage(URL(string: movie.image)!)
+                        KFImage(URL(string: movieModel.image)!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: height)

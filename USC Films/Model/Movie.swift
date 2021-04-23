@@ -23,18 +23,15 @@ class Movie: JSONable, Identifiable {
     let image: String
     let backdropImage: String
     
-    // Image URL
-    // https://image.tmdb.org/t/p/w500/poster_path
-    
     required init?(parameter: JSON) {
         id = parameter["id"].floatValue
         title = parameter["title"].stringValue
         rating = parameter["vote_average"].floatValue
         releaseDate = parameter["release_date"].stringValue
 //        genre = parameter["genre_ids"]
-        image = "http://image.tmdb.org/t/p/w500/" + parameter["poster_path"].stringValue
+        image = parameter["poster_path"].stringValue
         if parameter["backdrop_path"].stringValue != "" {
-            backdropImage = "http://image.tmdb.org/t/p/w500/" + parameter["backdrop_path"].stringValue
+            backdropImage = parameter["backdrop_path"].stringValue
         } else {
             backdropImage = image
         }
