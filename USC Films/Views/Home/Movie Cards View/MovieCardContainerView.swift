@@ -28,6 +28,7 @@ struct MovieCardContainerView: View {
                                 NavigationLink(
                                     destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
                                     MovieCardView(movieViewModel: movie, isMovie: true)
+
                                 }
                             }
                         } else {

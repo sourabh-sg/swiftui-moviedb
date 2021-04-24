@@ -17,10 +17,13 @@ struct MovieCardView: View {
     @State var releaseYear: String = ""
     @State var image: String = ""
     
+    @State var isBookmarked = false
+    @State var bookmarkImage = "bookmark"
+    @State var bookmarkMenuText = "Add to WatchList"
+    
     var body: some View {
         
         VStack(alignment: .center, spacing: 5) {
-            
             KFImage(URL(string: (isMovie ? self.movieViewModel!.image : self.tvShowViewModel!.image))!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -41,7 +44,47 @@ struct MovieCardView: View {
             
             Spacer()
             
+        }.contextMenu {
+            Button(action: {
+                isBookmarked.toggle()
+                bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")
+                bookmarkMenuText = (isBookmarked ? "Remove from WatchList" : "Add to WatchList")
+            }) {
+                HStack() {
+                    Text(bookmarkMenuText)
+                    Spacer()
+                    Image(systemName: bookmarkImage)
+                }.padding()
+            }
+            .foregroundColor(.black)
+            
+            Button(action: {
+                // Share on Twitter
+            }) {
+                
+                HStack() {
+                    Text("Share on Facebook")
+                    Spacer()
+                    Image("facebook-app-symbol")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }.padding()
+               
+            }
+            
+            Button(action: {
+                // Share on Twitter
+            }) {
+                HStack() {
+                    Text("Share on Twitter")
+                    Spacer()
+                    Image("twitter")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }.padding()
+            }
         }
+
     }
 }
 

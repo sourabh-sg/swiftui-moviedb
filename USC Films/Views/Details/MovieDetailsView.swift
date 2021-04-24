@@ -81,7 +81,7 @@ struct MovieDetailsView: View {
                             HStack {
                                 ForEach(0..<10) {_ in
                                     VStack {
-                                        Image("tomandjerry")
+                                        Image("cast_placeholder")
                                             .resizable()
                                             .clipShape(Circle())
                                             .scaledToFill()
