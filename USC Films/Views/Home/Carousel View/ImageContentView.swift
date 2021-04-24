@@ -27,8 +27,8 @@ struct ImageContentView: View {
                         // KFImage is KingFisher library's Image view that loads and caches images from given url
                         KFImage(URL(string: (isMovie ? movies![row].backdropImage : shows![row].backdropImage))!)
                             .resizable()
-                            .frame(width: width, height: height)
                             .blur(radius: 5)
+                            .frame(width: width, height: height)
                         
                         KFImage(URL(string: (isMovie ? movies![row].image : shows![row].image))!)
                             .resizable()
