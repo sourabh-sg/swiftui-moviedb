@@ -27,14 +27,14 @@ struct MovieCardContainerView: View {
                             if movies!.count > row, let movie = movies![row] {
                                 NavigationLink(
                                     destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
-                                    MovieCardView(movieViewModel: movie, tvShowViewModel: nil, isMovie: true)
+                                    MovieCardView(movieViewModel: movie, isMovie: true)
                                 }
                             }
                         } else {
                             if shows!.count > row, let show = shows![row] {
                                 NavigationLink(
                                     destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
-                                    MovieCardView(movieViewModel: nil, tvShowViewModel: show, isMovie: false)
+                                    MovieCardView(tvShowViewModel: show, isMovie: false)
                                 }
                             }
                         }

@@ -36,15 +36,15 @@ struct HomeView: View {
                                 CarouselHeader(title: carouselTitle)
                                 ImageContentView(shows: trendingShows.shows, isMovie: false)
                             }
-                            MovieCardContainerView(heading: "Top Rated", movies: nil, shows: topRatedShows.shows, isMovie: false)
-                            MovieCardContainerView(heading: "Popular", movies: nil, shows: popularShows.shows, isMovie: !tvselected)
+                            MovieCardContainerView(heading: "Top Rated",shows: topRatedShows.shows, isMovie: false)
+                            MovieCardContainerView(heading: "Popular", shows: popularShows.shows, isMovie: !tvselected)
                         } else {
                             VStack(alignment: .leading, spacing: 10) {
                                 CarouselHeader(title: carouselTitle)
                                 ImageContentView(movies: nowPlayingMovies.movies, isMovie: true)
                             }
-                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies, shows: nil, isMovie: !tvselected)
-                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies, shows: nil, isMovie: true)
+                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies, isMovie: !tvselected)
+                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies, isMovie: true)
                         }
                             
                         Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
@@ -59,12 +59,13 @@ struct HomeView: View {
                 .navigationBarItems(trailing:
                                         Button(action: {
                                             //Action
-                                            tvselected.toggle()
-                                            
-                                            if tvselected {
-                                                carouselTitle = "Trending"
-                                            } else {
-                                                carouselTitle = "Now Playing"
+                                            DispatchQueue.main.async {
+                                                tvselected.toggle()
+                                                if tvselected {
+                                                    carouselTitle = "Trending"
+                                                } else {
+                                                    carouselTitle = "Now Playing"
+                                                }
                                             }
                                             
                                         }, label: {
