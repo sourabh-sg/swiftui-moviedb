@@ -57,21 +57,20 @@ struct MovieCardView: View {
             }
             .foregroundColor(.black)
                         
-            Button(action: {
-                // Share on Twitter
-            }) {
+            let id = String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
+            
+            // FB Share URL
+            let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
+            // Twitter Share URL
+            let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+            
+            // Link view for FB Share
+            Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                 Label("Share on Facebook", image: "facebook-app-symbol")
             }
-            /*
-            Button(action: {
-                // Share on Twitter
-            }) {
-                Label("Share on Twitter", image: "twitter")
-            }
-            */
-            let id = String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
-            let urlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
-            Link(destination: URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+            
+            // Link view for Twitter Share
+            Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                 Label("Share on Twitter", image: "twitter")
                     .foregroundColor(.black)
             }

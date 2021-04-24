@@ -136,19 +136,19 @@ struct MovieDetailsView: View {
                                         }
                                         .foregroundColor(.black)
                                         
-                                        Button(action: {
-                                            // FB share
-                                            
-                                        }) {
+                                        let id = "41112"//String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
+                                        
+                                        // FB Share
+                                        let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
+                                        Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                                             Image("facebook-app-symbol")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                         }.frame(width: 20, height: 20, alignment: .center)
                                         
                                         // Twitter Share
-                                        let id = "41112"//String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
-                                        let urlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
-                                        Link(destination: URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                        let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+                                        Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                                             Image("twitter")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
