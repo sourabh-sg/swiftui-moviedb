@@ -13,17 +13,17 @@ protocol JSONable {
 }
 
 //struct Movie: Decodable {
-class Movie: JSONable, Identifiable {
+struct Movie: JSONable {
     
-    let id : Float //= 429617
-    let title: String // = "Spider-Man: Far from Home"
-    let rating: Float // = 7.5 // Out of 10
-    let releaseDate: String // = "2019-06-28"
+    var id : Float
+    var title: String
+    var rating: Float // Out of 10
+    var releaseDate: String
 //    let genre: [Float] // = ["Action", "Adventure", "Science Fiction"]
-    let image: String
-    let backdropImage: String
+    var image: String
+    var backdropImage: String
     
-    required init?(parameter: JSON) {
+    init(parameter: JSON) {
         id = parameter["id"].floatValue
         title = parameter["title"].stringValue
         rating = parameter["vote_average"].floatValue

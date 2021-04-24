@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct MovieCardContainerView: View {
-    var heading: String
-    @State var movies: [MovieViewModel]
+    @State var heading: String
+    @State var movies: [MovieViewModel]?
+    @State var shows: [TVShowViewModel]?
+    @State var isMovie: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -19,14 +21,24 @@ struct MovieCardContainerView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 20) {
                     // We need to show upto 20 movies here per the requirement
-                    let count = min(20, movies.count)
+                    let count = min(20, (isMovie ? movies!.count : shows!.count))
                     ForEach(0..<count) { row in
-                        if movies.count > row, let movie = movies[row] {
-                            NavigationLink(
-                                destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
-                                MovieCardView(movieViewModel: movie)
+                        if isMovie {
+                            if movies!.count > row, let movie = movies![row] {
+                                NavigationLink(
+                                    destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
+                                    MovieCardView(movieViewModel: movie, tvShowViewModel: nil, isMovie: true)
+                                }
+                            }
+                        } else {
+                            if shows!.count > row, let show = shows![row] {
+                                NavigationLink(
+                                    destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
+                                    MovieCardView(movieViewModel: nil, tvShowViewModel: show, isMovie: false)
+                                }
                             }
                         }
+                        
                     }
                 }
             }

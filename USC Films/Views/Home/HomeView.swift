@@ -11,14 +11,19 @@ struct HomeView: View {
     
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
+    // Movies
     @ObservedObject var nowPlayingMovies = NowPlayingMoviesData()
     @ObservedObject var topRatedMovies = TopRatedMoviesData()
     @ObservedObject var popularMovies = PopularMoviesData()
+    // TVShows
+    @ObservedObject var trendingShows = TrendingTVShowsData()
+    @ObservedObject var topRatedShows = TopRatedTVShowsData()
+    @ObservedObject var popularShows = PopularTVShowsData()
     
     var body: some View {
         NavigationView{
             
-            if nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0 {
+            if ((!tvselected && nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0) || (tvselected && trendingShows.shows.count == 0 && topRatedShows.shows.count == 0 && popularShows.shows.count == 0)) {
                 Text("Loading...")
                     .font(.title2)
                     .foregroundColor(.gray)
@@ -30,9 +35,13 @@ struct HomeView: View {
                             ImageContentView(movies: nowPlayingMovies.movies)
                         }
                         
-                        MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies)
-                        MovieCardContainerView(heading: "Popular", movies: popularMovies.movies)
-                        
+                        if tvselected {
+                            MovieCardContainerView(heading: "Top Rated", movies: nil, shows: topRatedShows.shows, isMovie: false)
+                            MovieCardContainerView(heading: "Popular", movies: nil, shows: popularShows.shows, isMovie: !tvselected)
+                        } else {
+                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies, shows: nil, isMovie: !tvselected)
+                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies, shows: nil, isMovie: true)
+                        }
                             
                         Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
                             .font(.headline)

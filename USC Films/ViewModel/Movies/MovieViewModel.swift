@@ -7,12 +7,12 @@
 
 import Foundation
 
-class MovieViewModel: NSObject {
+struct MovieViewModel {
     
-    var id : Float //= 429617
-    var title: String // = "Spider-Man: Far from Home"
-    var rating: String // = 7.5 // Out of 10
-    var releaseYear: String // = "2019-06-28"
+    var id : Float
+    var title: String
+    var rating: String
+    var releaseYear: String
 //    let genre: [Float] // = ["Action", "Adventure", "Science Fiction"]
     var image: String
     var backdropImage: String
@@ -30,7 +30,6 @@ class MovieViewModel: NSObject {
         // https://image.tmdb.org/t/p/w500/poster_path
         self.image = "http://image.tmdb.org/t/p/w500/" + movieModel.image
         self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieModel.backdropImage
-        
     }
     
     
