@@ -24,7 +24,7 @@ struct HomeView: View {
         NavigationView{
             
             if ((!tvselected && nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0) || (tvselected && trendingShows.shows.count == 0 && topRatedShows.shows.count == 0 && popularShows.shows.count == 0)) {
-                Text("Loading...")
+                Text("Fetching Data...")
                     .font(.title2)
                     .foregroundColor(.gray)
             } else {
