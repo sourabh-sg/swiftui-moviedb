@@ -30,15 +30,19 @@ struct HomeView: View {
             } else {
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack(spacing: 20) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            CarouselHeader(title: carouselTitle)
-                            ImageContentView(movies: nowPlayingMovies.movies)
-                        }
                         
                         if tvselected {
+                            VStack(alignment: .leading, spacing: 10) {
+                                CarouselHeader(title: carouselTitle)
+                                ImageContentView(shows: trendingShows.shows, isMovie: false)
+                            }
                             MovieCardContainerView(heading: "Top Rated", movies: nil, shows: topRatedShows.shows, isMovie: false)
                             MovieCardContainerView(heading: "Popular", movies: nil, shows: popularShows.shows, isMovie: !tvselected)
                         } else {
+                            VStack(alignment: .leading, spacing: 10) {
+                                CarouselHeader(title: carouselTitle)
+                                ImageContentView(movies: nowPlayingMovies.movies, isMovie: true)
+                            }
                             MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies, shows: nil, isMovie: !tvselected)
                             MovieCardContainerView(heading: "Popular", movies: popularMovies.movies, shows: nil, isMovie: true)
                         }
