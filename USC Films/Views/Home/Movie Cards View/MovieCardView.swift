@@ -45,43 +45,26 @@ struct MovieCardView: View {
             Spacer()
             
         }.contextMenu {
+           
             Button(action: {
                 isBookmarked.toggle()
                 bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")
                 bookmarkMenuText = (isBookmarked ? "Remove from WatchList" : "Add to WatchList")
             }) {
-                HStack() {
-                    Text(bookmarkMenuText)
-                    Spacer()
-                    Image(systemName: bookmarkImage)
-                }.padding()
+                Label(bookmarkMenuText, systemImage: bookmarkImage)
             }
             .foregroundColor(.black)
-            
+                        
             Button(action: {
                 // Share on Twitter
             }) {
-                
-                HStack() {
-                    Text("Share on Facebook")
-                    Spacer()
-                    Image("facebook-app-symbol")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }.padding()
-               
+                Label("Share on Facebook", image: "facebook-app-symbol")
             }
             
             Button(action: {
                 // Share on Twitter
             }) {
-                HStack() {
-                    Text("Share on Twitter")
-                    Spacer()
-                    Image("twitter")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }.padding()
+                Label("Share on Twitter", image: "twitter")
             }
         }
 
