@@ -45,7 +45,6 @@ struct MovieCardView: View {
             Spacer()
             
         }.contextMenu {
-           
             Button(action: {
                 isBookmarked.toggle()
                 bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")

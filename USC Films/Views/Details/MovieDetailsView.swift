@@ -21,7 +21,7 @@ struct MovieDetailsView: View {
         
         
             ScrollView() {
-                VStack(alignment: .leading, spacing: 10) {
+                LazyVStack(alignment: .leading, spacing: 10) {
                     // Youtube player
                     YouTubePlayer(text: videoLink)
                         .frame(width: 335, height: 200)
@@ -78,7 +78,7 @@ struct MovieDetailsView: View {
                         
                         // Names
                         ScrollView(.horizontal) {
-                            HStack {
+                            LazyHStack {
                                 ForEach(0..<10) {_ in
                                     VStack {
                                         Image("cast_placeholder")
