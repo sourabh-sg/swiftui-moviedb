@@ -9,7 +9,7 @@ import Foundation
 
 struct MovieViewModel {
     
-    var id : Float
+    var id : Int
     var title: String
     var rating: String
     var releaseYear: String

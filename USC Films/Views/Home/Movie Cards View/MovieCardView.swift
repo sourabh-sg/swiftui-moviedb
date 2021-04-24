@@ -44,7 +44,10 @@ struct MovieCardView: View {
             
             Spacer()
             
-        }.contextMenu {
+        }
+        .background(Color.white)
+        .cornerRadius(10)
+        .contextMenu {
             Button(action: {
                 isBookmarked.toggle()
                 bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")
@@ -59,11 +62,18 @@ struct MovieCardView: View {
             }) {
                 Label("Share on Facebook", image: "facebook-app-symbol")
             }
-            
+            /*
             Button(action: {
                 // Share on Twitter
             }) {
                 Label("Share on Twitter", image: "twitter")
+            }
+            */
+            let id = String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
+            let urlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+            Link(destination: URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                Label("Share on Twitter", image: "twitter")
+                    .foregroundColor(.black)
             }
         }
 

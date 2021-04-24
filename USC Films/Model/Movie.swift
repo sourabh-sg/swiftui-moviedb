@@ -15,7 +15,7 @@ protocol JSONable {
 //struct Movie: Decodable {
 struct Movie: JSONable {
     
-    var id : Float
+    var id : Int
     var title: String
     var rating: Float // Out of 10
     var releaseDate: String
@@ -24,7 +24,7 @@ struct Movie: JSONable {
     var backdropImage: String
     
     init(parameter: JSON) {
-        id = parameter["id"].floatValue
+        id = parameter["id"].intValue
         title = parameter["title"].stringValue
         rating = parameter["vote_average"].floatValue
         releaseDate = parameter["release_date"].stringValue

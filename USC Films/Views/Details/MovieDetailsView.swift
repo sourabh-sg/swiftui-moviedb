@@ -145,13 +145,10 @@ struct MovieDetailsView: View {
                                                 .aspectRatio(contentMode: .fit)
                                         }.frame(width: 20, height: 20, alignment: .center)
                                         
-                                        Button(action: {
-//                                            let url = "https://www.themoviedb.org/movie/429617"
-//                                            let text = "Check out this link : \(url) #CSCI571USCFilms"
-                                           // Twitter share
-//                                            Share().shareToTwitter(isMovie: true, id: "429617")
-                                           
-                                        }) {
+                                        // Twitter Share
+                                        let id = "41112"//String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
+                                        let urlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+                                        Link(destination: URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                                             Image("twitter")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)

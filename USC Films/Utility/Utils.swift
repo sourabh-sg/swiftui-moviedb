@@ -24,4 +24,10 @@ class Utils {
 
     "https://api.themoviedb.org/3/tv/popular?api_key=6c0ffdf3b26f49c8 94810818be208c86&language=en-US&page=1"
 */
+    
+    
+    func getTwitterShareURL(with id: String) -> String {
+        "https://twitter.com/intent/tweet?text=Check out this link" + "&url=https://www.themoviedb.org/movie/" + id + "&hashtags=#CSCI571USCFilms"
+    }
+    
 }

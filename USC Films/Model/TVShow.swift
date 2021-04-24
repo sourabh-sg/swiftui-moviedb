@@ -9,7 +9,7 @@ import Foundation
 import SwiftyJSON
 
 struct TVShow: JSONable {
-    var id : Float
+    var id : Int
     var title: String
     var rating: Float // Out of 10
     var releaseDate: String
@@ -17,7 +17,7 @@ struct TVShow: JSONable {
     var backdropImage: String
     
     init(parameter: JSON) {
-        id = parameter["id"].floatValue
+        id = parameter["id"].intValue
         title = parameter["name"].stringValue
         rating = parameter["vote_average"].floatValue
         releaseDate = parameter["first_air_date"].stringValue
