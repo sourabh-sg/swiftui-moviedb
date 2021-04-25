@@ -40,14 +40,15 @@ struct MovieDetailsViewModel {
         self.image = "http://image.tmdb.org/t/p/w500/" + movieDetailsModel.image
         self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieDetailsModel.backdropImage
         
-        var genreString = "Drama"//movieDetailsModel.genres ?? []
-        self.genre = genreString
-        if genreString.count > 0 && releaseYearString.count > 0 {
+        // Convert string array to string
+        self.genre  = movieDetailsModel.genres.joined(separator: ", ")
+        
+        if self.genre.count > 0 && releaseYearString.count > 0 {
             self.releaseYearAndGenreString  = releaseYearString + " | " + self.genre
         } else if releaseYearString.count > 0 {
             self.releaseYearAndGenreString = releaseYearString
-        } else if genreString.count > 0 {
-            self.releaseYearAndGenreString = genreString
+        } else if self.genre.count > 0 {
+            self.releaseYearAndGenreString = self.genre
         } else {
             self.releaseYearAndGenreString = ""
         }

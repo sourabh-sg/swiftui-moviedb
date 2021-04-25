@@ -17,14 +17,13 @@ struct MovieDetails: JSONable {
     var image: String
     var backdropImage: String
     var overview: String
-    var genres: [String]?
+    var genres = [String]()
     
     init?(parameter: JSON) {
         id = parameter["id"].intValue
         title = parameter["title"].stringValue
         rating = parameter["vote_average"].floatValue
         releaseDate = parameter["release_date"].stringValue
-//        genre = parameter["genre_ids"]
         image = parameter["poster_path"].stringValue
         if parameter["backdrop_path"].stringValue != "" {
             backdropImage = parameter["backdrop_path"].stringValue
@@ -33,8 +32,15 @@ struct MovieDetails: JSONable {
         }
         overview = parameter["overview"].stringValue
         // Get genres
-        if let genresJson = parameter["genres"].toType(type: [[String : Any]].self) {
-            print("GENREJSON: \(genresJson)")
+        
+        let genreJson = parameter["genres"]
+        let reviewJson = genreJson.arrayValue
+        for element in reviewJson {
+            for (key,value):(String, JSON) in element {
+                if key == "name" {
+                    self.genres.append(value.stringValue)
+                }
+            }
         }
     }
 }
