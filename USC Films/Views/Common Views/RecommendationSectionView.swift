@@ -19,7 +19,7 @@ struct RecommendationSectionView: View {
                 HStack(spacing: 30) {
                     ForEach(imageArray, id: \.self) { item in
                         NavigationLink(
-                            destination: MovieDetailsView(videoLink: "bwOZrnZxIuQ")) {
+                            destination: MovieDetailsView(id: "12345")) {
                             Image(item)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)

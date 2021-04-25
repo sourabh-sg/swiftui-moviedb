@@ -12,14 +12,12 @@ protocol JSONable {
     init?(parameter: JSON)
 }
 
-//struct Movie: Decodable {
 struct Movie: JSONable {
     
     var id : Int
     var title: String
     var rating: Float // Out of 10
     var releaseDate: String
-//    let genre: [Float] // = ["Action", "Adventure", "Science Fiction"]
     var image: String
     var backdropImage: String
     

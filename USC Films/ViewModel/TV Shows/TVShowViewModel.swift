@@ -8,7 +8,7 @@
 import Foundation
 
 struct TVShowViewModel {
-    var id : Int
+    var id : String
     var title: String
     var rating: String
     var releaseYear: String
@@ -16,7 +16,7 @@ struct TVShowViewModel {
     var backdropImage: String
     
     init(tvShowModel: TVShow) {
-        self.id = tvShowModel.id
+        self.id = "\(tvShowModel.id)"
         self.title = tvShowModel.title
         // Convert ratings to 5
         self.rating = "\(tvShowModel.rating * 0.5)"

@@ -6,46 +6,59 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieDetailsView: View {
     
-    var videoLink: String
-//    var id: String
+//    var videoLink: String
+    var id: String
+    @ObservedObject var movieDetails: MovieDetailsData
+    @ObservedObject var movieCast: CastDetailsData
     
     @State var limit = 3
     @State var isBookmarked = false
     
+    var genre = ""
+    
+    init(id: String) {
+        self.id = id
+        self.movieDetails = MovieDetailsData(id: id)
+        self.movieCast = CastDetailsData(id: id)
+    }
+    
     var body: some View {
         
-//        var movieDetails = MoviesDetailsData(isMovie: true, id: id)
-        
-        
+        if self.movieDetails.basicDetails != nil {
             ScrollView() {
                 LazyVStack(alignment: .leading, spacing: 10) {
                     // Youtube player
-                    YouTubePlayer(text: videoLink)
+                    YouTubePlayer(text: "bwOZrnZxIuQ")
                         .frame(width: 335, height: 200)
                     // Movie/TV Show Title
-                    Text("Kaho Naa...Pyaar Hai")
+                    Text(self.movieDetails.basicDetails!.title)
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.leading)
                     // Year of release | Genres
-                    Text("2000 | Drama, Romance")
-                        .font(.callout)
-                        .foregroundColor(.black)
+                    
+                    if self.movieDetails.basicDetails!.releaseYearAndGenreString.count > 0 {
+                        Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
+                            .font(.callout)
+                            .foregroundColor(.black)
+                    }
+                    
                     // Average star rating
                     HStack(spacing: 5) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.red)
                             .font(.callout)
-                        Text("4.9/5.0")
+                        Text("\(self.movieDetails.basicDetails!.rating)/5.0")
                             .font(.callout)
                             .foregroundColor(.black)
                     }
                     // Description
-                    Text("Sonia and Rohit love each other but Rohit is mysteriously killed. To divert her upset mind, Sonia moves to New Zealand, where she meets Rohit's lookalike Raj who helps her trace Rohit's killer.")
+                    Text(self.movieDetails.basicDetails!.overview)
                         .lineLimit(limit)
                     // Show more/less button
                     HStack {
@@ -70,30 +83,9 @@ struct MovieDetailsView: View {
                     }
                     
                     // Cast & Crew
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Cast & Crew")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        // Names
-                        ScrollView(.horizontal) {
-                            LazyHStack {
-                                ForEach(0..<10) {_ in
-                                    VStack {
-                                        Image("cast_placeholder")
-                                            .resizable()
-                                            .clipShape(Circle())
-                                            .scaledToFill()
-                                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                                        
-                                        Text("Tom the mad cat")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.center)
-                                    }
-                                }
-                            }
-                        }
+                    
+                    if self.movieCast.cast != nil && self.movieCast.cast!.count > 0 {
+                        CastView(cast: self.movieCast.cast!)
                     }
                     
                     // Reviews
@@ -156,11 +148,64 @@ struct MovieDetailsView: View {
                                         
                                     }
             )
+        }
     }
+    
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(videoLink: "bwOZrnZxIuQ")
+        MovieDetailsView(id: "12345")
     }
 }
+
+// Cast View
+struct CastView: View {
+
+    var cast: [ActorViewModel]
+    init(cast: [ActorViewModel]) {
+        self.cast = cast
+    }
+    
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Cast & Crew")
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+            
+            // Names
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    let count = min(10, self.cast.count)
+                    ForEach(0..<count) { i in
+                        
+                        if let actorVM = self.cast[i] {
+                            VStack {
+                                KFImage(URL(string: actorVM.image))
+                                    .resizable()
+                                    .clipShape(Circle())
+                                    .scaledToFill()
+                                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                                
+                                Text(actorVM.name)
+                                    .font(.subheadline)
+                                    .multilineTextAlignment(.center)
+                            }
+                        } else {
+                            Image("cast_placeholder")
+                                .resizable()
+                                .clipShape(Circle())
+                                .scaledToFill()
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+

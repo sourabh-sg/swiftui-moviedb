@@ -113,6 +113,59 @@ class APIService: NSObject {
         
     }
     
+    // API Call to get movie details data
+    func getMovieDetails(for id: String, completion: @escaping (MovieDetailsViewModel?) -> ()) {
+        let urlString = APIService.BASE_URL + "movie/" + id + "?api_key=" + APIService.API_KEY + "&language=en"
+        print("Movie Details URL: \(urlString)")
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                guard let movie = responseJSON.toType(type: MovieDetails.self) else {
+                    completion(nil)
+                    return
+                }
+                let movieDetails = MovieDetailsViewModel(movieDetailsModel: movie as! MovieDetails)
+                print("Movie Details:\n\(movie)")
+                // Return movies on completion
+                completion(movieDetails)
+            }
+        
+    }
+    
+    // API Call to get movie cast data
+    func getMovieCastDetails(for id: String, completion: @escaping ([ActorViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + "movie/" + id + "/credits?&api_key=" + APIService.API_KEY + "&language=en"
+        print("Movie Details URL: \(urlString)")
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var castArray = [ActorViewModel]()
+                let castJson = responseJSON["cast"]
+                for actObj in castJson {
+                    let actorJson = JSON(actObj.1)
+                    // Get each movie model data
+                    if let actor = actorJson.toType(type: Actor.self) {
+                        print("Movie obj found!\n\(actor)")
+                        // Convert movie model to movie view model
+                        let actorVM = ActorViewModel(actorModel: actor as! Actor)
+                        castArray.append(actorVM)
+                    }
+                }
+                
+
+                print("Movie Details:\n\(castArray)")
+                // Return movies on completion
+                completion(castArray)
+            }
+        
+    }
+    
     // MARK: - TV SHOW APIS
     // API Call to get trending tv shows data
     func getTrendingShows(completion: @escaping ([TVShowViewModel]) -> ()) {

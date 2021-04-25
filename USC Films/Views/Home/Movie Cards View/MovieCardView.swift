@@ -46,7 +46,6 @@ struct MovieCardView: View {
             
         }
         .background(Color.white)
-        .cornerRadius(10)
         .contextMenu {
             Button(action: {
                 isBookmarked.toggle()

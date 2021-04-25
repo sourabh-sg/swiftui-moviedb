@@ -9,7 +9,7 @@ import Foundation
 
 struct MovieViewModel {
     
-    var id : Int
+    var id : String
     var title: String
     var rating: String
     var releaseYear: String
@@ -18,7 +18,7 @@ struct MovieViewModel {
     var backdropImage: String
     
     init(movieModel: Movie) {
-        self.id = movieModel.id
+        self.id = "\(movieModel.id)"
         self.title = movieModel.title
         // Convert ratings to 5
         self.rating = "\(movieModel.rating * 0.5)"
@@ -31,6 +31,4 @@ struct MovieViewModel {
         self.image = "http://image.tmdb.org/t/p/w500/" + movieModel.image
         self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieModel.backdropImage
     }
-    
-    
 }
