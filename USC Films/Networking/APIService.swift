@@ -17,6 +17,9 @@ class APIService: NSObject {
     static private let TOP_RATED = "top_rated"
     static private let POPULAR = "popular"
     static private let TRENDING = "airing_today"
+    static private let CREDITS = "/credits"
+    static private let REVIEWS = "/reviews"
+    static private let RECOMMENDATIONS = "/recommendations"
     
     // MARK: - MOVIE APIS
     // API Call to get now playing movies data
@@ -137,7 +140,7 @@ class APIService: NSObject {
     
     // API Call to get movie cast data
     func getMovieCastDetails(for id: String, completion: @escaping ([ActorViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + "/credits?&api_key=" + APIService.API_KEY + "&language=en"
+        let urlString = APIService.BASE_URL + "movie/" + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
         print("Cast URL: \(urlString)")
         
         AF.request(urlString)
@@ -167,7 +170,7 @@ class APIService: NSObject {
     
     // API Call to get movie reviews
     func getMovieReviews(for id: String, completion: @escaping ([ReviewViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + "/reviews?&api_key=" + APIService.API_KEY + "&language=en"
+        let urlString = APIService.BASE_URL + "movie/" + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
         print("Reviews URL: \(urlString)")
         
         AF.request(urlString)
@@ -191,6 +194,36 @@ class APIService: NSObject {
                 print("Movie Review Details:\n\(reviewArray)")
                 // Return movies on completion
                 completion(reviewArray)
+            }
+        
+    }
+    
+    // API Call to get movie recommendations
+    func getMovieRecommendations(for id: String, completion: @escaping ([MovieViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + "movie/" + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
+        print("Reviews URL: \(urlString)")
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var movies = [MovieViewModel]()
+                let resultJson = responseJSON["results"]
+                for movieObj in resultJson {
+                    let movieJson = JSON(movieObj.1)
+                    // Get each movie model data
+                    if let movie = movieJson.toType(type: Movie.self) {
+                        print("Recommendations Movie obj found!\n\(movie)")
+                        // Convert movie model to movie view model
+                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        movies.append(movieVM)
+                    }
+                }
+                
+                print("Recommendations Movies:\n\(movies)")
+                // Return movies on completion
+                completion(movies)
             }
         
     }

@@ -10,7 +10,6 @@ import Kingfisher
 
 struct MovieDetailsView: View {
     
-//    var videoLink: String
     var id: String
     @ObservedObject var movieDetails: MovieDetailsData
     @ObservedObject var movieCast: CastDetailsData
@@ -18,9 +17,7 @@ struct MovieDetailsView: View {
     
     @State var limit = 3
     @State var isBookmarked = false
-    
-    var genre = ""
-    
+        
     init(id: String) {
         self.id = id
         self.movieDetails = MovieDetailsData(id: id)
@@ -95,7 +92,7 @@ struct MovieDetailsView: View {
                     }
                                         
                     // Recommended Movies
-                    RecommendationSectionView()
+                    RecommendationSectionView(id: self.id)
                         .padding(.top, 15)
                     
                     Spacer()

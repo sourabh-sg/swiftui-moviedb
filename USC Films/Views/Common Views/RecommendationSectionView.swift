@@ -6,36 +6,53 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct RecommendationSectionView: View {
-    let imageArray = ["tomandjerry", "kahonaapyaarhai", "tomandjerry", "kahonaapyaarhai"]
+
+    var id: String
+    @ObservedObject var recommendedMovies: RecommendedMoviesData
+    
+    init(id: String) {
+        self.id = id
+        self.recommendedMovies = RecommendedMoviesData(id: id)
+        
+    }
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Recommended Movies")
-                .font(.title)
-                .fontWeight(.bold)
+        
+        if self.recommendedMovies.movies.count > 0 {
             
-            ScrollView(.horizontal, showsIndicators: true) {
-                HStack(spacing: 30) {
-                    ForEach(imageArray, id: \.self) { item in
-                        NavigationLink(
-                            destination: MovieDetailsView(id: "12345")) {
-                            Image(item)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 120, height: 180, alignment: .center)
-                                .cornerRadius(10)
-                            }
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Recommended Movies")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(spacing: 30) {
+                        ForEach(0..<self.recommendedMovies.movies.count) { i in
+                            
+                            let movie = self.recommendedMovies.movies[i]
+                            
+                            NavigationLink(
+                                destination: MovieDetailsView(id: movie.id)) {
+                                KFImage(URL(string: movie.image)!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 120, height: 180, alignment: .center)
+                                    .cornerRadius(10)
+                                }
+                        }
                     }
                 }
+                .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
             }
-            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
         }
     }
 }
 
 struct RecommendationSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        RecommendationSectionView()
+        RecommendationSectionView(id: "429617")
     }
 }
