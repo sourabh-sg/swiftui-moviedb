@@ -11,6 +11,7 @@ import Kingfisher
 struct MovieDetailsView: View {
     
     var id: String
+    var isMovie: Bool
     @ObservedObject var movieDetails: MovieDetailsData
     @ObservedObject var movieCast: CastDetailsData
     @ObservedObject var reviewsData: ReviewData
@@ -18,11 +19,12 @@ struct MovieDetailsView: View {
     @State var limit = 3
     @State var isBookmarked = false
         
-    init(id: String) {
+    init(id: String, isMovie: Bool) {
         self.id = id
-        self.movieDetails = MovieDetailsData(id: id)
-        self.movieCast = CastDetailsData(id: id)
-        self.reviewsData = ReviewData(id: id)
+        self.isMovie = isMovie
+        self.movieDetails = MovieDetailsData(id: id, isMovie: isMovie)
+        self.movieCast = CastDetailsData(id: id, isMovie: isMovie)
+        self.reviewsData = ReviewData(id: id, isMovie: isMovie)
     }
     
     var body: some View {
@@ -98,7 +100,7 @@ struct MovieDetailsView: View {
                     }
                                         
                     // Recommended Movies
-                    RecommendationSectionView(id: self.id)
+                    RecommendationSectionView(id: self.id, isMovie: self.isMovie)
                         .padding(.top, 15)
                     
                     Spacer()
@@ -145,7 +147,7 @@ struct MovieDetailsView: View {
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(id: "429617")
+        MovieDetailsView(id: "429617", isMovie: true)
     }
 }
 

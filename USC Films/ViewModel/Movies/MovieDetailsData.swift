@@ -12,15 +12,17 @@ class MovieDetailsData: ObservableObject {
     @Published var basicDetails: MovieDetailsViewModel?
     private var apiService: APIService!
     var id: String
+    var isMovie: Bool
     
-    init(id: String) {
+    init(id: String, isMovie: Bool) {
         self.id = id
+        self.isMovie = isMovie
         self.apiService = APIService()
         self.getData()
     }
     
     func getData() {
-        self.apiService.getMovieDetails(for: self.id, completion: { (details) in
+        self.apiService.getMovieDetails(for: self.id, isMovie: self.isMovie, completion: { (details) in
             if details != nil {
                 self.basicDetails = details!
             }

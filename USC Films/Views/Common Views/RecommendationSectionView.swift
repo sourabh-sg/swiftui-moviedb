@@ -11,11 +11,13 @@ import Kingfisher
 struct RecommendationSectionView: View {
 
     var id: String
+    var isMovie: Bool
     @ObservedObject var recommendedMovies: RecommendedMoviesData
     
-    init(id: String) {
+    init(id: String, isMovie: Bool) {
         self.id = id
-        self.recommendedMovies = RecommendedMoviesData(id: id)
+        self.isMovie = isMovie
+        self.recommendedMovies = RecommendedMoviesData(id: id, isMovie: isMovie)
         
     }
     
@@ -24,7 +26,7 @@ struct RecommendationSectionView: View {
         if self.recommendedMovies.movies.count > 0 {
             
             VStack(alignment: .leading, spacing: 10) {
-                Text("Recommended Movies")
+                Text(isMovie ? "Recommended Movies" : "Recommended TV shows")
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -35,7 +37,7 @@ struct RecommendationSectionView: View {
                             let movie = self.recommendedMovies.movies[i]
                             
                             NavigationLink(
-                                destination: MovieDetailsView(id: movie.id)) {
+                                destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
                                 KFImage(URL(string: movie.image)!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -53,6 +55,6 @@ struct RecommendationSectionView: View {
 
 struct RecommendationSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        RecommendationSectionView(id: "429617")
+        RecommendationSectionView(id: "429617", isMovie: true)
     }
 }

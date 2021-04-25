@@ -36,15 +36,15 @@ struct HomeView: View {
                                 CarouselHeader(title: carouselTitle)
                                 ImageContentView(movies: trendingShows.shows)
                             }
-                            MovieCardContainerView(heading: "Top Rated",movies: topRatedShows.shows)
-                            MovieCardContainerView(heading: "Popular", movies: popularShows.shows)
+                            MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows)
+                            MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows)
                         } else {
                             VStack(alignment: .leading, spacing: 10) {
                                 CarouselHeader(title: carouselTitle)
                                 ImageContentView(movies: nowPlayingMovies.movies)
                             }
-                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies)
-                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies)
+                            MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
+                            MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)
                         }
                             
                         Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)

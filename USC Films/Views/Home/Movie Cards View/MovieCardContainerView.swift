@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MovieCardContainerView: View {
     @State var heading: String
+    @State var isMovie: Bool
     @State var movies: [MovieViewModel]
     
     var body: some View {
@@ -23,7 +24,7 @@ struct MovieCardContainerView: View {
                     ForEach(0..<count) { row in
                         if movies.count > row, let movie = movies[row] {
                             NavigationLink(
-                                destination: MovieDetailsView(id: movie.id)) {
+                                destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
                                 MovieCardView(movieViewModel: movie)
                             }
                         }
@@ -37,6 +38,6 @@ struct MovieCardContainerView: View {
 
 struct MovieCardContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardContainerView(heading: "Top Rated", movies: [MovieViewModel]())
+        MovieCardContainerView(heading: "Top Rated", isMovie: true, movies: [MovieViewModel]())
     }
 }

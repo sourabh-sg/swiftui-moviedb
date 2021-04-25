@@ -100,8 +100,8 @@ class APIService: NSObject {
     }
     
     // API Call to get movie details data
-    func getMovieDetails(for id: String, completion: @escaping (MovieDetailsViewModel?) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
+    func getMovieDetails(for id: String, isMovie: Bool, completion: @escaping (MovieDetailsViewModel?) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
         
         AF.request(urlString)
           .validate()
@@ -120,8 +120,8 @@ class APIService: NSObject {
     }
     
     // API Call to get movie cast data
-    func getMovieCastDetails(for id: String, completion: @escaping ([ActorViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
+    func getMovieCastDetails(for id: String, isMovie: Bool, completion: @escaping ([ActorViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/")  + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
         
         AF.request(urlString)
           .validate()
@@ -147,8 +147,8 @@ class APIService: NSObject {
     }
     
     // API Call to get movie reviews
-    func getMovieReviews(for id: String, completion: @escaping ([ReviewViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
+    func getMovieReviews(for id: String, isMovie: Bool, completion: @escaping ([ReviewViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
         
         AF.request(urlString)
           .validate()
@@ -174,8 +174,8 @@ class APIService: NSObject {
     }
     
     // API Call to get movie recommendations
-    func getMovieRecommendations(for id: String, completion: @escaping ([MovieViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
+    func getMovieRecommendations(for id: String, isMovie: Bool, completion: @escaping ([MovieViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
         
         AF.request(urlString)
           .validate()
