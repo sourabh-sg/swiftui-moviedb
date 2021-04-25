@@ -14,6 +14,7 @@ struct MovieDetailsView: View {
     var id: String
     @ObservedObject var movieDetails: MovieDetailsData
     @ObservedObject var movieCast: CastDetailsData
+    @ObservedObject var reviewsData: ReviewData
     
     @State var limit = 3
     @State var isBookmarked = false
@@ -24,6 +25,7 @@ struct MovieDetailsView: View {
         self.id = id
         self.movieDetails = MovieDetailsData(id: id)
         self.movieCast = CastDetailsData(id: id)
+        self.reviewsData = ReviewData(id: id)
     }
     
     var body: some View {
@@ -83,28 +85,15 @@ struct MovieDetailsView: View {
                     }
                     
                     // Cast & Crew
-                    
                     if self.movieCast.cast != nil && self.movieCast.cast!.count > 0 {
                         CastView(cast: self.movieCast.cast!)
                     }
                     
-                    // Reviews
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Reviews")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        // Review views
-                        ForEach(0..<3) {_ in
-                            NavigationLink(
-                                destination: FullReviewView(),
-                                label: {
-                                    ReviewCard()
-                                })
-                        }
+                    // Review List
+                    if self.reviewsData.reviews != nil && self.reviewsData.reviews!.count > 0 {
+                        ReviewListView(reviews: self.reviewsData.reviews!, movieTitle: self.movieDetails.basicDetails!.title)
                     }
-                    
+                                        
                     // Recommended Movies
                     RecommendationSectionView()
                         .padding(.top, 15)
@@ -127,9 +116,7 @@ struct MovieDetailsView: View {
                                             }
                                         }
                                         .foregroundColor(.black)
-                                        
-                                        let id = "41112"//String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
-                                        
+                                                                                
                                         // FB Share
                                         let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
                                         Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
@@ -205,6 +192,41 @@ struct CastView: View {
                 }
             }
             
+        }
+    }
+}
+
+
+// Reviews List View
+struct ReviewListView: View {
+
+    var reviews: [ReviewViewModel]
+    var movieTitle: String
+    
+    init(reviews: [ReviewViewModel], movieTitle: String) {
+        self.reviews = reviews
+        self.movieTitle = movieTitle
+    }
+    
+    var body: some View {
+        // Reviews
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Reviews")
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+            
+            // Review views
+            let count = min(3, self.reviews.count)
+            ForEach(0..<count) { i in
+                if let reviewVM = self.reviews[i] {
+                NavigationLink(
+                    destination: FullReviewView(review: reviewVM, movie: movieTitle),
+                    label: {
+                        ReviewCard(review: reviewVM)
+                    })
+                }
+            }
         }
     }
 }

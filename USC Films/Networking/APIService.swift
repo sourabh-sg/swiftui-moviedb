@@ -138,7 +138,7 @@ class APIService: NSObject {
     // API Call to get movie cast data
     func getMovieCastDetails(for id: String, completion: @escaping ([ActorViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + id + "/credits?&api_key=" + APIService.API_KEY + "&language=en"
-        print("Movie Details URL: \(urlString)")
+        print("Cast URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -151,17 +151,46 @@ class APIService: NSObject {
                     let actorJson = JSON(actObj.1)
                     // Get each movie model data
                     if let actor = actorJson.toType(type: Actor.self) {
-                        print("Movie obj found!\n\(actor)")
+                        print("Actor obj found!\n\(actor)")
                         // Convert movie model to movie view model
                         let actorVM = ActorViewModel(actorModel: actor as! Actor)
                         castArray.append(actorVM)
                     }
                 }
                 
-
-                print("Movie Details:\n\(castArray)")
+                print("Cast array:\n\(castArray)")
                 // Return movies on completion
                 completion(castArray)
+        }
+        
+    }
+    
+    // API Call to get movie reviews
+    func getMovieReviews(for id: String, completion: @escaping ([ReviewViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + "movie/" + id + "/reviews?&api_key=" + APIService.API_KEY + "&language=en"
+        print("Reviews URL: \(urlString)")
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var reviewArray = [ReviewViewModel]()
+                let resultJson = responseJSON["results"]
+                for reviewObj in resultJson {
+                    let reviewJson = JSON(reviewObj.1)
+                    // Get each movie model data
+                    if let review = reviewJson.toType(type: Review.self) {
+                        print("Review obj found!\n\(review)")
+                        // Convert movie model to movie view model
+                        let reviewVM = ReviewViewModel(review: review as! Review)
+                        reviewArray.append(reviewVM)
+                    }
+                }
+                
+                print("Movie Review Details:\n\(reviewArray)")
+                // Return movies on completion
+                completion(reviewArray)
             }
         
     }
