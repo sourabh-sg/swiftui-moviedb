@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var searchString = ""
+    @State private var searchString = ""
+    @ObservedObject var searchManager = SearchResultsData(search: "")
+    
     var body: some View {
+        
         NavigationView{
             VStack {
                 SearchBar(text: $searchString)
@@ -17,16 +20,9 @@ struct SearchView: View {
                     .padding(.top, 10)
                 
                 if searchString.count > 2 {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 10) {
-                            ForEach (0..<5) { _ in
-                                NavigationLink(
-                                    destination: MovieDetailsView(id: "429617", isMovie: true)) {
-                                    SearchResultMovieCard()
-                                }
-                            }
-                        }
-                    }
+                    
+                    
+                    
                 } else {
                     HStack(alignment: .center) {
                         // Two spacers added either side to align text at the center
@@ -43,12 +39,31 @@ struct SearchView: View {
             }
             .navigationBarTitle("Search")
         }.background(Color.white)
-            
     }
+
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(searchManager: SearchResultsData(search: ""))
     }
 }
+
+/*
+struct SearchResultsView: View {
+    @Binding var searchManager: SearchResultsData
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                let count = self.searchManager.searchResults.count
+                ForEach (0..<count) { i in
+                    NavigationLink(
+                        destination: MovieDetailsView(id: searchResult.id, isMovie: true)) {
+                        SearchResultMovieCard(movieVM: searchResult)
+                    }
+                }
+            }
+        }
+    }
+}
+*/

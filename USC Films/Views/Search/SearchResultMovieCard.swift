@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SearchResultMovieCard: View {
+    var movieViewModel: MovieViewModel
+    
+    init(movieVM: MovieViewModel) {
+        self.movieViewModel = movieVM
+    }
+    
     var body: some View {
         ZStack() {
-            Image("kahonaapyaarhai")
+            KFImage(URL(string: movieViewModel.backdropImage)!)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
             
             VStack(alignment: .leading) {
                 HStack() {
-                    Text("MOVIE(2000)")
+                    Text("MOVIE\(movieViewModel.releaseYear)")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         
@@ -25,7 +33,7 @@ struct SearchResultMovieCard: View {
                             .foregroundColor(.red)
                             
 
-                        Text("4.9")
+                        Text("\(movieViewModel.rating)")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                     }
@@ -33,7 +41,7 @@ struct SearchResultMovieCard: View {
                 
                 Spacer()
                 
-                Text("Kaho Naa...Pyaar Hai")
+                Text(movieViewModel.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 
@@ -44,8 +52,10 @@ struct SearchResultMovieCard: View {
     }
 }
 
+/*
 struct SearchResultMovieCard_Previews: PreviewProvider {
     static var previews: some View {
         SearchResultMovieCard()
     }
 }
+ */

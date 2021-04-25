@@ -50,6 +50,7 @@
 		5EDF509C263566F20063D456 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF509B263566F20063D456 /* ReviewViewModel.swift */; };
 		5EDF50A126356A8A0063D456 /* ReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF50A026356A8A0063D456 /* ReviewData.swift */; };
 		5EDF50A4263589240063D456 /* RecommendedMoviesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF50A3263589240063D456 /* RecommendedMoviesData.swift */; };
+		5EEBDFAD2635C09D00ED50B1 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBDFAC2635C09D00ED50B1 /* SearchManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		5EDF509B263566F20063D456 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		5EDF50A026356A8A0063D456 /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
 		5EDF50A3263589240063D456 /* RecommendedMoviesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesData.swift; sourceTree = "<group>"; };
+		5EEBDFAC2635C09D00ED50B1 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		647393438810D98809C83751 /* Pods-USC Films.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USC Films.release.xcconfig"; path = "Target Support Files/Pods-USC Films/Pods-USC Films.release.xcconfig"; sourceTree = "<group>"; };
 		9D99A6E556AB74A516769A27 /* Pods-USC Films.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USC Films.debug.xcconfig"; path = "Target Support Files/Pods-USC Films/Pods-USC Films.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +237,7 @@
 				5EDF508F2635524B0063D456 /* CastDetailsData.swift */,
 				5EDF50A026356A8A0063D456 /* ReviewData.swift */,
 				5EDF50A3263589240063D456 /* RecommendedMoviesData.swift */,
+				5EEBDFAC2635C09D00ED50B1 /* SearchManager.swift */,
 				5EDF50362633DCBB0063D456 /* Movies */,
 				5EDF50372633DCC40063D456 /* TV Shows */,
 			);
@@ -476,6 +479,7 @@
 				5EDF509C263566F20063D456 /* ReviewViewModel.swift in Sources */,
 				5E5B0A752625D1D9007248D9 /* ReviewCard.swift in Sources */,
 				5E427D4B2627452800FDC65F /* FullReviewView.swift in Sources */,
+				5EEBDFAD2635C09D00ED50B1 /* SearchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
