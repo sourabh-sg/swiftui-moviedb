@@ -30,9 +30,12 @@ struct MovieDetailsView: View {
         if self.movieDetails.basicDetails != nil {
             ScrollView() {
                 LazyVStack(alignment: .leading, spacing: 10) {
-                    // Youtube player
-                    YouTubePlayer(text: "bwOZrnZxIuQ")
-                        .frame(width: 335, height: 200)
+                    
+                    if self.movieDetails.basicDetails!.videoKey.count > 0 {
+                        // Youtube player
+                        YouTubePlayer(text: self.movieDetails.basicDetails!.videoKey)
+                            .frame(width: 335, height: 200)
+                    }
                     // Movie/TV Show Title
                     Text(self.movieDetails.basicDetails!.title)
                         .font(.title)
@@ -45,6 +48,7 @@ struct MovieDetailsView: View {
                         Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
                             .font(.callout)
                             .foregroundColor(.black)
+                            .multilineTextAlignment(.leading)
                     }
                     
                     // Average star rating
@@ -139,7 +143,7 @@ struct MovieDetailsView: View {
 
 struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailsView(id: "12345")
+        MovieDetailsView(id: "429617")
     }
 }
 

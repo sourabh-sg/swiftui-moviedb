@@ -21,7 +21,7 @@ struct SearchView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             ForEach (0..<5) { _ in
                                 NavigationLink(
-                                    destination: MovieDetailsView(id: "12345")) {
+                                    destination: MovieDetailsView(id: "429617")) {
                                     SearchResultMovieCard()
                                 }
                             }

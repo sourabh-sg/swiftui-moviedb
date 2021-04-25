@@ -118,7 +118,7 @@ class APIService: NSObject {
     
     // API Call to get movie details data
     func getMovieDetails(for id: String, completion: @escaping (MovieDetailsViewModel?) -> ()) {
-        let urlString = APIService.BASE_URL + "movie/" + id + "?api_key=" + APIService.API_KEY + "&language=en"
+        let urlString = APIService.BASE_URL + "movie/" + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
         print("Movie Details URL: \(urlString)")
         
         AF.request(urlString)

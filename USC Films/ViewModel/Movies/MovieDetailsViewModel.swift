@@ -18,6 +18,7 @@ struct MovieDetailsViewModel {
     var overview: String
     var genre: String
     var releaseYearAndGenreString: String
+    var videoKey: String
     
     init(movieDetailsModel: MovieDetails) {
         self.id = "\(movieDetailsModel.id)"
@@ -42,7 +43,6 @@ struct MovieDetailsViewModel {
         
         // Convert string array to string
         self.genre  = movieDetailsModel.genres.joined(separator: ", ")
-        
         if self.genre.count > 0 && releaseYearString.count > 0 {
             self.releaseYearAndGenreString  = releaseYearString + " | " + self.genre
         } else if releaseYearString.count > 0 {
@@ -52,6 +52,10 @@ struct MovieDetailsViewModel {
         } else {
             self.releaseYearAndGenreString = ""
         }
+        
+        // Video key
+        // First preference is to teaser, if not then trailer
+        self.videoKey = (!movieDetailsModel.videoTeaserKey.isEmpty)  ? movieDetailsModel.videoTeaserKey : movieDetailsModel.videoTrailerKey
         
     }
     

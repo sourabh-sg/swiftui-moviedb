@@ -18,6 +18,8 @@ struct MovieDetails: JSONable {
     var backdropImage: String
     var overview: String
     var genres = [String]()
+    var videoTrailerKey: String = ""
+    var videoTeaserKey: String = ""
     
     init?(parameter: JSON) {
         id = parameter["id"].intValue
@@ -31,8 +33,8 @@ struct MovieDetails: JSONable {
             backdropImage = image
         }
         overview = parameter["overview"].stringValue
-        // Get genres
         
+        // Get genres
         let genreJson = parameter["genres"]
         let reviewJson = genreJson.arrayValue
         for element in reviewJson {
@@ -40,6 +42,18 @@ struct MovieDetails: JSONable {
                 if key == "name" {
                     self.genres.append(value.stringValue)
                 }
+            }
+        }
+        
+        // Get video trailer and teaser ids
+        let videoResultJson = parameter["videos"]["results"]
+        let videoJson = videoResultJson.arrayValue
+        for element in videoJson {
+            if element["type"].stringValue == "Trailer " {
+                self.videoTrailerKey = element["key"].stringValue
+            }
+            if element["type"].stringValue == "Teaser" {
+                self.videoTeaserKey = element["key"].stringValue
             }
         }
     }
