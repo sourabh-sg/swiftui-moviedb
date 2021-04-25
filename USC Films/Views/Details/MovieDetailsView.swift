@@ -61,28 +61,30 @@ struct MovieDetailsView: View {
                             .foregroundColor(.black)
                     }
                     // Description
-                    Text(self.movieDetails.basicDetails!.overview)
-                        .lineLimit(limit)
-                    // Show more/less button
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            if limit == 3 {
-                                limit = 9999
-                            } else {
-                                limit = 3
-                            }
-                        }, label: {
-                            if limit == 3 {
-                                Text("Show more..")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            } else {
-                                Text("Show less")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                        })
+                    if self.movieDetails.basicDetails!.overview.count > 0 {
+                        Text(self.movieDetails.basicDetails!.overview)
+                            .lineLimit(limit)
+                        // Show more/less button
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                if limit == 3 {
+                                    limit = 9999
+                                } else {
+                                    limit = 3
+                                }
+                            }, label: {
+                                if limit == 3 {
+                                    Text("Show more..")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                } else {
+                                    Text("Show less")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            })
+                        }
                     }
                     
                     // Cast & Crew
