@@ -37,15 +37,10 @@ class APIService: NSObject {
                     let movieJson = JSON(movieObj.1)
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
-                        print("Movie obj found!\n\(movie)")
                         // Convert movie model to movie view model
                         let movieVM = MovieViewModel(movieModel: movie as! Movie)
                         movies.append(movieVM)
                     }
-                }
-                print("Movies:\n\(movies)")
-                if movies.count > 0 {
-                    print("Movie obj at first index!\n\(movies.first!.title)")
                 }
                 // Return movies on completion
                 completion(movies)
@@ -55,7 +50,6 @@ class APIService: NSObject {
     // API Call to get top rated movies data
     func getTopRatedMovies(completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + APIService.TOP_RATED + "?api_key=" + APIService.API_KEY + "&language=en-US&page=1"
-        print("Top Rated URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -68,15 +62,10 @@ class APIService: NSObject {
                     let movieJson = JSON(movieObj.1)
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
-                        print("Movie obj found!\n\(movie)")
                         // Convert movie model to movie view model
                         let movieVM = MovieViewModel(movieModel: movie as! Movie)
                         movies.append(movieVM)
                     }
-                }
-                print("Movies:\n\(movies)")
-                if movies.count > 0 {
-                    print("Movie obj at first index!\n\(movies.first!.title)")
                 }
                 // Return movies on completion
                 completion(movies)
@@ -87,7 +76,6 @@ class APIService: NSObject {
     // API Call to get popular movies data
     func getPopularMovies(completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + APIService.POPULAR + "?api_key=" + APIService.API_KEY + "&language=en-US&page=1"
-        print("Top Rated URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -100,15 +88,10 @@ class APIService: NSObject {
                     let movieJson = JSON(movieObj.1)
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
-                        print("Movie obj found!\n\(movie)")
                         // Convert movie model to movie view model
                         let movieVM = MovieViewModel(movieModel: movie as! Movie)
                         movies.append(movieVM)
                     }
-                }
-                print("Movies:\n\(movies)")
-                if movies.count > 0 {
-                    print("Movie obj at first index!\n\(movies.first!.title)")
                 }
                 // Return movies on completion
                 completion(movies)
@@ -119,7 +102,6 @@ class APIService: NSObject {
     // API Call to get movie details data
     func getMovieDetails(for id: String, completion: @escaping (MovieDetailsViewModel?) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
-        print("Movie Details URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -131,7 +113,6 @@ class APIService: NSObject {
                     return
                 }
                 let movieDetails = MovieDetailsViewModel(movieDetailsModel: movie as! MovieDetails)
-                print("Movie Details:\n\(movie)")
                 // Return movies on completion
                 completion(movieDetails)
             }
@@ -141,7 +122,6 @@ class APIService: NSObject {
     // API Call to get movie cast data
     func getMovieCastDetails(for id: String, completion: @escaping ([ActorViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        print("Cast URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -154,14 +134,12 @@ class APIService: NSObject {
                     let actorJson = JSON(actObj.1)
                     // Get each movie model data
                     if let actor = actorJson.toType(type: Actor.self) {
-                        print("Actor obj found!\n\(actor)")
                         // Convert movie model to movie view model
                         let actorVM = ActorViewModel(actorModel: actor as! Actor)
                         castArray.append(actorVM)
                     }
                 }
                 
-                print("Cast array:\n\(castArray)")
                 // Return movies on completion
                 completion(castArray)
         }
@@ -171,7 +149,6 @@ class APIService: NSObject {
     // API Call to get movie reviews
     func getMovieReviews(for id: String, completion: @escaping ([ReviewViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        print("Reviews URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -184,14 +161,12 @@ class APIService: NSObject {
                     let reviewJson = JSON(reviewObj.1)
                     // Get each movie model data
                     if let review = reviewJson.toType(type: Review.self) {
-                        print("Review obj found!\n\(review)")
                         // Convert movie model to movie view model
                         let reviewVM = ReviewViewModel(review: review as! Review)
                         reviewArray.append(reviewVM)
                     }
                 }
                 
-                print("Movie Review Details:\n\(reviewArray)")
                 // Return movies on completion
                 completion(reviewArray)
             }
@@ -201,7 +176,6 @@ class APIService: NSObject {
     // API Call to get movie recommendations
     func getMovieRecommendations(for id: String, completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "movie/" + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        print("Reviews URL: \(urlString)")
         
         AF.request(urlString)
           .validate()
@@ -214,14 +188,12 @@ class APIService: NSObject {
                     let movieJson = JSON(movieObj.1)
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
-                        print("Recommendations Movie obj found!\n\(movie)")
                         // Convert movie model to movie view model
                         let movieVM = MovieViewModel(movieModel: movie as! Movie)
                         movies.append(movieVM)
                     }
                 }
                 
-                print("Recommendations Movies:\n\(movies)")
                 // Return movies on completion
                 completion(movies)
             }
@@ -244,15 +216,10 @@ class APIService: NSObject {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: TVShow.self) {
-                        print("Movie obj found!\n\(tvShow)")
                         // Convert tv show model to tv show view model
                         let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
                         shows.append(tvShowVM)
                     }
-                }
-                print("Shows:\n\(shows)")
-                if shows.count > 0 {
-                    print("Movie obj at first index!\n\(shows.first!.title)")
                 }
                 // Return movies on completion
                 completion(shows)
@@ -274,15 +241,10 @@ class APIService: NSObject {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: TVShow.self) {
-                        print("Movie obj found!\n\(tvShow)")
                         // Convert tv show model to tv show view model
                         let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
                         shows.append(tvShowVM)
                     }
-                }
-                print("Shows:\n\(shows)")
-                if shows.count > 0 {
-                    print("Movie obj at first index!\n\(shows.first!.title)")
                 }
                 // Return movies on completion
                 completion(shows)
@@ -304,15 +266,10 @@ class APIService: NSObject {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: TVShow.self) {
-                        print("Movie obj found!\n\(tvShow)")
                         // Convert tv show model to tv show view model
                         let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
                         shows.append(tvShowVM)
                     }
-                }
-                print("Shows:\n\(shows)")
-                if shows.count > 0 {
-                    print("Movie obj at first index!\n\(shows.first!.title)")
                 }
                 // Return movies on completion
                 completion(shows)
