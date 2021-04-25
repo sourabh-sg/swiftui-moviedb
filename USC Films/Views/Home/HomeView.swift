@@ -34,17 +34,17 @@ struct HomeView: View {
                         if tvselected {
                             VStack(alignment: .leading, spacing: 10) {
                                 CarouselHeader(title: carouselTitle)
-                                ImageContentView(shows: trendingShows.shows, isMovie: false)
+                                ImageContentView(movies: trendingShows.shows)
                             }
-                            MovieCardContainerView(heading: "Top Rated",shows: topRatedShows.shows, isMovie: false)
-                            MovieCardContainerView(heading: "Popular", shows: popularShows.shows, isMovie: !tvselected)
+                            MovieCardContainerView(heading: "Top Rated",movies: topRatedShows.shows)
+                            MovieCardContainerView(heading: "Popular", movies: popularShows.shows)
                         } else {
                             VStack(alignment: .leading, spacing: 10) {
                                 CarouselHeader(title: carouselTitle)
-                                ImageContentView(movies: nowPlayingMovies.movies, isMovie: true)
+                                ImageContentView(movies: nowPlayingMovies.movies)
                             }
-                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies, isMovie: !tvselected)
-                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies, isMovie: true)
+                            MovieCardContainerView(heading: "Top Rated", movies: topRatedMovies.movies)
+                            MovieCardContainerView(heading: "Popular", movies: popularMovies.movies)
                         }
                             
                         Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)

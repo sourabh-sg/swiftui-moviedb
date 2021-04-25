@@ -9,9 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MovieCardView: View {
-    @State var movieViewModel: MovieViewModel?
-    @State var tvShowViewModel: TVShowViewModel?
-    @State var isMovie: Bool = false
+    @State var movieViewModel: MovieViewModel
     
     @State var title: String = ""
     @State var releaseYear: String = ""
@@ -24,20 +22,20 @@ struct MovieCardView: View {
     var body: some View {
         
         VStack(alignment: .center, spacing: 5) {
-            KFImage(URL(string: (isMovie ? self.movieViewModel!.image : self.tvShowViewModel!.image))!)
+            KFImage(URL(string: self.movieViewModel.image)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 180, alignment: .center)
                 .cornerRadius(10)
             
-            Text((isMovie ? self.movieViewModel!.title : self.tvShowViewModel!.title))
+            Text(self.movieViewModel.title)
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
                 .frame(width: 120)
                 .multilineTextAlignment(.center)
             
-            Text((isMovie ? self.movieViewModel!.releaseYear : self.tvShowViewModel!.releaseYear))
+            Text(self.movieViewModel.releaseYear)
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .fontWeight(.bold)
@@ -56,7 +54,7 @@ struct MovieCardView: View {
             }
             .foregroundColor(.black)
                         
-            let id = String(isMovie ? self.movieViewModel!.id : self.tvShowViewModel!.id)
+            let id = String(self.movieViewModel.id)
             
             // FB Share URL
             let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct MovieCardContainerView: View {
     @State var heading: String
-    @State var movies: [MovieViewModel]?
-    @State var shows: [TVShowViewModel]?
-    @State var isMovie: Bool = false
+    @State var movies: [MovieViewModel]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -21,21 +19,12 @@ struct MovieCardContainerView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 LazyHStack(spacing: 20) {
                     // We need to show upto 20 movies here per the requirement
-                    let count = min(20, (isMovie ? movies!.count : shows!.count))
+                    let count = min(20, movies.count)
                     ForEach(0..<count) { row in
-                        if isMovie {
-                            if movies!.count > row, let movie = movies![row] {
-                                NavigationLink(
-                                    destination: MovieDetailsView(id: movie.id)) {
-                                    MovieCardView(movieViewModel: movie, isMovie: true)
-                                }
-                            }
-                        } else {
-                            if shows!.count > row, let show = shows![row] {
-                                NavigationLink(
-                                    destination: MovieDetailsView(id: show.id)) {
-                                    MovieCardView(tvShowViewModel: show, isMovie: false)
-                                }
+                        if movies.count > row, let movie = movies[row] {
+                            NavigationLink(
+                                destination: MovieDetailsView(id: movie.id)) {
+                                MovieCardView(movieViewModel: movie)
                             }
                         }
                         

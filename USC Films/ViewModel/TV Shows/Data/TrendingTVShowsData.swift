@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class TrendingTVShowsData: ObservableObject {
-    @Published var shows = [TVShowViewModel]()
+    @Published var shows = [MovieViewModel]()
     private var apiService: APIService!
     
     init() {

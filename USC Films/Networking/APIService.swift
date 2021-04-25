@@ -202,7 +202,7 @@ class APIService: NSObject {
     
     // MARK: - TV SHOW APIS
     // API Call to get trending tv shows data
-    func getTrendingShows(completion: @escaping ([TVShowViewModel]) -> ()) {
+    func getTrendingShows(completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "tv/" + APIService.TRENDING + "?api_key=" + APIService.API_KEY + "&language=en-US&page=1"
         
         AF.request(urlString)
@@ -211,13 +211,13 @@ class APIService: NSObject {
                 let responseJSON = JSON(response.value as Any)
                 let showsArray = responseJSON["results"]
                 
-                var shows = [TVShowViewModel]() // This will hold an array of returned tv show view models
+                var shows = [MovieViewModel]() // This will hold an array of returned tv show view models
                 for showObj in showsArray {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
-                    if let tvShow = showJson.toType(type: TVShow.self) {
+                    if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
+                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
                         shows.append(tvShowVM)
                     }
                 }
@@ -227,7 +227,7 @@ class APIService: NSObject {
     }
     
     // API Call to get top rated tv shows data
-    func getTopRatedShows(completion: @escaping ([TVShowViewModel]) -> ()) {
+    func getTopRatedShows(completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "tv/" + APIService.TOP_RATED + "?api_key=" + APIService.API_KEY + "&language=en-US&page=1"
         
         AF.request(urlString)
@@ -236,13 +236,13 @@ class APIService: NSObject {
                 let responseJSON = JSON(response.value as Any)
                 let showsArray = responseJSON["results"]
                 
-                var shows = [TVShowViewModel]() // This will hold an array of returned tv show view models
+                var shows = [MovieViewModel]() // This will hold an array of returned tv show view models
                 for showObj in showsArray {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
-                    if let tvShow = showJson.toType(type: TVShow.self) {
+                    if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
+                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
                         shows.append(tvShowVM)
                     }
                 }
@@ -252,7 +252,7 @@ class APIService: NSObject {
     }
     
     // API Call to get popular tv shows data
-    func getPopularShows(completion: @escaping ([TVShowViewModel]) -> ()) {
+    func getPopularShows(completion: @escaping ([MovieViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + "tv/" + APIService.POPULAR + "?api_key=" + APIService.API_KEY + "&language=en-US&page=1"
         
         AF.request(urlString)
@@ -261,13 +261,13 @@ class APIService: NSObject {
                 let responseJSON = JSON(response.value as Any)
                 let showsArray = responseJSON["results"]
                 
-                var shows = [TVShowViewModel]() // This will hold an array of returned tv show view models
+                var shows = [MovieViewModel]() // This will hold an array of returned tv show view models
                 for showObj in showsArray {
                     let showJson = JSON(showObj.1)
                     // Get each movie model data
-                    if let tvShow = showJson.toType(type: TVShow.self) {
+                    if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = TVShowViewModel(tvShowModel: tvShow as! TVShow)
+                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
                         shows.append(tvShowVM)
                     }
                 }

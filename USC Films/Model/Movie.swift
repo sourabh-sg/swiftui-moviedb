@@ -23,10 +23,17 @@ struct Movie: JSONable {
     
     init(parameter: JSON) {
         id = parameter["id"].intValue
-        title = parameter["title"].stringValue
+        if !parameter["title"].stringValue.isEmpty {
+            title = parameter["title"].stringValue
+        } else {
+            title = parameter["name"].stringValue
+        }
         rating = parameter["vote_average"].floatValue
-        releaseDate = parameter["release_date"].stringValue
-//        genre = parameter["genre_ids"]
+        if !parameter["release_date"].stringValue.isEmpty {
+            releaseDate = parameter["release_date"].stringValue
+        } else {
+            releaseDate = parameter["first_air_date"].stringValue
+        }
         image = parameter["poster_path"].stringValue
         if parameter["backdrop_path"].stringValue != "" {
             backdropImage = parameter["backdrop_path"].stringValue

@@ -10,9 +10,7 @@ import Kingfisher
 
 struct ImageContentView: View {
     
-    @State var movies: [MovieViewModel]?
-    @State var shows: [TVShowViewModel]?
-    @State var isMovie: Bool = false
+    @State var movies: [MovieViewModel]
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,17 +18,16 @@ struct ImageContentView: View {
             let height = geometry.size.height
             
             // Populate image Array
-            let count = (isMovie ? movies!.count : shows!.count)
-            CarouselView(numberOfImages: count) {
-                ForEach(0..<count) { row in
+            CarouselView(numberOfImages: movies.count) {
+                ForEach(0..<movies.count) { row in
                     ZStack(alignment: .center) {
                         // KFImage is KingFisher library's Image view that loads and caches images from given url
-                        KFImage(URL(string: (isMovie ? movies![row].backdropImage : shows![row].backdropImage))!)
+                        KFImage(URL(string: movies[row].backdropImage))
                             .resizable()
                             .blur(radius: 5)
                             .frame(width: width, height: height)
                         
-                        KFImage(URL(string: (isMovie ? movies![row].image : shows![row].image))!)
+                        KFImage(URL(string: movies[row].image)!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: height)
