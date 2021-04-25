@@ -99,107 +99,6 @@ class APIService: NSObject {
         
     }
     
-    // API Call to get movie details data
-    func getMovieDetails(for id: String, isMovie: Bool, completion: @escaping (MovieDetailsViewModel?) -> ()) {
-        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
-        
-        AF.request(urlString)
-          .validate()
-            .responseJSON { response in
-                let responseJSON = JSON(response.value as Any)
-                
-                guard let movie = responseJSON.toType(type: MovieDetails.self) else {
-                    completion(nil)
-                    return
-                }
-                let movieDetails = MovieDetailsViewModel(movieDetailsModel: movie as! MovieDetails)
-                // Return movies on completion
-                completion(movieDetails)
-            }
-        
-    }
-    
-    // API Call to get movie cast data
-    func getMovieCastDetails(for id: String, isMovie: Bool, completion: @escaping ([ActorViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/")  + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        
-        AF.request(urlString)
-          .validate()
-            .responseJSON { response in
-                let responseJSON = JSON(response.value as Any)
-                
-                var castArray = [ActorViewModel]()
-                let castJson = responseJSON["cast"]
-                for actObj in castJson {
-                    let actorJson = JSON(actObj.1)
-                    // Get each movie model data
-                    if let actor = actorJson.toType(type: Actor.self) {
-                        // Convert movie model to movie view model
-                        let actorVM = ActorViewModel(actorModel: actor as! Actor)
-                        castArray.append(actorVM)
-                    }
-                }
-                
-                // Return movies on completion
-                completion(castArray)
-        }
-        
-    }
-    
-    // API Call to get movie reviews
-    func getMovieReviews(for id: String, isMovie: Bool, completion: @escaping ([ReviewViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        
-        AF.request(urlString)
-          .validate()
-            .responseJSON { response in
-                let responseJSON = JSON(response.value as Any)
-                
-                var reviewArray = [ReviewViewModel]()
-                let resultJson = responseJSON["results"]
-                for reviewObj in resultJson {
-                    let reviewJson = JSON(reviewObj.1)
-                    // Get each movie model data
-                    if let review = reviewJson.toType(type: Review.self) {
-                        // Convert movie model to movie view model
-                        let reviewVM = ReviewViewModel(review: review as! Review)
-                        reviewArray.append(reviewVM)
-                    }
-                }
-                
-                // Return movies on completion
-                completion(reviewArray)
-            }
-        
-    }
-    
-    // API Call to get movie recommendations
-    func getMovieRecommendations(for id: String, isMovie: Bool, completion: @escaping ([MovieViewModel]) -> ()) {
-        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
-        
-        AF.request(urlString)
-          .validate()
-            .responseJSON { response in
-                let responseJSON = JSON(response.value as Any)
-                
-                var movies = [MovieViewModel]()
-                let resultJson = responseJSON["results"]
-                for movieObj in resultJson {
-                    let movieJson = JSON(movieObj.1)
-                    // Get each movie model data
-                    if let movie = movieJson.toType(type: Movie.self) {
-                        // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
-                        movies.append(movieVM)
-                    }
-                }
-                
-                // Return movies on completion
-                completion(movies)
-            }
-        
-    }
-    
     // MARK: - TV SHOW APIS
     // API Call to get trending tv shows data
     func getTrendingShows(completion: @escaping ([MovieViewModel]) -> ()) {
@@ -274,5 +173,107 @@ class APIService: NSObject {
                 // Return movies on completion
                 completion(shows)
             }
+    }
+    
+    // MARK: - Common APIs
+    // API Call to get movie/tv show details data
+    func getMovieDetails(for id: String, isMovie: Bool, completion: @escaping (MovieDetailsViewModel?) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + "?api_key=" + APIService.API_KEY + "&append_to_response=videos&language=en"
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                guard let movie = responseJSON.toType(type: MovieDetails.self) else {
+                    completion(nil)
+                    return
+                }
+                let movieDetails = MovieDetailsViewModel(movieDetailsModel: movie as! MovieDetails)
+                // Return movies on completion
+                completion(movieDetails)
+            }
+        
+    }
+    
+    // API Call to get movie/tv show cast data
+    func getMovieCastDetails(for id: String, isMovie: Bool, completion: @escaping ([ActorViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/")  + id + APIService.CREDITS + "?&api_key=" + APIService.API_KEY + "&language=en"
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var castArray = [ActorViewModel]()
+                let castJson = responseJSON["cast"]
+                for actObj in castJson {
+                    let actorJson = JSON(actObj.1)
+                    // Get each movie model data
+                    if let actor = actorJson.toType(type: Actor.self) {
+                        // Convert movie model to movie view model
+                        let actorVM = ActorViewModel(actorModel: actor as! Actor)
+                        castArray.append(actorVM)
+                    }
+                }
+                
+                // Return movies on completion
+                completion(castArray)
+        }
+        
+    }
+    
+    // API Call to get movie/tv show reviews
+    func getMovieReviews(for id: String, isMovie: Bool, completion: @escaping ([ReviewViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.REVIEWS + "?&api_key=" + APIService.API_KEY + "&language=en"
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var reviewArray = [ReviewViewModel]()
+                let resultJson = responseJSON["results"]
+                for reviewObj in resultJson {
+                    let reviewJson = JSON(reviewObj.1)
+                    // Get each movie model data
+                    if let review = reviewJson.toType(type: Review.self) {
+                        // Convert movie model to movie view model
+                        let reviewVM = ReviewViewModel(review: review as! Review)
+                        reviewArray.append(reviewVM)
+                    }
+                }
+                
+                // Return movies on completion
+                completion(reviewArray)
+            }
+        
+    }
+    
+    // API Call to get movie/tv show recommendations
+    func getMovieRecommendations(for id: String, isMovie: Bool, completion: @escaping ([MovieViewModel]) -> ()) {
+        let urlString = APIService.BASE_URL + (isMovie ? "movie/" : "tv/") + id + APIService.RECOMMENDATIONS + "?&api_key=" + APIService.API_KEY + "&language=en"
+        
+        AF.request(urlString)
+          .validate()
+            .responseJSON { response in
+                let responseJSON = JSON(response.value as Any)
+                
+                var movies = [MovieViewModel]()
+                let resultJson = responseJSON["results"]
+                for movieObj in resultJson {
+                    let movieJson = JSON(movieObj.1)
+                    // Get each movie model data
+                    if let movie = movieJson.toType(type: Movie.self) {
+                        // Convert movie model to movie view model
+                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        movies.append(movieVM)
+                    }
+                }
+                
+                // Return movies on completion
+                completion(movies)
+            }
+        
     }
 }
