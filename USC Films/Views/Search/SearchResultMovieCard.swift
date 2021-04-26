@@ -18,6 +18,11 @@ struct SearchResultMovieCard: View {
     var body: some View {
         ZStack() {
             KFImage(URL(string: movieViewModel.backdropImage)!)
+                .placeholder {
+                    Image("movie_placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             

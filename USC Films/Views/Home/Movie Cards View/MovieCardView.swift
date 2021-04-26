@@ -23,6 +23,11 @@ struct MovieCardView: View {
         
         VStack(alignment: .center, spacing: 5) {
             KFImage(URL(string: self.movieViewModel.image)!)
+                .placeholder {
+                    Image("movie_placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 180, alignment: .center)

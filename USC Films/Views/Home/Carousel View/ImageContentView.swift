@@ -23,11 +23,21 @@ struct ImageContentView: View {
                     ZStack(alignment: .center) {
                         // KFImage is KingFisher library's Image view that loads and caches images from given url
                         KFImage(URL(string: movies[row].backdropImage))
+                            .placeholder {
+                                Image("movie_placeholder")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            }
                             .resizable()
                             .blur(radius: 5)
                             .frame(width: width, height: height)
                         
                         KFImage(URL(string: movies[row].image)!)
+                            .placeholder {
+                                Image("movie_placeholder")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            }
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: height)

@@ -39,6 +39,11 @@ struct RecommendationSectionView: View {
                             NavigationLink(
                                 destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
                                 KFImage(URL(string: movie.image)!)
+                                    .placeholder {
+                                        Image("movie_placeholder")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    }
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 120, height: 180, alignment: .center)

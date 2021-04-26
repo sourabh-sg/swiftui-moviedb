@@ -162,18 +162,6 @@ struct MovieDetailsView_Previews: PreviewProvider {
     }
 }
 
-struct LoadingView: View {
-    
-    var  body: some View {
-        
-        Text("Fetching Data...")
-            .font(.title2)
-            .foregroundColor(.gray)
-        
-    }
-    
-}
-
 // Cast View
 struct CastView: View {
 
@@ -199,6 +187,11 @@ struct CastView: View {
                         if let actorVM = self.cast[i] {
                             VStack {
                                 KFImage(URL(string: actorVM.image))
+                                    .placeholder {
+                                        Image("cast_placeholder")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    }
                                     .resizable()
                                     .clipShape(Circle())
                                     .scaledToFill()
