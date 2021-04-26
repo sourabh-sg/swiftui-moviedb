@@ -10,19 +10,10 @@ import SwiftUI
 
 class CastDetailsData: ObservableObject {
     @Published var cast: [ActorViewModel]?
-    private var apiService: APIService!
-    var id: String
-    var isMovie: Bool
+    private var apiService = APIService()
     
-    init(id: String, isMovie: Bool) {
-        self.id = id
-        self.isMovie = isMovie
-        self.apiService = APIService()
-        self.getData()
-    }
-    
-    func getData() {
-        self.apiService.getMovieCastDetails(for: self.id, isMovie: self.isMovie, completion: { (castArray) in
+    func getData(for id: String, isMovie: Bool) {
+        self.apiService.getMovieCastDetails(for: id, isMovie: isMovie, completion: { (castArray) in
             self.cast = castArray
         })
     }

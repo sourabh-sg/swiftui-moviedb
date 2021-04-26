@@ -12,9 +12,9 @@ struct MovieDetailsView: View {
     
     var id: String
     var isMovie: Bool
-    @ObservedObject var movieDetails: MovieDetailsData
-    @ObservedObject var movieCast: CastDetailsData
-    @ObservedObject var reviewsData: ReviewData
+    @ObservedObject var movieDetails = MovieDetailsData()
+    @ObservedObject var movieCast = CastDetailsData()
+    @ObservedObject var reviewsData = ReviewData()
     
     @State var limit = 3
     @State var isBookmarked = false
@@ -22,125 +22,136 @@ struct MovieDetailsView: View {
     init(id: String, isMovie: Bool) {
         self.id = id
         self.isMovie = isMovie
-        self.movieDetails = MovieDetailsData(id: id, isMovie: isMovie)
-        self.movieCast = CastDetailsData(id: id, isMovie: isMovie)
-        self.reviewsData = ReviewData(id: id, isMovie: isMovie)
     }
     
     var body: some View {
         
-        if self.movieDetails.basicDetails != nil {
-            ScrollView() {
-                LazyVStack(alignment: .leading, spacing: 10) {
-                    
-                    if self.movieDetails.basicDetails!.videoKey.count > 0 {
-                        // Youtube player
-                        YouTubePlayer(text: self.movieDetails.basicDetails!.videoKey)
-                            .frame(width: 335, height: 200)
-                    }
-                    // Movie/TV Show Title
-                    Text(self.movieDetails.basicDetails!.title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.leading)
-                    // Year of release | Genres
-                    
-                    if self.movieDetails.basicDetails!.releaseYearAndGenreString.count > 0 {
-                        Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
-                            .font(.callout)
+        // Show loading view on load
+        if !self.movieDetails.didLoadMovieDetails {
+        LoadingView()
+            .onAppear(perform: {
+                // Call fetch to load details data
+                movieDetails.getData(for: self.id, isMovie: self.isMovie)
+                movieCast.getData(for: self.id, isMovie: self.isMovie)
+                reviewsData.getData(for: self.id, isMovie: self.isMovie)
+            })
+        } else {
+            
+            if self.movieDetails.basicDetails != nil {
+                ScrollView() {
+                    LazyVStack(alignment: .leading, spacing: 10) {
+                        
+                        if self.movieDetails.basicDetails!.videoKey.count > 0 {
+                            // Youtube player
+                            YouTubePlayer(text: self.movieDetails.basicDetails!.videoKey)
+                                .frame(width: 335, height: 200)
+                        }
+                        // Movie/TV Show Title
+                        Text(self.movieDetails.basicDetails!.title)
+                            .font(.title)
+                            .fontWeight(.bold)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
-                    }
-                    
-                    // Average star rating
-                    HStack(spacing: 5) {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.red)
-                            .font(.callout)
-                        Text("\(self.movieDetails.basicDetails!.rating)/5.0")
-                            .font(.callout)
-                            .foregroundColor(.black)
-                    }
-                    // Description
-                    if self.movieDetails.basicDetails!.overview.count > 0 {
-                        Text(self.movieDetails.basicDetails!.overview)
-                            .lineLimit(limit)
-                        // Show more/less button
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                if limit == 3 {
-                                    limit = 9999
-                                } else {
-                                    limit = 3
-                                }
-                            }, label: {
-                                if limit == 3 {
-                                    Text("Show more..")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                } else {
-                                    Text("Show less")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                            })
+                        // Year of release | Genres
+                        
+                        if self.movieDetails.basicDetails!.releaseYearAndGenreString.count > 0 {
+                            Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
+                                .font(.callout)
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.leading)
                         }
-                    }
-                    
-                    // Cast & Crew
-                    if self.movieCast.cast != nil && self.movieCast.cast!.count > 0 {
-                        CastView(cast: self.movieCast.cast!)
-                    }
-                    
-                    // Review List
-                    if self.reviewsData.reviews != nil && self.reviewsData.reviews!.count > 0 {
-                        ReviewListView(reviews: self.reviewsData.reviews!, movieTitle: self.movieDetails.basicDetails!.title)
-                    }
-                                        
-                    // Recommended Movies
-                    RecommendationSectionView(id: self.id, isMovie: self.isMovie)
-                        .padding(.top, 15)
-                    
-                    Spacer()
-                
-                }.padding(.leading, 20)
-                .padding(.trailing, 20)
-                
-            }.navigationBarItems(trailing:
-                                    HStack {
-                                        
-                                        Button(action: {
-                                            isBookmarked.toggle()
-                                        }) {
-                                            if isBookmarked {
-                                                Image(systemName: "bookmark.fill")
-                                            } else {
-                                                Image(systemName: "bookmark")
-                                            }
-                                        }
-                                        .foregroundColor(.black)
-                                                                                
-                                        // FB Share
-                                        let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
-                                        Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                            Image("facebook-app-symbol")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        }.frame(width: 20, height: 20, alignment: .center)
-                                        
-                                        // Twitter Share
-                                        let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
-                                        Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                            Image("twitter")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        }.frame(width: 20, height: 20, alignment: .center)
-                                        
+                        
+                        // Average star rating
+                        HStack(spacing: 5) {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.red)
+                                .font(.callout)
+                            Text("\(self.movieDetails.basicDetails!.rating)/5.0")
+                                .font(.callout)
+                                .foregroundColor(.black)
+                        }
+                        // Description
+                        if self.movieDetails.basicDetails!.overview.count > 0 {
+                            Text(self.movieDetails.basicDetails!.overview)
+                                .lineLimit(limit)
+                            // Show more/less button
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    if limit == 3 {
+                                        limit = 9999
+                                    } else {
+                                        limit = 3
                                     }
-            )
+                                }, label: {
+                                    if limit == 3 {
+                                        Text("Show more..")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    } else {
+                                        Text("Show less")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
+                                })
+                            }
+                        }
+                        
+                        // Cast & Crew
+                        if self.movieCast.cast != nil && self.movieCast.cast!.count > 0 {
+                            CastView(cast: self.movieCast.cast!)
+                        }
+                        
+                        // Review List
+                        if self.reviewsData.reviews != nil && self.reviewsData.reviews!.count > 0 {
+                            ReviewListView(reviews: self.reviewsData.reviews!, movieTitle: self.movieDetails.basicDetails!.title)
+                        }
+                                            
+                        // Recommended Movies
+                        RecommendationSectionView(id: self.id, isMovie: self.isMovie)
+                            .padding(.top, 15)
+                        
+                        Spacer()
+                    
+                    }.padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    
+                }.navigationBarItems(trailing:
+                                        HStack {
+                                            
+                                            Button(action: {
+                                                isBookmarked.toggle()
+                                            }) {
+                                                if isBookmarked {
+                                                    Image(systemName: "bookmark.fill")
+                                                } else {
+                                                    Image(systemName: "bookmark")
+                                                }
+                                            }
+                                            .foregroundColor(.black)
+                                                                                    
+                                            // FB Share
+                                            let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
+                                            Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                                Image("facebook-app-symbol")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                            }.frame(width: 20, height: 20, alignment: .center)
+                                            
+                                            // Twitter Share
+                                            let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+                                            Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                                Image("twitter")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                            }.frame(width: 20, height: 20, alignment: .center)
+                                            
+                                        }
+                )
+            }
+            
         }
+        
     }
     
 }
@@ -149,6 +160,18 @@ struct MovieDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         MovieDetailsView(id: "429617", isMovie: true)
     }
+}
+
+struct LoadingView: View {
+    
+    var  body: some View {
+        
+        Text("Fetching Data...")
+            .font(.title2)
+            .foregroundColor(.gray)
+        
+    }
+    
 }
 
 // Cast View

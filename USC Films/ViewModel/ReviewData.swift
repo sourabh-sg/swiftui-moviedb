@@ -10,19 +10,10 @@ import SwiftUI
 
 class ReviewData: ObservableObject {
     @Published var reviews: [ReviewViewModel]?
-    private var apiService: APIService!
-    var id: String
-    var isMovie: Bool
+    private var apiService = APIService()
     
-    init(id: String, isMovie: Bool) {
-        self.id = id
-        self.isMovie = isMovie
-        self.apiService = APIService()
-        self.getData()
-    }
-    
-    func getData() {
-        self.apiService.getMovieReviews(for: self.id, isMovie: self.isMovie, completion: { (reviewsArray) in
+    func getData(for id: String, isMovie: Bool) {
+        self.apiService.getMovieReviews(for: id, isMovie: isMovie, completion: { (reviewsArray) in
             self.reviews = reviewsArray
         })
     }
