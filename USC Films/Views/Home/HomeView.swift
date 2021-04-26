@@ -48,14 +48,14 @@ struct HomeView: View {
                             if tvselected {
                                 VStack(alignment: .leading, spacing: 10) {
                                     CarouselHeader(title: carouselTitle)
-                                    ImageContentView(movies: trendingShows.shows)
+                                    ImageContentView(movies: trendingShows.shows, isMovie: false)
                                 }
                                 MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows)
                                 MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows)
                             } else {
                                 VStack(alignment: .leading, spacing: 10) {
                                     CarouselHeader(title: carouselTitle)
-                                    ImageContentView(movies: nowPlayingMovies.movies)
+                                    ImageContentView(movies: nowPlayingMovies.movies, isMovie: true)
                                 }
                                 MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
                                 MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)

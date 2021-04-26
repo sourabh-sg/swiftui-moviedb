@@ -11,6 +11,7 @@ import Kingfisher
 struct ImageContentView: View {
     
     @State var movies: [MovieViewModel]
+    @State var isMovie: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,29 +21,32 @@ struct ImageContentView: View {
             // Populate image Array
             CarouselView(numberOfImages: movies.count) {
                 ForEach(0..<movies.count) { row in
-                    ZStack(alignment: .center) {
-                        // KFImage is KingFisher library's Image view that loads and caches images from given url
-                        KFImage(URL(string: movies[row].backdropImage))
-                            .placeholder {
-                                Image("movie_placeholder")
+                    
+                    NavigationLink(
+                        destination: MovieDetailsView(id: movies[row].id, isMovie: isMovie)) {
+                        ZStack(alignment: .center) {
+                            // KFImage is KingFisher library's Image view that loads and caches images from given url
+                            KFImage(URL(string: movies[row].backdropImage))
+                                .placeholder {
+                                    Image("movie_placeholder")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                }
+                                .resizable()
+                                .blur(radius: 5)
+                                .frame(width: width, height: height)
+                            
+                            KFImage(URL(string: movies[row].image)!)
+                                .placeholder {
+                                    Image("movie_placeholder")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                }
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                            }
-                            .resizable()
-                            .blur(radius: 5)
-                            .frame(width: width, height: height)
-                        
-                        KFImage(URL(string: movies[row].image)!)
-                            .placeholder {
-                                Image("movie_placeholder")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                            }
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: width, height: height)
+                                .frame(width: width, height: height)
+                        }
                     }
-            
                 }
             }
         }.frame(height: 200, alignment: .leading)
@@ -52,6 +56,6 @@ struct ImageContentView: View {
 
 struct ImageContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageContentView(movies: [MovieViewModel]())
+        ImageContentView(movies: [MovieViewModel](), isMovie: true)
     }
 }
