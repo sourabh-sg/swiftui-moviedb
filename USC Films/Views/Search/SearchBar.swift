@@ -19,6 +19,7 @@ struct SearchBar: View {
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
+                .disableAutocorrection(true)
                 .overlay(
                     // Glass image and cross button
                     HStack {
