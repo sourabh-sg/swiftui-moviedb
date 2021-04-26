@@ -11,6 +11,8 @@ struct WatchListView: View {
     var watchListArray : [String]
     @State private var dragOffset = CGSize.zero
     
+    @AppStorage("watchList") var username: String = ""
+    
     var body: some View {
         NavigationView{
             VStack() {

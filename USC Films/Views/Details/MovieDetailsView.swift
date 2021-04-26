@@ -18,10 +18,13 @@ struct MovieDetailsView: View {
     
     @State var limit = 3
     @State var isBookmarked = false
+    
+    var watchList =  WatchListViewModel()
         
     init(id: String, isMovie: Bool) {
         self.id = id
         self.isMovie = isMovie
+        self.isBookmarked = watchList.isBookmarked(movie: id)
     }
     
     var body: some View {
@@ -38,6 +41,7 @@ struct MovieDetailsView: View {
         } else {
             
             if self.movieDetails.basicDetails != nil {
+                
                 ScrollView() {
                     LazyVStack(alignment: .leading, spacing: 10) {
                         
@@ -116,44 +120,53 @@ struct MovieDetailsView: View {
                     }.padding(.leading, 20)
                     .padding(.trailing, 20)
                     
-                }.navigationBarItems(trailing:
-                                        HStack {
-                                            
-                                            Button(action: {
-                                                isBookmarked.toggle()
-                                            }) {
-                                                if isBookmarked {
-                                                    Image(systemName: "bookmark.fill")
-                                                } else {
-                                                    Image(systemName: "bookmark")
-                                                }
-                                            }
-                                            .foregroundColor(.black)
-                                                                                    
-                                            // FB Share
-                                            let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
-                                            Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                                Image("facebook-app-symbol")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                            }.frame(width: 20, height: 20, alignment: .center)
-                                            
-                                            // Twitter Share
-                                            let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
-                                            Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                                Image("twitter")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                            }.frame(width: 20, height: 20, alignment: .center)
-                                            
-                                        }
-                )
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        HStack {
+                            
+                            // Bookmark
+                            Button(action: {
+                                if isBookmarked {
+                                    watchList.removeFromWatchList(id: self.movieDetails.basicDetails!.id)
+                                } else {
+                                    watchList.addToWatchList(id:self.movieDetails.basicDetails!.id, image: self.movieDetails.basicDetails!.image)
+                                }
+                                
+                                isBookmarked.toggle()
+                            }) {
+                                
+                                if isBookmarked {
+                                    Image(systemName: "bookmark.fill")
+                                        .foregroundColor(.blue)
+                                } else {
+                                    Image(systemName: "bookmark")
+                                        .foregroundColor(.black)
+                                }
+                            }
+                                                                    
+                            // FB Share
+                            let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
+                            Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                Image("facebook-app-symbol")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }.frame(width: 20, height: 20, alignment: .center)
+                            
+                            // Twitter Share
+                            let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+                            Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                Image("twitter")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }.frame(width: 20, height: 20, alignment: .center)
+                            
+                        }
+                    }
+                }
             }
-            
         }
-        
     }
-    
 }
 
 struct MovieDetailsView_Previews: PreviewProvider {

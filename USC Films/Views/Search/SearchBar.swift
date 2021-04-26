@@ -42,10 +42,13 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
+                // Call "getResults" method of searchManager onChange of "text"
                 .onChange(of: text) { newValue in
+                    // Only call search query when text has 3 or more characters
                     if text.count > 2 {
                         searchManager.getResults(for: text)
                     } else if text.count == 0 {
+                        // If text is nil, empty the searchResults VM
                         searchManager.searchResults = [MovieViewModel]()
                     }
                 }

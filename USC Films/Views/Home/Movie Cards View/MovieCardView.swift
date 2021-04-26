@@ -9,15 +9,18 @@ import SwiftUI
 import Kingfisher
 
 struct MovieCardView: View {
-    @State var movieViewModel: MovieViewModel
-    
-    @State var title: String = ""
-    @State var releaseYear: String = ""
-    @State var image: String = ""
+    var movieViewModel: MovieViewModel
     
     @State var isBookmarked = false
     @State var bookmarkImage = "bookmark"
     @State var bookmarkMenuText = "Add to WatchList"
+    
+    var watchList =  WatchListViewModel()
+    
+    init(movieViewModel: MovieViewModel) {
+        self.movieViewModel = movieViewModel
+        self.isBookmarked = watchList.isBookmarked(movie: movieViewModel.id)
+    }
     
     var body: some View {
         
@@ -51,13 +54,21 @@ struct MovieCardView: View {
         .background(Color.white)
         .contextMenu {
             Button(action: {
+                
+                if isBookmarked {
+                    watchList.removeFromWatchList(id: movieViewModel.id)
+                } else {
+                    watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image)
+                }
+                
                 isBookmarked.toggle()
+                
                 bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")
                 bookmarkMenuText = (isBookmarked ? "Remove from WatchList" : "Add to WatchList")
             }) {
                 Label(bookmarkMenuText, systemImage: bookmarkImage)
+                    .foregroundColor((isBookmarked ? Color.blue : Color.black))
             }
-            .foregroundColor(.black)
                         
             let id = String(self.movieViewModel.id)
             
