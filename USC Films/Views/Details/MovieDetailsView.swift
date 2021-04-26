@@ -130,7 +130,7 @@ struct MovieDetailsView: View {
                                 if isBookmarked {
                                     watchList.removeFromWatchList(id: self.movieDetails.basicDetails!.id)
                                 } else {
-                                    watchList.addToWatchList(id:self.movieDetails.basicDetails!.id, image: self.movieDetails.basicDetails!.image)
+                                    watchList.addToWatchList(id:self.movieDetails.basicDetails!.id, image: self.movieDetails.basicDetails!.image, mediaType: (isMovie ? "movie" : "tv"))
                                 }
                                 
                                 isBookmarked.toggle()

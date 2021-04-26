@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
                 .tag(2)
             
-            WatchListView(watchListArray: [])
+            WatchListView()
                 .tabItem {
                     Image(systemName: "heart")
                     Text("WatchList")

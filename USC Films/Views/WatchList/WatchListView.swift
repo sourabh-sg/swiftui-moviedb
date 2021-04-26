@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct WatchListView: View {
-    var watchListArray : [String]
+    var watchList = WatchListViewModel()
     @State private var dragOffset = CGSize.zero
     
-    @AppStorage("watchList") var username: String = ""
+//    @AppStorage("watchList") var username: String = ""
     
     var body: some View {
         NavigationView{
             VStack() {
-                if watchListArray.count > 0 {
+                if watchList.list.count == 0 {
                     Text("Watchlist is empty")
                         .font(.title2)
                         .foregroundColor(.gray)
+                        .onAppear {
+                            watchList.getWatchList()
+                        }
                 } else {
                     // Show watchlist movie cards, three in a row
                     ScrollView() {
@@ -46,6 +49,6 @@ struct WatchListView: View {
 
 struct WatchListView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchListView(watchListArray: [])
+        WatchListView()
     }
 }

@@ -58,7 +58,7 @@ struct MovieCardView: View {
                 if isBookmarked {
                     watchList.removeFromWatchList(id: movieViewModel.id)
                 } else {
-                    watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image)
+                    watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image, mediaType: movieViewModel.mediaType)
                 }
                 
                 isBookmarked.toggle()
