@@ -37,8 +37,16 @@ class APIService: NSObject {
                     let movieJson = JSON(movieObj.1)
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
+                                                
                         // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        var movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if movieVM.mediaType == "" {
+                            movieVM.mediaType = "movie"
+                        }
+                        
                         movies.append(movieVM)
                     }
                 }
@@ -63,7 +71,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
                         // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        var movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if movieVM.mediaType == "" {
+                            movieVM.mediaType = "movie"
+                        }
+                        
                         movies.append(movieVM)
                     }
                 }
@@ -88,7 +103,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
                         // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        var movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if movieVM.mediaType == "" {
+                            movieVM.mediaType = "movie"
+                        }
+                        
                         movies.append(movieVM)
                     }
                 }
@@ -115,7 +137,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        var tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if tvShowVM.mediaType == "" {
+                            tvShowVM.mediaType = "tv"
+                        }
+                        
                         shows.append(tvShowVM)
                     }
                 }
@@ -140,7 +169,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        var tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if tvShowVM.mediaType == "" {
+                            tvShowVM.mediaType = "tv"
+                        }
+                        
                         shows.append(tvShowVM)
                     }
                 }
@@ -165,7 +201,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let tvShow = showJson.toType(type: Movie.self) {
                         // Convert tv show model to tv show view model
-                        let tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        var tvShowVM = MovieViewModel(movieModel: tvShow as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if tvShowVM.mediaType == "" {
+                            tvShowVM.mediaType = "tv"
+                        }
+                        
                         shows.append(tvShowVM)
                     }
                 }
@@ -262,7 +305,14 @@ class APIService: NSObject {
                     // Get each movie model data
                     if let movie = movieJson.toType(type: Movie.self) {
                         // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        var movieVM = MovieViewModel(movieModel: movie as! Movie)
+                        
+                        // Make sure mediaType is correctly maped
+                        // Needed for watchlist to details navigation
+                        if movieVM.mediaType == "" {
+                            movieVM.mediaType = (isMovie ? "movie" : "tv")
+                        }
+                        
                         movies.append(movieVM)
                     }
                 }
@@ -294,10 +344,6 @@ class APIService: NSObject {
                         // Get each movie model data
                         if let movie = movieJson.toType(type: Movie.self) {
                             // Convert movie model to movie view model
-                            
-                    
-                            
-                            
                             let movieVM = MovieViewModel(movieModel: movie as! Movie)
                             movies.append(movieVM)
                         }

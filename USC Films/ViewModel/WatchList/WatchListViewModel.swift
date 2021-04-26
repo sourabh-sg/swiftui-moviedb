@@ -99,9 +99,12 @@ class WatchListViewModel: ObservableObject {
     func addToWatchList(id: String, image: String, mediaType: String) {
         // Add to list
         print("List before new addition:\n\(list)")
-        list.append(WatchListItem(id: id, image: image, mediaType: mediaType))
-        print("List after new addition:\n\(list)")
-        saveWatchList()
+        // Add only if not added previously
+        if !isBookmarked(movie: id) {
+            list.append(WatchListItem(id: id, image: image, mediaType: mediaType))
+            print("List after new addition:\n\(list)")
+            saveWatchList()
+        }
         
     }
     

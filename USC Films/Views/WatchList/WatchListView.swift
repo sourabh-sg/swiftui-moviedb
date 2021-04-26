@@ -34,14 +34,24 @@ struct WatchListView: View {
                             
                             ForEach(watchList.list) { listItem in
                                 
-                                WatchListMovieCard(watchListItem: listItem)
-                                    .frame(height: 200)
-                                    .onDrag({
-                                        
-                                        // Setting ID for sample
-                                        return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
-                                    })
-                                    .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
+                                // Find media type
+                                let mediaType = listItem.mediaType
+                                let isMovie = (mediaType == "movie") ? true : false
+                                
+                                NavigationLink(
+                                    destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
+                                    
+                                    WatchListMovieCard(watchListItem: listItem)
+                                        .frame(height: 200)
+                                        .onDrag({
+                                            
+                                            // Setting ID for sample
+                                            return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
+                                        })
+                                        .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
+                                    
+                                }
+                               
                             }
                             
                         }.padding()
