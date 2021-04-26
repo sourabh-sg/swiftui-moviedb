@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var text: String
     @State private var isEditing = false
+    var searchManager: SearchResultsData
     
     var body: some View {
         HStack {
@@ -41,6 +42,14 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
+                .onChange(of: text) { newValue in
+                    if text.count > 2 {
+                        searchManager.getResults(for: text)
+                    } else if text.count == 0 {
+                        searchManager.searchResults = [MovieViewModel]()
+                    }
+                }
+            
             
             if isEditing {
                 // Cancel button
@@ -62,6 +71,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        SearchBar(text: .constant(""), searchManager: SearchResultsData())
     }
 }

@@ -10,22 +10,16 @@ import SwiftUI
 
 class SearchResultsData: ObservableObject {
     @Published var searchResults = [MovieViewModel]()
-    var searchQuery : String
     private var apiService = APIService()
     var debouncer = Debouncer(delay: 0.25)
     
-    init(search: String) {
-        self.searchQuery = search
-        self.apiService = APIService()
-    }
-    
-    func getResults() {
+    func getResults(for searchQuery: String) {
         if searchQuery.isEmpty {
             return
         }
         // Debouncer just delays the execution of the function called inside it
         debouncer.run {
-            self.apiService.getSearchResults(for: self.searchQuery) { (results) in
+            self.apiService.getSearchResults(for: searchQuery) { (results) in
                 self.searchResults = results
             }
         }
