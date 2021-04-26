@@ -11,7 +11,7 @@ import SwiftUI
 //Referred following link to save struct to UserDefaults
 //https://www.hackingwithswift.com/example-code/system/how-to-load-and-save-a-struct-in-userdefaults-using-codable
 
-struct WatchListItem: Codable {
+struct WatchListItem: Codable, Identifiable {
     var id: String
     var image: String
     var mediaType: String
@@ -23,9 +23,12 @@ struct WatchListItem: Codable {
     }
 }
 
-class WatchListViewModel: Codable {
+class WatchListViewModel: ObservableObject {
     
-    var list = [WatchListItem]()
+    @Published var list = [WatchListItem]()
+    
+    // Currently dragging movie
+    @Published var currentItem: WatchListItem?
     
     let defaults = UserDefaults.standard
     

@@ -18,10 +18,10 @@ struct WatchListMovieCard: View {
             .placeholder {
                 Image("movie_placeholder")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+//                .aspectRatio(contentMode: .fit)
             }
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 109, height: 167)
+//            .aspectRatio(contentMode: .fit)
+//            .frame(width: 109, height: 167)
             
     }
 }
