@@ -23,62 +23,90 @@ struct HomeView: View {
     var body: some View {
         NavigationView{
             
-            if ((!tvselected && nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0) || (tvselected && trendingShows.shows.count == 0 && topRatedShows.shows.count == 0 && popularShows.shows.count == 0)) {
+            if ((!tvselected && nowPlayingMovies.didCompleteLoading && topRatedMovies.didCompleteLoading && popularMovies.didCompleteLoading) || (tvselected && trendingShows.didCompleteLoading && topRatedShows.didCompleteLoading && popularShows.didCompleteLoading)) {
                 
-                LoadingView()
-                
-            } else {
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack(spacing: 20) {
-                        
-                        if tvselected {
-                            VStack(alignment: .leading, spacing: 10) {
-                                CarouselHeader(title: carouselTitle)
-                                ImageContentView(movies: trendingShows.shows)
-                            }
-                            MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows)
-                            MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows)
-                        } else {
-                            VStack(alignment: .leading, spacing: 10) {
-                                CarouselHeader(title: carouselTitle)
-                                ImageContentView(movies: nowPlayingMovies.movies)
-                            }
-                            MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
-                            MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)
-                        }
+                // Check if failed to load any data
+                if ((!tvselected && nowPlayingMovies.movies.count == 0 && topRatedMovies.movies.count == 0 && popularMovies.movies.count == 0) || (tvselected && trendingShows.shows.count == 0 && topRatedShows.shows.count == 0 && popularShows.shows.count == 0)) {
+                    
+                    // Show a message
+                    HStack(alignment: .center) {
+                        // Two spacers added either side to align text at the center
+                        Spacer()
+                        Text("Failed to load data")
+                        .font(.title)
+                        .fontWeight(.medium)
+                        .foregroundColor(.gray)
+                        Spacer()
+                    }.padding(30)
+                    
+                } else {
+                    
+                    // Show data
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack(spacing: 20) {
                             
-                        Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
-                            .font(.headline)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.bottom, 10)
+                            if tvselected {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    CarouselHeader(title: carouselTitle)
+                                    ImageContentView(movies: trendingShows.shows)
+                                }
+                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows)
+                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows)
+                            } else {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    CarouselHeader(title: carouselTitle)
+                                    ImageContentView(movies: nowPlayingMovies.movies)
+                                }
+                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
+                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)
+                            }
+                                
+                            Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.bottom, 10)
+                        }
                     }
-                }
-                .frame(width: 335)
-                .navigationBarTitle("USC Films")
-                .navigationBarItems(trailing:
-                                        Button(action: {
-                                            //Action
-                                            DispatchQueue.main.async {
-                                                tvselected.toggle()
+                    .frame(width: 335)
+                    .navigationBarTitle("USC Films")
+                    .navigationBarItems(trailing:
+                                            Button(action: {
+                                                //Action
+                                                DispatchQueue.main.async {
+                                                    tvselected.toggle()
+                                                    if tvselected {
+                                                        carouselTitle = "Trending"
+                                                    } else {
+                                                        carouselTitle = "Now Playing"
+                                                    }
+                                                }
+                                                
+                                            }, label: {
                                                 if tvselected {
-                                                    carouselTitle = "Trending"
+                                                    Text("TV shows")
+                                                        .foregroundColor(.blue)
                                                 } else {
-                                                    carouselTitle = "Now Playing"
+                                                    Text("Movies")
+                                                        .foregroundColor(.blue)
                                                 }
                                             }
-                                            
-                                        }, label: {
-                                            if tvselected {
-                                                Text("TV shows")
-                                                    .foregroundColor(.blue)
-                                            } else {
-                                                Text("Movies")
-                                                    .foregroundColor(.blue)
-                                            }
-                                        }
+                        )
                     )
-                )
+                    
+                    
+                }
+                        
+            } else {
+                LoadingView()
+                    .onAppear {
+                        self.nowPlayingMovies.getData()
+                        self.topRatedMovies.getData()
+                        self.popularMovies.getData()
+                        self.trendingShows.getData()
+                        self.topRatedShows.getData()
+                        self.popularShows.getData()
+                    }
             }
         }
     }

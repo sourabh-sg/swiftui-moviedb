@@ -10,16 +10,18 @@ import SwiftUI
 
 class PopularMoviesData: ObservableObject {
     @Published var movies = [MovieViewModel]()
+    @Published var didCompleteLoading = false
     private var apiService: APIService!
     
     init() {
         self.apiService = APIService()
-        self.getData()
     }
     
     func getData() {
+        didCompleteLoading = false
         self.apiService.getPopularMovies { (moviesData) in
             self.movies = moviesData
+            self.didCompleteLoading = true
         }
     }
 }

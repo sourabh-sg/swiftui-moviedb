@@ -10,6 +10,7 @@ import SwiftUI
 
 class PopularTVShowsData: ObservableObject {
     @Published var shows = [MovieViewModel]()
+    @Published var didCompleteLoading = false
     private var apiService: APIService!
     
     init() {
@@ -18,8 +19,10 @@ class PopularTVShowsData: ObservableObject {
     }
     
     func getData() {
+        didCompleteLoading = false
         self.apiService.getPopularShows { (showsData) in
             self.shows = showsData
+            self.didCompleteLoading = true
         }
     }
 }

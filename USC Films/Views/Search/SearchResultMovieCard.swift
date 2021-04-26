@@ -31,16 +31,19 @@ struct SearchResultMovieCard: View {
                     Text("\(movieViewModel.mediaType.uppercased())\(movieViewModel.releaseYear)")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                        .shadow(radius: 2)
                         
                     Spacer()
                     HStack(spacing: 5) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.red)
+                            .shadow(radius: 2)
                             
 
                         Text("\(movieViewModel.rating)")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
+                            .shadow(radius: 2)
                     }
                 }
                 
@@ -49,6 +52,7 @@ struct SearchResultMovieCard: View {
                 Text(movieViewModel.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
+                    .shadow(radius: 2)
                 
             }.padding(15)
             .font(.body)
