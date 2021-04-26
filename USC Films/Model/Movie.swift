@@ -20,6 +20,7 @@ struct Movie: JSONable {
     var releaseDate: String
     var image: String
     var backdropImage: String
+    var mediaType: String // "movie" or "tv"
     
     init(parameter: JSON) {
         id = parameter["id"].intValue
@@ -40,6 +41,7 @@ struct Movie: JSONable {
         } else {
             backdropImage = image
         }
+        mediaType = parameter["media_type"].stringValue
     }
 }
 

@@ -23,7 +23,7 @@ struct SearchResultMovieCard: View {
             
             VStack(alignment: .leading) {
                 HStack() {
-                    Text("MOVIE\(movieViewModel.releaseYear)")
+                    Text("\(movieViewModel.mediaType.uppercased())\(movieViewModel.releaseYear)")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         

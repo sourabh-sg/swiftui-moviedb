@@ -15,6 +15,7 @@ struct MovieViewModel {
     var releaseYear: String
     var image: String
     var backdropImage: String
+    var mediaType: String
     
     init(movieModel: Movie) {
         self.id = "\(movieModel.id)"
@@ -33,5 +34,7 @@ struct MovieViewModel {
         // https://image.tmdb.org/t/p/w500/poster_path
         self.image = "http://image.tmdb.org/t/p/w500/" + movieModel.image
         self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieModel.backdropImage
+        // Media type: "movie" or "tv"
+        self.mediaType = movieModel.mediaType
     }
 }

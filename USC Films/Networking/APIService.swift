@@ -287,11 +287,20 @@ class APIService: NSObject {
                 let resultJson = responseJSON["results"]
                 for movieObj in resultJson {
                     let movieJson = JSON(movieObj.1)
-                    // Get each movie model data
-                    if let movie = movieJson.toType(type: Movie.self) {
-                        // Convert movie model to movie view model
-                        let movieVM = MovieViewModel(movieModel: movie as! Movie)
-                        movies.append(movieVM)
+                    // Only add results that satisfy following conditions:
+                    // 1. Ones that have media_type as “movie” or “tv” (HW9 doc in see search result API note)
+                    // 2. Skip results that don't have backdrop image (As per Piazza q.no. 2313)
+                    if (movieJson["media_type"].stringValue == "movie" || movieJson["media_type"].stringValue == "tv") && (movieJson["backdrop_path"].stringValue != "") {
+                        // Get each movie model data
+                        if let movie = movieJson.toType(type: Movie.self) {
+                            // Convert movie model to movie view model
+                            
+                    
+                            
+                            
+                            let movieVM = MovieViewModel(movieModel: movie as! Movie)
+                            movies.append(movieVM)
+                        }
                     }
                 }
                 
