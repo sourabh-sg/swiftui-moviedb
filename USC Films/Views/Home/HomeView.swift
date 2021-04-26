@@ -84,10 +84,10 @@ struct HomeView: View {
                                                 
                                             }, label: {
                                                 if tvselected {
-                                                    Text("TV shows")
+                                                    Text("Movies")
                                                         .foregroundColor(.blue)
                                                 } else {
-                                                    Text("Movies")
+                                                    Text("TV shows")
                                                         .foregroundColor(.blue)
                                                 }
                                             }
