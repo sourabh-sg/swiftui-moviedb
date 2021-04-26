@@ -27,9 +27,6 @@ struct WatchListView: View {
                         Text("Watchlist is empty")
                             .font(.title2)
                             .foregroundColor(.gray)
-                            .onAppear {
-                                watchList.getWatchList()
-                            }
                     } else {
                         
                         
@@ -54,6 +51,9 @@ struct WatchListView: View {
                                 
             }
             .navigationBarTitle("Watchlist")
+            .onAppear {
+                watchList.reloadWatchList()
+            }
         }
     }
 }
