@@ -30,11 +30,20 @@ struct WatchListView: View {
                             // Here first calculate how many rows will be needed to display all the movies
                             // = (total / 3)
                             // (+ 1, if total % 3 is non-zero)
-                            ForEach(0..<5) { i in
+                            
+                            let total = watchList.list.count
+                            let rows = (total/3) + ((total%3 == 0) ? 0 : 1)
+                            let columns = 3
+                            
+                            ForEach(0..<rows) { i in
                                 HStack(spacing: 3) {
                                     // 3 movies in a row
-                                    ForEach(0..<3) { j in
-                                        WatchListMovieCard(position: (i+j))
+                                    ForEach(0..<columns) { j in
+                                        
+                                        if watchList.list.count > i+j {
+                                            let item = watchList.list[i+j]
+                                            WatchListMovieCard(watchListItem: item)
+                                        }
                                             
                                         }
                                 }

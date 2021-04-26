@@ -6,30 +6,29 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct WatchListMovieCard: View {
-    @State var dragOffset = CGSize.zero
-    @State var position: Int
+    
+    var watchListItem: WatchListItem
+    
     var body: some View {
-        Image("tomandjerry")
+        KFImage(URL(string: watchListItem.image))
             .resizable()
+            .placeholder {
+                Image("movie_placeholder")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            }
             .aspectRatio(contentMode: .fit)
             .frame(width: 109, height: 167)
-            .offset(dragOffset)
-            .gesture(
-                DragGesture().onChanged{ gesture in
-                    dragOffset = gesture.translation
-                }
-                .onEnded{ gesture in
-                    print("Gesture ended")
-                }
-            )
             
     }
 }
 
 struct WatchListMovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        WatchListMovieCard(position: 0)
+        let item = WatchListItem(id: "12345", image: "", mediaType: "movie")
+        WatchListMovieCard(watchListItem: item)
     }
 }
