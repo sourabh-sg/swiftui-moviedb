@@ -60,6 +60,8 @@ struct WatchListView: View {
                                     })
                                     .onDrag({
                                         
+                                        watchList.currentItem = listItem
+                                        
                                         // Setting ID for sample
                                         return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
                                     })
