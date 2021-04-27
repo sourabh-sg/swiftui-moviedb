@@ -13,14 +13,13 @@ struct YouTubePlayer: UIViewRepresentable {
     var text: String
     
     func makeUIView(context: Context) -> YTPlayerView {
-        YTPlayerView()
+        let player = YTPlayerView()
+        player.load(withVideoId: text)
+        return player
     }
     
     func updateUIView(_ uiView: YTPlayerView, context: Context) {
-//        uiView.loadVideo(byURL: text, startSeconds: 0)
-        DispatchQueue.main.async {
-            uiView.load(withVideoId: text)
-        }
+        
     }
     
 }

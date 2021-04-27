@@ -43,7 +43,7 @@ struct MovieCardView: View {
                     .multilineTextAlignment(.center)
                 
                 Text(self.movieViewModel.releaseYear)
-                    .font(.caption)
+                    .font(Font.system(size: 12))
                     .foregroundColor(.gray)
                     .fontWeight(.bold)
             }.frame(width: 94)

@@ -96,12 +96,12 @@ struct MovieDetailsView: View {
                                     }, label: {
                                         if limit == 3 {
                                             Text("Show more..")
-                                                .font(.subheadline)
+                                                .font(Font.system(size: 16))
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(.gray)
                                         } else {
                                             Text("Show less")
-                                                .font(.subheadline)
+                                                .font(Font.system(size: 16))
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(.gray)
                                         }
