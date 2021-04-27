@@ -9,8 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // TV vs Movie
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
+    
     // Movies
     @ObservedObject var nowPlayingMovies = NowPlayingMoviesData()
     @ObservedObject var topRatedMovies = TopRatedMoviesData()

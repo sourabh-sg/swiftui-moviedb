@@ -88,7 +88,6 @@ struct MovieCardView: View {
         }.onAppear(perform: {
             isBookmarked = watchList.isBookmarked(movie: movieViewModel.id)
         })
-
     }
 }
 
