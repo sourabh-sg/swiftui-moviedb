@@ -23,34 +23,34 @@ struct FullReviewView: View {
 
                 // Movie/TV Show Title
                 Text(movie)
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(Font.system(size: 26, weight: .bold))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                 // Written by
                 Text("By \(review.author) on \(review.reviewDate)")
-                    .font(.callout)
-                    .fontWeight(.medium)
+                    .font(Font.system(size: 18, weight: .medium))
                     .foregroundColor(.gray)
                 // Average star rating
-                HStack(spacing: 5) {
+                HStack(alignment: .center, spacing: 5) {
                     Image(systemName: "star.fill")
+                        .font(Font.system(size: 18))
                         .foregroundColor(.red)
-                        .font(.body)
                     Text("\(review.rating)/5.0")
-                        .font(.callout)
+                        .font(Font.system(size: 18))
                         .foregroundColor(.black)
                 }
                 
                 // Border
-                Rectangle().frame(height: 0.5).foregroundColor(.gray)
+                Rectangle().frame(height: 0.25).foregroundColor(Color.gray)
                 
                 // Full review text
                 Text(review.reviewText)
-                    .font(.callout)
+                    .font(Font.system(size: 18))
                     .foregroundColor(.black)
-            }.padding(.leading, 20)
-            .padding(.trailing, 20)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(.leading, 15)
+            .padding(.trailing, 15)
         }
     }
 }

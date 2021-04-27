@@ -47,6 +47,8 @@ struct MovieCardView: View {
                     .foregroundColor(.gray)
                     .fontWeight(.bold)
             }.frame(width: 94)
+            
+            Spacer()
                         
         }
         .background(Color.white)

@@ -16,37 +16,38 @@ struct ReviewCard: View {
     }
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 10) {
             
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading) {
                 Text("A review by \(review.author)")
-                    .font(.headline)
-                    .fontWeight(.bold)
+                    .font(Font.system(size: 18, weight: .bold))
                     .foregroundColor(.black)
                 
                 Text("Written by \(review.author) on \(review.reviewDate)")
-                    .font(.headline)
+                    .font(Font.system(size: 18))
                     .foregroundColor(.gray)
             }
             
             HStack(spacing: 5) {
                 Image(systemName: "star.fill")
                     .foregroundColor(.red)
-                    .font(.system(size: 20))
+                    .font(.system(size: 19))
                 Text("\(review.rating)/5.0")
-                    .font(.system(size: 20))
+                    .font(.system(size: 19))
                     .foregroundColor(.black)
             }
             
             // Description
             Text(review.reviewText)
-                .lineLimit(3)
+                .font(.system(size: 16))
                 .foregroundColor(.black)
-                .multilineTextAlignment(.leading)
+                .lineLimit(3)
+                .frame(width: 340, alignment: .leading)
             
         }
-        .padding(5)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1).padding(-5))
+        .frame(width: 340)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1).padding(-9))
 
     }
 }

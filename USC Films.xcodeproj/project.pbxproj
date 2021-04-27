@@ -153,7 +153,6 @@
 			children = (
 				5E9EB2012624D311006683B0 /* MovieDetailsView.swift */,
 				5E5B0A742625D1D9007248D9 /* ReviewCard.swift */,
-				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
 				5E427D4A2627452800FDC65F /* FullReviewView.swift */,
 			);
 			path = Details;
@@ -162,6 +161,7 @@
 		5E5B0A772625EBFB007248D9 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
 				5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */,
 				5E1B86F52636981100156734 /* Spinner.swift */,
 				5E1B86FC2636998E00156734 /* LoadingView.swift */,

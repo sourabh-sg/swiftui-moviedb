@@ -27,11 +27,11 @@ struct RecommendationSectionView: View {
             
             VStack(alignment: .leading, spacing: 10) {
                 Text(isMovie ? "Recommended Movies" : "Recommended TV shows")
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(Font.system(size: 26, weight: .bold))
+                    .foregroundColor(.black)
                 
                 ScrollView(.horizontal, showsIndicators: true) {
-                    HStack(spacing: 30) {
+                    HStack(spacing: 40) {
                         ForEach(0..<self.recommendedMovies.movies.count) { i in
                             
                             let movie = self.recommendedMovies.movies[i]
@@ -46,13 +46,13 @@ struct RecommendationSectionView: View {
                                     }
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 120, height: 180, alignment: .center)
+                                    .frame(width: 105, height: 160, alignment: .center)
                                     .cornerRadius(10)
                                 }
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             }
         }
     }

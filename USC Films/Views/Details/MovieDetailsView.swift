@@ -47,7 +47,7 @@ struct MovieDetailsView: View {
                         if self.movieDetails.basicDetails!.videoKey.count > 0 {
                             // Youtube player
                             YouTubePlayer(text: self.movieDetails.basicDetails!.videoKey)
-                                .frame(width: 335, height: 200)
+                                .frame(height: 208)
                         }
                         // Movie/TV Show Title
                         Text(self.movieDetails.basicDetails!.title)
@@ -55,11 +55,11 @@ struct MovieDetailsView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
-                        // Year of release | Genres
                         
+                        // Year of release | Genres
                         if self.movieDetails.basicDetails!.releaseYearAndGenreString.count > 0 {
                             Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
-                                .font(.callout)
+                                .font(Font.system(size: 18))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                         }
@@ -68,14 +68,15 @@ struct MovieDetailsView: View {
                         HStack(spacing: 5) {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.red)
-                                .font(.callout)
+                                .font(Font.system(size: 18))
                             Text("\(self.movieDetails.basicDetails!.rating)/5.0")
-                                .font(.callout)
+                                .font(Font.system(size: 18))
                                 .foregroundColor(.black)
                         }
                         // Description
                         if self.movieDetails.basicDetails!.overview.count > 0 {
                             Text(self.movieDetails.basicDetails!.overview)
+                                .font(Font.system(size: 16))
                                 .lineLimit(limit)
                             // Show more/less button
                             HStack {
@@ -90,10 +91,12 @@ struct MovieDetailsView: View {
                                     if limit == 3 {
                                         Text("Show more..")
                                             .font(.subheadline)
+                                            .fontWeight(.semibold)
                                             .foregroundColor(.gray)
                                     } else {
                                         Text("Show less")
                                             .font(.subheadline)
+                                            .fontWeight(.semibold)
                                             .foregroundColor(.gray)
                                     }
                                 })
@@ -116,8 +119,8 @@ struct MovieDetailsView: View {
                         
                         Spacer()
                     
-                    }.padding(.leading, 20)
-                    .padding(.trailing, 20)
+                    }.padding(.leading, 15)
+                    .padding(.trailing, 15)
                     
                 }
                 .toolbar {
@@ -135,13 +138,9 @@ struct MovieDetailsView: View {
                                 isBookmarked.toggle()
                             }) {
                                 
-                                if isBookmarked {
-                                    Image(systemName: "bookmark.fill")
-                                        .foregroundColor(.blue)
-                                } else {
-                                    Image(systemName: "bookmark")
-                                        .foregroundColor(.black)
-                                }
+                                Image(systemName: (isBookmarked ? "bookmark.fill": "bookmark"))
+                                    .font(Font.system(size: 18, weight: .bold))
+                                    .foregroundColor((isBookmarked ? .blue: .black))
                             }
                                                                     
                             // FB Share
@@ -186,10 +185,9 @@ struct CastView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 20) {
             Text("Cast & Crew")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(Font.system(size: 26, weight: .bold))
                 .foregroundColor(.black)
             
             // Names
@@ -199,28 +197,40 @@ struct CastView: View {
                     ForEach(0..<count) { i in
                         
                         if let actorVM = self.cast[i] {
-                            VStack {
-                                KFImage(URL(string: actorVM.image))
-                                    .placeholder {
-                                        Image("cast_placeholder")
+                            VStack(alignment: .center, spacing: 15) {
+                                if !actorVM.image.isEmpty {
+                                    KFImage(URL(string: actorVM.image))
+                                        .placeholder {
+                                            Image("cast_placeholder")
+                                            .resizable()
+                                            .clipShape(Circle())
+                                                .scaledToFill()
+                                            .frame(width: 90, height: 90)
+                                        }
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                    }
-                                    .resizable()
-                                    .clipShape(Circle())
-                                    .scaledToFill()
-                                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                                        .clipShape(Circle())
+                                        .scaledToFill()
+                                        .frame(width: 90, height: 90)
+                                } else {
+                                    Image("cast_placeholder")
+                                        .resizable()
+                                        .clipShape(Circle())
+                                        .scaledToFill()
+                                        .frame(width: 90, height: 90)
+                                }
                                 
-                                Text(actorVM.name)
-                                    .font(.subheadline)
-                                    .multilineTextAlignment(.center)
+                                if !actorVM.name.isEmpty {
+                                    Text(actorVM.name)
+                                        .font(Font.system(size: 12))
+                                        .multilineTextAlignment(.center)
+                                }
                             }
                         } else {
                             Image("cast_placeholder")
                                 .resizable()
                                 .clipShape(Circle())
                                 .scaledToFill()
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                                .frame(width: 90, height: 90)
                             
                         }
                     }
@@ -247,21 +257,26 @@ struct ReviewListView: View {
         // Reviews
         VStack(alignment: .leading, spacing: 20) {
             Text("Reviews")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(Font.system(size: 26, weight: .bold))
                 .foregroundColor(.black)
+                .padding(.top, 5)
             
-            // Review views
-            let count = min(3, self.reviews.count)
-            ForEach(0..<count) { i in
-                if let reviewVM = self.reviews[i] {
-                NavigationLink(
-                    destination: FullReviewView(review: reviewVM, movie: movieTitle),
-                    label: {
-                        ReviewCard(review: reviewVM)
-                    })
+            VStack(alignment: .leading, spacing: 27) {
+                // Review views
+                let count = min(3, self.reviews.count)
+                ForEach(0..<count) { i in
+                    if let reviewVM = self.reviews[i] {
+                    NavigationLink(
+                        destination: FullReviewView(review: reviewVM, movie: movieTitle),
+                        label: {
+                            ReviewCard(review: reviewVM)
+                                .padding(.leading, 10)
+                                .padding(.trailing, 10)
+                        })
+                    }
                 }
             }
+            
         }
     }
 }
