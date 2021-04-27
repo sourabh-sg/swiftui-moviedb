@@ -27,9 +27,8 @@ struct MovieCardContainerView: View {
                             NavigationLink(
                                 destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
                                 MovieCardView(movieViewModel: movie)
-                            }.buttonStyle(PlainButtonStyle()) 
+                            }.buttonStyle(PlainButtonStyle())
                         }
-                        
                     }
                 }
             }
