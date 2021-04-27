@@ -60,12 +60,20 @@ struct HomeView: View {
                                 MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
                                 MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)
                             }
+                              
+                            VStack(alignment: .center, spacing: 0) {
+                            // Should open link in the browser
+                                Link("Powered by TMDB", destination: URL(string: "https://www.themoviedb.org/")!)
+                                    .font(Font.system(size: 12, weight: .medium))
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
                                 
-                            Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
-                                .font(Font.system(size: 12, weight: .medium))
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.bottom, 10)
+                                Text("Developed by Sourabh Shamrao Gapate")
+                                    .font(Font.system(size: 12, weight: .medium))
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    
+                            }.padding(.bottom, 10)
                         }
                     }
                     .padding(.leading, 20)
