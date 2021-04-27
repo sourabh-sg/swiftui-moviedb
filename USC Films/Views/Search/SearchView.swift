@@ -14,15 +14,15 @@ struct SearchView: View {
     var body: some View {
         
         NavigationView{
-            VStack {
+            VStack(alignment: .leading) {
                 SearchBar(text: $searchString, searchManager: searchManager)
-                    .padding(.bottom, 10)
                     .padding(.top, 10)
+                    .padding(.bottom, 15)
                 
                 if searchString.count > 2 {
                     if searchManager.searchResults.count > 0 {
                         ScrollView {
-                            VStack(alignment: .leading, spacing: 10) {
+                            VStack(alignment: .leading, spacing: 15) {
                                     ForEach(searchManager.searchResults, id: \.self) { searchResult in
                                         // Find media type
                                         let mediaType = searchResult.mediaType
@@ -30,6 +30,7 @@ struct SearchView: View {
                                         NavigationLink(
                                             destination: MovieDetailsView(id: searchResult.id, isMovie: isMovie)) {
                                             SearchResultMovieCard(movieVM: searchResult)
+                                                
                                     }
                                 }
                             }
@@ -40,10 +41,9 @@ struct SearchView: View {
                             Spacer()
                             Text("No Results")
                             .font(.title)
-                            .fontWeight(.medium)
                             .foregroundColor(.gray)
                             Spacer()
-                        }.padding(30)
+                        }
                     }
                 }
                 

@@ -61,7 +61,7 @@ struct SearchBar: View {
                     self.isEditing = false
                     self.text = ""
                     // Dismiss the keyboard
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    UIApplication.shared.endEditing() // Added to UIApplication extensionn below
                 }) {
                     Text("Cancel")
                 }
@@ -76,5 +76,11 @@ struct SearchBar: View {
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
         SearchBar(text: .constant(""), searchManager: SearchResultsData())
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
