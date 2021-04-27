@@ -20,67 +20,66 @@ struct WatchListView: View {
     
     
     var body: some View {
-        NavigationView{
+        
+        if watchList.list.count == 0 {
+            Text("Watchlist is empty")
+                .font(.title2)
+                .foregroundColor(.gray)
+        } else {
             
-            ScrollView {
+            NavigationView {
                 
-                VStack() {
-                    if watchList.list.count == 0 {
-                        Text("Watchlist is empty")
-                            .font(.title2)
-                            .foregroundColor(.gray)
-                    } else {
+                ScrollView {
+                    
+                    LazyVGrid(columns: columns, spacing: 10) {
                         
-                        
-                        LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(watchList.list) { listItem in
                             
-                            ForEach(watchList.list) { listItem in
+                            // Find media type
+                            let mediaType = listItem.mediaType
+                            let isMovie = (mediaType == "movie") ? true : false
+                            
+                            NavigationLink(
+                                destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
                                 
-                                // Find media type
-                                let mediaType = listItem.mediaType
-                                let isMovie = (mediaType == "movie") ? true : false
-                                
-                                NavigationLink(
-                                    destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
-                                    
-                                    KFImage(URL(string: listItem.image)!)
+                                KFImage(URL(string: listItem.image)!)
+                                    .resizable()
+                                    .placeholder {
+                                        Image("movie_placeholder")
                                         .resizable()
-                                        .placeholder {
-                                            Image("movie_placeholder")
-                                            .resizable()
-                                        }
-                                        .frame(height: 200)
-                                        .contextMenu(menuItems: {
-                                            Button(action: {
-                                                watchList.removeFromWatchList(id: listItem.id)
-                                                
-                                            }) {
-                                                Label("Remove from WatchList", systemImage: "bookmark.fill")
-                                                    .foregroundColor(Color.blue)
-                                            }
-                                        })
-                                        .onDrag({
+                                    }
+                                    .frame(height: 200)
+                                    .contextMenu(menuItems: {
+                                        Button(action: {
+                                            watchList.removeFromWatchList(id: listItem.id)
                                             
-                                            // Setting ID for sample
-                                            return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
-                                        })
-                                        .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
-                                    
-                                }.buttonStyle(PlainButtonStyle()) 
-                               
-                            }
-                            
-                        }.padding()
-                        
-                    }
-                }
+                                        }) {
+                                            Label("Remove from WatchList", systemImage: "bookmark.fill")
+                                                .foregroundColor(Color.blue)
+                                        }
+                                    })
+                                    .onDrag({
+                                        
+                                        // Setting ID for sample
+                                        return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
+                                    })
+                                    .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
                                 
+                            }.buttonStyle(PlainButtonStyle())
+                           
+                        }
+                        
+                    }.padding()
+                    
+                }.navigationBarTitle("Watchlist")
+                .onAppear {
+                    watchList.reloadWatchList()
+                }
+                
             }
-            .navigationBarTitle("Watchlist")
-            .onAppear {
-                watchList.reloadWatchList()
-            }
+            
         }
+
     }
 }
 
