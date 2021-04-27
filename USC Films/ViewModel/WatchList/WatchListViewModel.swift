@@ -143,5 +143,18 @@ class WatchListViewModel: ObservableObject {
         return false
     }
     
+    func moveItem(atIndex: Int, toIndex: Int) {
+        // Index should be less than the list count
+        if (list.count <= atIndex) || (list.count <= toIndex)  {
+            return
+        }
+        
+        // Swapping items
+        let fromItem = list[atIndex]
+        list[atIndex] = list[toIndex]
+        list[toIndex] = fromItem
+        saveWatchList()        
+    }
+    
     
 }

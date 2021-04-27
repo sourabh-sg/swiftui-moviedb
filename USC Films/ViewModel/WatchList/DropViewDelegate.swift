@@ -35,9 +35,7 @@ struct DropViewDelegate: DropDelegate {
             // Animation
             withAnimation {
                 // Swapping items
-                let fromItem = watchListVM.list[fromIndex]
-                watchListVM.list[fromIndex] = watchListVM.list[toIndex]
-                watchListVM.list[toIndex] = fromItem
+                watchListVM.moveItem(atIndex: fromIndex, toIndex: toIndex)
             }
         }
         

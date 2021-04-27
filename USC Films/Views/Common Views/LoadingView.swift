@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center) {
             Spinner(isAnimating: true, style: UIActivityIndicatorView.Style.medium, color: UIColor.gray)
             Text("Fetching Data...")
-                .font(.title2)
+//                .font(.title2)
                 .foregroundColor(.gray)
         }
     }
