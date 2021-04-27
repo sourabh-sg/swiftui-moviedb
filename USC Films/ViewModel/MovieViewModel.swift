@@ -21,7 +21,8 @@ struct MovieViewModel: Identifiable, Hashable {
         self.id = "\(movieModel.id)"
         self.title = movieModel.title
         // Convert ratings to 5
-        self.rating = "\(movieModel.rating * 0.5)"
+        // And show only one decimal digit (https://www.hackingwithswift.com/example-code/strings/how-to-specify-floating-point-precision-in-a-string)
+        self.rating = String(format: "%.1f", (movieModel.rating * 0.5))
         // Fetch year from release date - first 4 letters
         let str = movieModel.releaseDate
         if str.count > 3 {
