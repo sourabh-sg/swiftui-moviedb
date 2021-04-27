@@ -19,33 +19,34 @@ struct SearchView: View {
                     .padding(.top, 10)
                     .padding(.bottom, 15)
                 
-                if searchString.count > 2 {
-                    if searchManager.searchResults.count > 0 {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 15) {
-                                    ForEach(searchManager.searchResults, id: \.self) { searchResult in
-                                        // Find media type
-                                        let mediaType = searchResult.mediaType
-                                        let isMovie = (mediaType == "movie") ? true : false
-                                        NavigationLink(
-                                            destination: MovieDetailsView(id: searchResult.id, isMovie: isMovie)) {
-                                            SearchResultMovieCard(movieVM: searchResult)
-                                                
-                                    }
+                if searchManager.searchResults.count > 0 {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 15) {
+                                ForEach(searchManager.searchResults, id: \.self) { searchResult in
+                                    // Find media type
+                                    let mediaType = searchResult.mediaType
+                                    let isMovie = (mediaType == "movie") ? true : false
+                                    NavigationLink(
+                                        destination: MovieDetailsView(id: searchResult.id, isMovie: isMovie)) {
+                                        SearchResultMovieCard(movieVM: searchResult)
+                                            
                                 }
                             }
                         }
-                    } else {
-                        HStack(alignment: .center) {
-                            // Two spacers added either side to align text at the center
-                            Spacer()
-                            Text("No Results")
-                            .font(.title)
-                            .foregroundColor(.gray)
-                            Spacer()
-                        }
                     }
                 }
+                // Show No results if no results are returned for entered text (>2 chars)
+                else if searchString.count > 2 {
+                    HStack(alignment: .center) {
+                        // Two spacers added either side to align text at the center
+                        Spacer()
+                        Text("No Results")
+                        .font(.title)
+                        .foregroundColor(.gray)
+                        Spacer()
+                    }
+                }
+                
                 
                 Spacer()
             }

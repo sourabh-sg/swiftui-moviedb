@@ -48,9 +48,6 @@ struct SearchBar: View {
                     // Only call search query when text has 3 or more characters
                     if text.count > 2 {
                         searchManager.getResults(for: text)
-                    } else if text.count == 0 {
-                        // If text is nil, empty the searchResults VM
-                        searchManager.searchResults = [MovieViewModel]()
                     }
                 }
             
@@ -60,6 +57,8 @@ struct SearchBar: View {
                 Button(action: {
                     self.isEditing = false
                     self.text = ""
+                    // Remove the searchResults VM
+                    searchManager.searchResults = [MovieViewModel]()
                     // Dismiss the keyboard
                     UIApplication.shared.endEditing() // Added to UIApplication extensionn below
                 }) {
