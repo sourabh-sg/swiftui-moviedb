@@ -129,51 +129,50 @@ struct MovieDetailsView: View {
                         .padding(.trailing, 15)
                         
                     }
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            HStack {
-                                
-                                // Bookmark
-                                Button(action: {
-                                    if isBookmarked {
-                                        watchList.removeFromWatchList(id: self.movieDetails.basicDetails!.id)
-                                        // Show toast
-                                        toastMessage = "\(self.movieDetails.basicDetails!.title) was removed from Watchlist"
-                                        showToast = true
-                                    } else {
-                                        watchList.addToWatchList(id:self.movieDetails.basicDetails!.id, image: self.movieDetails.basicDetails!.image, mediaType: (isMovie ? "movie" : "tv"))
-                                        // Show toast
-                                        toastMessage = "\(self.movieDetails.basicDetails!.title) was added to Watchlist"
-                                        showToast = true
-                                    }
-                                    
-                                    isBookmarked.toggle()
-                                }) {
-                                    
-                                    Image(systemName: (isBookmarked ? "bookmark.fill": "bookmark"))
-                                        .font(Font.system(size: 18, weight: .bold))
-                                        .foregroundColor((isBookmarked ? .blue: .black))
-                                }
-                                                                        
-                                // FB Share
-                                let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
-                                Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                    Image("facebook-app-symbol")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                }.frame(width: 20, height: 20, alignment: .center)
-                                
-                                // Twitter Share
-                                let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
-                                Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
-                                    Image("twitter")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                }.frame(width: 20, height: 20, alignment: .center)
-                                
-                            }
-                        }
-                    }.onAppear(perform: {
+                    .navigationBarItems(trailing:
+                                            HStack {
+                                                
+                                                // Bookmark
+                                                Button(action: {
+                                                    if isBookmarked {
+                                                        watchList.removeFromWatchList(id: self.movieDetails.basicDetails!.id)
+                                                        // Show toast
+                                                        toastMessage = "\(self.movieDetails.basicDetails!.title) was removed from Watchlist"
+                                                        showToast = true
+                                                    } else {
+                                                        watchList.addToWatchList(id:self.movieDetails.basicDetails!.id, image: self.movieDetails.basicDetails!.image, mediaType: (isMovie ? "movie" : "tv"))
+                                                        // Show toast
+                                                        toastMessage = "\(self.movieDetails.basicDetails!.title) was added to Watchlist"
+                                                        showToast = true
+                                                    }
+                                                    
+                                                    isBookmarked.toggle()
+                                                }) {
+                                                    
+                                                    Image(systemName: (isBookmarked ? "bookmark.fill": "bookmark"))
+                                                        .font(Font.system(size: 18, weight: .bold))
+                                                        .foregroundColor((isBookmarked ? .blue: .black))
+                                                }
+                                                                                        
+                                                // FB Share
+                                                let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
+                                                Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                                    Image("facebook-app-symbol")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                }.frame(width: 20, height: 20, alignment: .center)
+                                                
+                                                // Twitter Share
+                                                let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
+                                                Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
+                                                    Image("twitter")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                }.frame(width: 20, height: 20, alignment: .center)
+                                                
+                                            }
+                    )
+                    .onAppear(perform: {
                         isBookmarked = watchList.isBookmarked(movie: id)
                     })
                 }
