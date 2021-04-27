@@ -49,6 +49,15 @@ struct WatchListView: View {
                                             return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
                                         })
                                         .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
+                                        .contextMenu(menuItems: {
+                                            Button(action: {
+                                                watchList.removeFromWatchList(id: listItem.id)
+                                                
+                                            }) {
+                                                Label("Remove from WatchList", systemImage: "bookmark.fill")
+                                                    .foregroundColor(Color.blue)
+                                            }
+                                        })
                                     
                                 }
                                

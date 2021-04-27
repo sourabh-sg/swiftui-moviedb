@@ -16,7 +16,7 @@ class NowPlayingMoviesData: ObservableObject {
     init() {
         self.apiService = APIService()
     }
-    
+     
     func getData() {
         didCompleteLoading = false
         self.apiService.getNowPlayingMovies { (moviesData) in
