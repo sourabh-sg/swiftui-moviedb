@@ -38,7 +38,7 @@ struct MovieCardView: View {
                 Text(self.movieViewModel.title)
                     .font(Font.system(size: 12))
                     .fontWeight(.heavy)
-                    .foregroundColor(.black)
+//                    .foregroundColor(.black)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
                 
@@ -84,7 +84,7 @@ struct MovieCardView: View {
             // Link view for Twitter Share
             Link(destination: URL(string: twitUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                 Label("Share on Twitter", image: "twitter")
-                    .foregroundColor(.black)
+//                    .foregroundColor(.black)
             }
         }.onAppear(perform: {
             isBookmarked = watchList.isBookmarked(movie: movieViewModel.id)

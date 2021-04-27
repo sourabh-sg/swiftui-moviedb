@@ -28,7 +28,6 @@ struct RecommendationSectionView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text(isMovie ? "Recommended Movies" : "Recommended TV shows")
                     .font(Font.system(size: 26, weight: .bold))
-                    .foregroundColor(.black)
                 
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 40) {

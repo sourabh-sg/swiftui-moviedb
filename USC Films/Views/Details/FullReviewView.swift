@@ -24,7 +24,6 @@ struct FullReviewView: View {
                 // Movie/TV Show Title
                 Text(movie)
                     .font(Font.system(size: 26, weight: .bold))
-                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                 // Written by
                 Text("By \(review.author) on \(review.reviewDate)")
@@ -37,7 +36,6 @@ struct FullReviewView: View {
                         .foregroundColor(.red)
                     Text("\(review.rating)/5.0")
                         .font(Font.system(size: 18))
-                        .foregroundColor(.black)
                 }
                 
                 // Border
@@ -46,7 +44,6 @@ struct FullReviewView: View {
                 // Full review text
                 Text(review.reviewText)
                     .font(Font.system(size: 18))
-                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
             }
             .padding(.leading, 15)

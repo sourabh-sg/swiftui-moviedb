@@ -59,14 +59,12 @@ struct MovieDetailsView: View {
                             Text(self.movieDetails.basicDetails!.title)
                                 .font(.title)
                                 .fontWeight(.bold)
-                                .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                             
                             // Year of release | Genres
                             if self.movieDetails.basicDetails!.releaseYearAndGenreString.count > 0 {
                                 Text(self.movieDetails.basicDetails!.releaseYearAndGenreString)
                                     .font(Font.system(size: 18))
-                                    .foregroundColor(.black)
                                     .multilineTextAlignment(.leading)
                             }
                             
@@ -77,7 +75,6 @@ struct MovieDetailsView: View {
                                     .font(Font.system(size: 18))
                                 Text("\(self.movieDetails.basicDetails!.rating)/5.0")
                                     .font(Font.system(size: 18))
-                                    .foregroundColor(.black)
                             }
                             // Description
                             if self.movieDetails.basicDetails!.overview.count > 0 {
@@ -200,7 +197,6 @@ struct CastView: View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Cast & Crew")
                 .font(Font.system(size: 26, weight: .bold))
-                .foregroundColor(.black)
             
             // Names
             ScrollView(.horizontal) {
@@ -270,7 +266,6 @@ struct ReviewListView: View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Reviews")
                 .font(Font.system(size: 26, weight: .bold))
-                .foregroundColor(.black)
                 .padding(.top, 5)
             
             VStack(alignment: .leading, spacing: 27) {
