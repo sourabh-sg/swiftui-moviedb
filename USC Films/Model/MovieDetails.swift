@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-struct MovieDetails: JSONable {
+struct MovieDetails: JSONable, Identifiable {
     
     var id: Int
     var title: String

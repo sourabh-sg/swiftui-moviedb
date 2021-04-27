@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetailsViewModel {
+struct MovieDetailsViewModel: Identifiable {
     
     var id : String
     var title: String

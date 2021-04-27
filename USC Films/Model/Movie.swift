@@ -12,7 +12,7 @@ protocol JSONable {
     init?(parameter: JSON)
 }
 
-struct Movie: JSONable {
+struct Movie: JSONable, Identifiable {
     
     var id : Int
     var title: String

@@ -325,8 +325,10 @@ class APIService: NSObject {
     // API Call to get search results
     func getSearchResults(for queryString: String, completion: @escaping ([MovieViewModel]) -> ()) {
         
-        //https://api.themoviedb.org/3/search/multi?api_key=97588ddc4a26e30911 52aa0c9a40de22&language=en-US&query=
-        let urlString = APIService.BASE_URL + "search/multi?&api_key=" + APIService.API_KEY + "&language=en-US&query=" + queryString
+        // Allow spaces and other characters
+        let queryStr = String(queryString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? queryString)
+        
+        let urlString = APIService.BASE_URL + "search/multi?&api_key=" + APIService.API_KEY + "&language=en-US&query=" + queryStr
         
         AF.request(urlString)
           .validate()

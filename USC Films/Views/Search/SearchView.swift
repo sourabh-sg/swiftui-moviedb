@@ -23,19 +23,13 @@ struct SearchView: View {
                     if searchManager.searchResults.count > 0 {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 10) {
-                                // Show max 20 results
-                                let count = min(20, searchManager.searchResults.count)
-                                ForEach (0..<count) { i in
-                                    // Check for index out of bound
-                                    if i < searchManager.searchResults.count {
-                                        let searchResult = searchManager.searchResults[i]
+                                    ForEach(searchManager.searchResults, id: \.self) { searchResult in
                                         // Find media type
                                         let mediaType = searchResult.mediaType
                                         let isMovie = (mediaType == "movie") ? true : false
                                         NavigationLink(
                                             destination: MovieDetailsView(id: searchResult.id, isMovie: isMovie)) {
                                             SearchResultMovieCard(movieVM: searchResult)
-                                        }
                                     }
                                 }
                             }
