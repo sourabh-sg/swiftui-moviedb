@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct WatchListView: View {
         
 //    Grid reordering: https://kavsoft.dev/SwiftUI_2.0/Grid_Reordering/
+//    Video: https://www.youtube.com/watch?v=h25rGhYrl5I
     @StateObject var watchList = WatchListViewModel()
     
     @Namespace var animation
@@ -41,14 +43,13 @@ struct WatchListView: View {
                                 NavigationLink(
                                     destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
                                     
-                                    WatchListMovieCard(watchListItem: listItem)
+                                    KFImage(URL(string: listItem.image)!)
+                                        .resizable()
+                                        .placeholder {
+                                            Image("movie_placeholder")
+                                            .resizable()
+                                        }
                                         .frame(height: 200)
-                                        .onDrag({
-                                            
-                                            // Setting ID for sample
-                                            return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
-                                        })
-                                        .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
                                         .contextMenu(menuItems: {
                                             Button(action: {
                                                 watchList.removeFromWatchList(id: listItem.id)
@@ -58,8 +59,14 @@ struct WatchListView: View {
                                                     .foregroundColor(Color.blue)
                                             }
                                         })
+                                        .onDrag({
+                                            
+                                            // Setting ID for sample
+                                            return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
+                                        })
+                                        .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
                                     
-                                }
+                                }.buttonStyle(PlainButtonStyle()) 
                                
                             }
                             

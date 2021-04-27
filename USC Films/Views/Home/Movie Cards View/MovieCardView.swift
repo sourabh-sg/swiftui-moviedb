@@ -19,7 +19,6 @@ struct MovieCardView: View {
     
     init(movieViewModel: MovieViewModel) {
         self.movieViewModel = movieViewModel
-        self.isBookmarked = watchList.isBookmarked(movie: movieViewModel.id)
     }
     
     var body: some View {
@@ -54,7 +53,7 @@ struct MovieCardView: View {
         .background(Color.white)
         .contextMenu {
             Button(action: {
-                
+
                 if isBookmarked {
                     watchList.removeFromWatchList(id: movieViewModel.id)
                 } else {
@@ -63,10 +62,8 @@ struct MovieCardView: View {
                 
                 isBookmarked.toggle()
                 
-                bookmarkImage = (isBookmarked ? "bookmark.fill" : "bookmark")
-                bookmarkMenuText = (isBookmarked ? "Remove from WatchList" : "Add to WatchList")
             }) {
-                Label(bookmarkMenuText, systemImage: bookmarkImage)
+                Label((isBookmarked ? "Remove from WatchList" : "Add to WatchList"), systemImage: (isBookmarked ? "bookmark.fill" : "bookmark"))
                     .foregroundColor((isBookmarked ? Color.blue : Color.black))
             }
                         
@@ -87,7 +84,9 @@ struct MovieCardView: View {
                 Label("Share on Twitter", image: "twitter")
                     .foregroundColor(.black)
             }
-        }
+        }.onAppear(perform: {
+            isBookmarked = watchList.isBookmarked(movie: movieViewModel.id)
+        })
 
     }
 }
