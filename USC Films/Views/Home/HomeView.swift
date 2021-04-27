@@ -62,7 +62,7 @@ struct HomeView: View {
                             }
                                 
                             Link("Powered by TMDB\nDeveloped by Sourabh Shamrao Gapate", destination: URL(string: "https://www.themoviedb.org/")!)
-                                .font(.headline)
+                                .font(Font.system(size: 12, weight: .medium))
                                 .foregroundColor(.gray)
                                 .multilineTextAlignment(.center)
                                 .padding(.bottom, 10)
@@ -74,23 +74,14 @@ struct HomeView: View {
                     .navigationBarItems(trailing:
                                             Button(action: {
                                                 //Action
-                                                DispatchQueue.main.async {
-                                                    tvselected.toggle()
-                                                    if tvselected {
-                                                        carouselTitle = "Trending"
-                                                    } else {
-                                                        carouselTitle = "Now Playing"
-                                                    }
-                                                }
+                                                tvselected.toggle()
+                                                carouselTitle = (tvselected ? "Trending" : "Now Playing")
                                                 
                                             }, label: {
-                                                if tvselected {
-                                                    Text("Movies")
-                                                        .foregroundColor(.blue)
-                                                } else {
-                                                    Text("TV shows")
-                                                        .foregroundColor(.blue)
-                                                }
+                                                
+                                                Text((tvselected ? "Movies" : "TV shows"))
+                                                    .font(Font.system(size: 16))
+                                                    .foregroundColor(.blue)
                                             }
                         )
                     )

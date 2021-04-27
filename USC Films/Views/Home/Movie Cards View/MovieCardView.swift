@@ -31,11 +31,10 @@ struct MovieCardView: View {
                     .aspectRatio(contentMode: .fit)
                 }
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 96, height: 140, alignment: .center)
+                .frame(width: 94, height: 140, alignment: .center)
                 .cornerRadius(10)
             
-            VStack {
+            VStack(alignment: .center) {
                 Text(self.movieViewModel.title)
                     .font(Font.system(size: 12))
                     .fontWeight(.heavy)
@@ -47,10 +46,9 @@ struct MovieCardView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                     .fontWeight(.bold)
-            }
+            }.frame(width: 94)
                         
         }
-        .frame(width: 96)
         .background(Color.white)
         .contextMenu {
             Button(action: {

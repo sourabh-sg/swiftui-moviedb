@@ -19,7 +19,7 @@ struct MovieCardContainerView: View {
                 .font(Font.system(size: 24))
                 .fontWeight(.bold)
             ScrollView(.horizontal, showsIndicators: true) {
-                LazyHStack(spacing: 22) {
+                LazyHStack(spacing: 25) {
                     // We need to show upto 20 movies here per the requirement
                     let count = min(20, movies.count)
                     ForEach(0..<count) { row in
