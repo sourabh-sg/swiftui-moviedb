@@ -16,7 +16,7 @@ struct WatchListView: View {
     
     @Namespace var animation
     
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 3)
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
     
     
     var body: some View {
@@ -31,7 +31,7 @@ struct WatchListView: View {
                 
                 ScrollView {
                     
-                    LazyVGrid(columns: columns, spacing: 10) {
+                    LazyVGrid(columns: columns, spacing: 3) {
                         
                         ForEach(watchList.list) { listItem in
                             
@@ -48,7 +48,7 @@ struct WatchListView: View {
                                         Image("movie_placeholder")
                                         .resizable()
                                     }
-                                    .frame(height: 200)
+                                    .frame(height: 177)
                                     .contextMenu(menuItems: {
                                         Button(action: {
                                             watchList.removeFromWatchList(id: listItem.id)
@@ -69,7 +69,8 @@ struct WatchListView: View {
                            
                         }
                         
-                    }.padding()
+                    }.padding(.leading)
+                    .padding(.trailing)
                     
                 }.navigationBarTitle("Watchlist")
                 .onAppear {
