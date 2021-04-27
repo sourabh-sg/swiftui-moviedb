@@ -13,12 +13,13 @@ struct MovieCardContainerView: View {
     @State var movies: [MovieViewModel]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 15) {
             Text(heading)
-                .font(.title2)
+//                .font(.title2)
+                .font(Font.system(size: 24))
                 .fontWeight(.bold)
             ScrollView(.horizontal, showsIndicators: true) {
-                LazyHStack(spacing: 20) {
+                LazyHStack(spacing: 22) {
                     // We need to show upto 20 movies here per the requirement
                     let count = min(20, movies.count)
                     ForEach(0..<count) { row in

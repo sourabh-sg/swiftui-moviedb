@@ -49,7 +49,7 @@ struct ImageContentView: View {
                     }
                 }
             }
-        }.frame(height: 200, alignment: .leading)
+        }.frame(height: 280, alignment: .leading)
         
     }
 }

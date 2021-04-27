@@ -23,7 +23,7 @@ struct MovieCardView: View {
     
     var body: some View {
         
-        VStack(alignment: .center, spacing: 5) {
+        VStack(alignment: .center, spacing: 10) {
             KFImage(URL(string: self.movieViewModel.image)!)
                 .placeholder {
                     Image("movie_placeholder")
@@ -32,24 +32,25 @@ struct MovieCardView: View {
                 }
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 120, height: 180, alignment: .center)
+                .frame(width: 96, height: 140, alignment: .center)
                 .cornerRadius(10)
             
-            Text(self.movieViewModel.title)
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-                .frame(width: 120)
-                .multilineTextAlignment(.center)
-            
-            Text(self.movieViewModel.releaseYear)
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .fontWeight(.bold)
-            
-            Spacer()
-            
+            VStack {
+                Text(self.movieViewModel.title)
+                    .font(Font.system(size: 12))
+                    .fontWeight(.heavy)
+                    .foregroundColor(.black)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.center)
+                
+                Text(self.movieViewModel.releaseYear)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .fontWeight(.bold)
+            }
+                        
         }
+        .frame(width: 96)
         .background(Color.white)
         .contextMenu {
             Button(action: {

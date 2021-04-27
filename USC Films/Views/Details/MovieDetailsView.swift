@@ -16,7 +16,7 @@ struct MovieDetailsView: View {
     @ObservedObject var movieCast = CastDetailsData()
     @ObservedObject var reviewsData = ReviewData()
     
-    @State var limit = 3
+    @State var limit : Int? = 3
     @State var isBookmarked = false
     
     var watchList =  WatchListViewModel()
@@ -82,7 +82,7 @@ struct MovieDetailsView: View {
                                 Spacer()
                                 Button(action: {
                                     if limit == 3 {
-                                        limit = 9999
+                                        limit = nil
                                     } else {
                                         limit = 3
                                     }

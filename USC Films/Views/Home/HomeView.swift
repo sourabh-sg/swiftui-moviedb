@@ -43,7 +43,7 @@ struct HomeView: View {
                     
                     // Show data
                     ScrollView(.vertical, showsIndicators: true) {
-                        VStack(spacing: 20) {
+                        VStack(spacing: 10) {
                             
                             if tvselected {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -68,7 +68,8 @@ struct HomeView: View {
                                 .padding(.bottom, 10)
                         }
                     }
-                    .frame(width: 335)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
                     .navigationBarTitle("USC Films")
                     .navigationBarItems(trailing:
                                             Button(action: {
@@ -122,8 +123,7 @@ struct CarouselHeader: View {
     var title: String
     var body: some View {
         Text(title)
-            .font(.title2)
+            .font(Font.system(size: 24))
             .fontWeight(.bold)
-            .padding(.bottom)
     }
 }
