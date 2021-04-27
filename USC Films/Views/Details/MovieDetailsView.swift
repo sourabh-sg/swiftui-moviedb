@@ -24,7 +24,6 @@ struct MovieDetailsView: View {
     init(id: String, isMovie: Bool) {
         self.id = id
         self.isMovie = isMovie
-        self.isBookmarked = watchList.isBookmarked(movie: id)
     }
     
     var body: some View {
@@ -163,7 +162,9 @@ struct MovieDetailsView: View {
                             
                         }
                     }
-                }
+                }.onAppear(perform: {
+                    isBookmarked = watchList.isBookmarked(movie: id)
+                })
             }
         }
     }
