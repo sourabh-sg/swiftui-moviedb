@@ -18,7 +18,6 @@ struct MovieDetailsViewModel: Identifiable {
     var overview: String
     var genre: String
     var releaseYearAndGenreString: String
-    var videoKey: String
     
     init(movieDetailsModel: MovieDetails) {
         self.id = "\(movieDetailsModel.id)"
@@ -53,13 +52,21 @@ struct MovieDetailsViewModel: Identifiable {
         } else {
             self.releaseYearAndGenreString = ""
         }
+    }
+}
+
+struct VideoDetailsViewModel: Identifiable {
+    
+    var id : String
+    var videoKey: String
+    
+    init(videoDetailsModel: VideoDetails) {
+        self.id = "\(videoDetailsModel.id)"
         
         // Video key
         // First preference is to teaser, if not then trailer
-        self.videoKey = (!movieDetailsModel.videoTeaserKey.isEmpty)  ? movieDetailsModel.videoTeaserKey : movieDetailsModel.videoTrailerKey
+        self.videoKey = (!videoDetailsModel.videoTrailerKey.isEmpty)  ? videoDetailsModel.videoTrailerKey : videoDetailsModel.videoTeaserKey
         
     }
-    
-    
 }
 

@@ -229,6 +229,25 @@ class APIService: NSObject {
         }
     }
     
+    // API Call to get video id for given movie
+    func getVideo(for id: String, isMovie: Bool, completion: @escaping (VideoDetailsViewModel?) -> ()) {
+    let urlString = APIService.BASE_URL + (isMovie ? "movie/video/" : "tv/video/") + id
+    
+    AF.request(urlString)
+      .validate()
+        .responseJSON { response in
+            let responseJSON = JSON(response.value as Any)
+            
+            guard let video = responseJSON.toType(type: VideoDetails.self) else {
+                completion(nil)
+                return
+            }
+            let videoDetails = VideoDetailsViewModel(videoDetailsModel: video as! VideoDetails)
+            // Return movies on completion
+            completion(videoDetails)
+        }
+    }
+    
     // API Call to get movie/tv show cast data
     func getMovieCastDetails(for id: String, isMovie: Bool, completion: @escaping ([ActorViewModel]) -> ()) {
         let urlString = APIService.BASE_URL + (isMovie ? "casts/movie/" : "casts/tv/")  + id

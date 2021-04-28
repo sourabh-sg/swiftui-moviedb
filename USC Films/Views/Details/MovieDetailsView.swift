@@ -40,6 +40,7 @@ struct MovieDetailsView: View {
                 .onAppear(perform: {
                     // Call fetch to load details data
                     movieDetails.getData(for: self.id, isMovie: self.isMovie)
+                    movieDetails.getVideoData(for: self.id, isMovie: self.isMovie)
                     movieCast.getData(for: self.id, isMovie: self.isMovie)
                     reviewsData.getData(for: self.id, isMovie: self.isMovie)
                 })
@@ -49,11 +50,12 @@ struct MovieDetailsView: View {
                     
                     ScrollView() {
                         LazyVStack(alignment: .leading, spacing: 10) {
-                            
-                            if self.movieDetails.basicDetails!.videoKey.count > 0 {
-                                // Youtube player
-                                YouTubePlayer(text: self.movieDetails.basicDetails!.videoKey)
-                                    .frame(height: 208)
+                            if self.movieDetails.videoDetails != nil {
+                                if self.movieDetails.videoDetails!.videoKey.count > 0 {
+                                    // Youtube player
+                                    YouTubePlayer(text: self.movieDetails.videoDetails!.videoKey)
+                                        .frame(height: 208)
+                                }
                             }
                             // Movie/TV Show Title
                             Text(self.movieDetails.basicDetails!.title)

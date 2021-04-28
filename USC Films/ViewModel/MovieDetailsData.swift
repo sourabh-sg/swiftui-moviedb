@@ -10,7 +10,9 @@ import SwiftUI
 
 class MovieDetailsData: ObservableObject {
     @Published var basicDetails: MovieDetailsViewModel?
+    @Published var videoDetails: VideoDetailsViewModel?
     @Published var didLoadMovieDetails = false
+    @Published var didLoadVideoDetails = false
     private var apiService = APIService()
     
     func getData(for id: String, isMovie: Bool) {
@@ -18,6 +20,15 @@ class MovieDetailsData: ObservableObject {
             self.didLoadMovieDetails = true
             if details != nil {
                 self.basicDetails = details!
+            }
+        })
+    }
+    
+    func getVideoData(for id: String, isMovie: Bool) {
+        self.apiService.getVideo(for: id, isMovie: isMovie, completion: { (details) in
+            self.didLoadVideoDetails = true
+            if details != nil {
+                self.videoDetails = details!
             }
         })
     }

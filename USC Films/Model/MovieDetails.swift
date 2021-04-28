@@ -18,8 +18,6 @@ struct MovieDetails: JSONable, Identifiable {
     var backdropImage: String
     var overview: String
     var genres = [String]()
-    var videoTrailerKey: String = ""
-    var videoTeaserKey: String = ""
     
     init?(parameter: JSON) {
         id = parameter["id"].intValue
@@ -53,12 +51,25 @@ struct MovieDetails: JSONable, Identifiable {
             }
         }
         
+    }
+}
+
+struct VideoDetails: JSONable, Identifiable {
+    
+    var id: Int
+    var videoTrailerKey: String = ""
+    var videoTeaserKey: String = ""
+
+    init?(parameter: JSON) {
+        id = parameter["id"].intValue
+                
         // Get video trailer and teaser ids
-        let videoResultJson = parameter["videos"]["results"]
+        let videoResultJson = parameter["results"]
         let videoJson = videoResultJson.arrayValue
         for element in videoJson {
-            if element["type"].stringValue == "Trailer " {
+            if element["type"].stringValue == "Trailer" {
                 self.videoTrailerKey = element["key"].stringValue
+                break
             }
             if element["type"].stringValue == "Teaser" {
                 self.videoTeaserKey = element["key"].stringValue
