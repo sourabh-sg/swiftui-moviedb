@@ -39,16 +39,14 @@ struct ReviewCard: View {
             }
             
             // Description
-            Text(review.reviewText)
-                .font(.system(size: 16))
-                .foregroundColor(.black)
-                .lineLimit(3)
-                .frame(width: 340, alignment: .leading)
-            
+            HStack {
+                Text(review.reviewText)
+                    .font(.system(size: 16))
+                    .foregroundColor(.black)
+                    .lineLimit(3)
+                Spacer()
+            }
         }
-        .frame(width: 340)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1).padding(-9))
-
     }
 }
 

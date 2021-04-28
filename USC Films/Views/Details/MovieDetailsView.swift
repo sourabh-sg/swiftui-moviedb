@@ -247,7 +247,7 @@ struct ReviewListView: View {
                 .font(Font.system(size: 26, weight: .bold))
                 .padding(.top, 5)
             
-            VStack(alignment: .leading, spacing: 27) {
+            VStack(alignment: .leading, spacing: 30) {
                 // Review views
                 let count = min(3, self.reviews.count)
                 ForEach(0..<count) { i in
@@ -256,6 +256,7 @@ struct ReviewListView: View {
                         destination: FullReviewView(review: reviewVM, movie: movieTitle),
                         label: {
                             ReviewCard(review: reviewVM)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1).padding(-10))
                                 .padding(.leading, 10)
                                 .padding(.trailing, 10)
                         })

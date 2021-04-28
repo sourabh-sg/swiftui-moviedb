@@ -38,7 +38,7 @@ struct FullReviewView: View {
                         .font(Font.system(size: 18))
                 }
                 
-                // Border
+                // Line
                 Rectangle().frame(height: 0.25).foregroundColor(Color.gray)
                 
                 // Full review text
