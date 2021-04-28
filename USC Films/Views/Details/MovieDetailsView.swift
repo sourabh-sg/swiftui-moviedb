@@ -80,32 +80,8 @@ struct MovieDetailsView: View {
                             }
                             // Description
                             if self.movieDetails.basicDetails!.overview.count > 0 {
-                                Text(self.movieDetails.basicDetails!.overview)
+                                LongText(self.movieDetails.basicDetails!.overview)
                                     .font(Font.system(size: 16))
-                                    .lineLimit(limit)
-                                // Show more/less button
-                                HStack {
-                                    Spacer()
-                                    Button(action: {
-                                        if limit == 3 {
-                                            limit = nil
-                                        } else {
-                                            limit = 3
-                                        }
-                                    }, label: {
-                                        if limit == 3 {
-                                            Text("Show more..")
-                                                .font(Font.system(size: 16))
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.gray)
-                                        } else {
-                                            Text("Show less")
-                                                .font(Font.system(size: 16))
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.gray)
-                                        }
-                                    })
-                                }
                             }
                             
                             // Cast & Crew
