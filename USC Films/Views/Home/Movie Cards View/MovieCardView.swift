@@ -68,7 +68,7 @@ struct MovieCardView: View {
                     toastMessage = "\(movieViewModel.title) was removed from Watchlist"
                     showToast = true
                 } else {
-                    watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image, mediaType: movieViewModel.mediaType)
+                    watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image, mediaType: movieViewModel.mediaType, title: movieViewModel.title)
                     // Show toast
                     toastMessage = "\(movieViewModel.title) was added to Watchlist"
                     showToast = true

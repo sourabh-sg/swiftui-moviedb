@@ -15,11 +15,13 @@ struct WatchListItem: Codable, Identifiable {
     var id: String
     var image: String
     var mediaType: String
+    var title: String
     
-    init(id: String, image: String, mediaType: String) {
+    init(id: String, image: String, mediaType: String, title: String) {
         self.id = id
         self.image = image
         self.mediaType = mediaType
+        self.title = title
     }
 }
 
@@ -96,12 +98,12 @@ class WatchListViewModel: ObservableObject {
     }
     
     // Add an item to watchlist
-    func addToWatchList(id: String, image: String, mediaType: String) {
+    func addToWatchList(id: String, image: String, mediaType: String, title: String) {
         // Add to list
         print("List before new addition:\n\(list)")
         // Add only if not added previously
         if !isBookmarked(movie: id) {
-            list.append(WatchListItem(id: id, image: image, mediaType: mediaType))
+            list.append(WatchListItem(id: id, image: image, mediaType: mediaType, title: title))
             print("List after new addition:\n\(list)")
             saveWatchList()
         }

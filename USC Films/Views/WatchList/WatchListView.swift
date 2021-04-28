@@ -14,10 +14,13 @@ struct WatchListView: View {
 //    Video: https://www.youtube.com/watch?v=h25rGhYrl5I
     @StateObject var watchList = WatchListViewModel()
     
+    // Grid for watchlisted movies
     @Namespace var animation
-    
     let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
     
+    // Toast
+    @State var showToast = false
+    @State var toastMessage = ""
     
     var body: some View {
         
@@ -55,6 +58,9 @@ struct WatchListView: View {
                                     .contextMenu(menuItems: {
                                         Button(action: {
                                             watchList.removeFromWatchList(id: listItem.id)
+                                            // Show toast
+                                            toastMessage = "\(listItem.title) was removed from Watchlist"
+                                            showToast = true
                                             
                                         }) {
                                             Label("Remove from WatchList", systemImage: "bookmark.fill")
@@ -81,11 +87,9 @@ struct WatchListView: View {
                 .onAppear {
                     watchList.reloadWatchList()
                 }
-                
+                .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
             }
-            
         }
-
     }
 }
 
