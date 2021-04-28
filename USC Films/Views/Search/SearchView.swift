@@ -15,10 +15,11 @@ struct SearchView: View {
         
         NavigationView{
             VStack(alignment: .leading) {
-                SearchBar(text: $searchString, searchManager: searchManager)
+                
+                SearchBarWrapper(text: $searchString, searchManager: searchManager)
                     .padding(.top, 10)
                     .padding(.bottom, 15)
-                
+                                
                 if searchManager.searchResults.count > 0 {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 15) {

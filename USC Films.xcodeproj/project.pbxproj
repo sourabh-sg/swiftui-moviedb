@@ -29,6 +29,7 @@
 		5E641F4E263177B700199451 /* TopRatedMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E641F4D263177B700199451 /* TopRatedMoviesViewModel.swift */; };
 		5E641F542631839400199451 /* PopularMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E641F532631839400199451 /* PopularMoviesViewModel.swift */; };
 		5E641F5D26318B6C00199451 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E641F5C26318B6C00199451 /* MovieDetails.swift */; };
+		5E7A456D26396D4100417A81 /* SearchBarWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A456C26396D4100417A81 /* SearchBarWrapper.swift */; };
 		5E888E3E2632F5B400C3142F /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E888E3D2632F5B400C3142F /* MovieViewModel.swift */; };
 		5E888E462632FF3500C3142F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E888E452632FF3500C3142F /* APIService.swift */; };
 		5E8AFF2B2629BD9A001BA081 /* SearchResultMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */; };
@@ -78,6 +79,7 @@
 		5E641F4D263177B700199451 /* TopRatedMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMoviesViewModel.swift; sourceTree = "<group>"; };
 		5E641F532631839400199451 /* PopularMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesViewModel.swift; sourceTree = "<group>"; };
 		5E641F5C26318B6C00199451 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		5E7A456C26396D4100417A81 /* SearchBarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarWrapper.swift; sourceTree = "<group>"; };
 		5E888E3D2632F5B400C3142F /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		5E888E452632FF3500C3142F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMovieCard.swift; sourceTree = "<group>"; };
@@ -165,13 +167,23 @@
 		5E5B0A772625EBFB007248D9 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
+				5E7A4570263972D000417A81 /* UIKit Wrappers */,
 				5E5B0A782625EC3D007248D9 /* RecommendationSectionView.swift */,
-				5E1B86F52636981100156734 /* Spinner.swift */,
 				5E1B86FC2636998E00156734 /* LoadingView.swift */,
 				5E0DFE4B263832D600748380 /* ToastView.swift */,
+				5E427D4126273A5F00FDC65F /* SearchBar.swift */,
 			);
 			path = "Common Views";
+			sourceTree = "<group>";
+		};
+		5E7A4570263972D000417A81 /* UIKit Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				5E5B0A6D2625AE4A007248D9 /* YoutubePlayerWrapper.swift */,
+				5E1B86F52636981100156734 /* Spinner.swift */,
+				5E7A456C26396D4100417A81 /* SearchBarWrapper.swift */,
+			);
+			path = "UIKit Wrappers";
 			sourceTree = "<group>";
 		};
 		5E888E402632FC9300C3142F /* Utility */ = {
@@ -282,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				5E9EB1F22624B8CE006683B0 /* SearchView.swift */,
-				5E427D4126273A5F00FDC65F /* SearchBar.swift */,
 				5E8AFF2A2629BD9A001BA081 /* SearchResultMovieCard.swift */,
 			);
 			path = Search;
@@ -501,6 +512,7 @@
 				5E8AFF2B2629BD9A001BA081 /* SearchResultMovieCard.swift in Sources */,
 				5EDF509826355F870063D456 /* Review.swift in Sources */,
 				5E888E3E2632F5B400C3142F /* MovieViewModel.swift in Sources */,
+				5E7A456D26396D4100417A81 /* SearchBarWrapper.swift in Sources */,
 				5E888E462632FF3500C3142F /* APIService.swift in Sources */,
 				5EDF504A2633E2A00063D456 /* PopularTVShowsData.swift in Sources */,
 				5E9EB1DD2624A96F006683B0 /* USC_FilmsApp.swift in Sources */,
