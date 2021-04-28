@@ -14,7 +14,9 @@ struct YouTubePlayer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> YTPlayerView {
         let player = YTPlayerView()
-        player.load(withVideoId: text)
+        // Show controls like play-pause, and add key for inline play (not adding this key plays video inn full screen mode by default)
+        let playvarsDic = ["controls": 1, "playsinline": 1]
+        player.load(withVideoId: text, playerVars: playvarsDic)
         return player
     }
     
