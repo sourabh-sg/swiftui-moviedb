@@ -12,6 +12,10 @@ struct MovieCardContainerView: View {
     @State var isMovie: Bool
     @State var movies: [MovieViewModel]
     
+    // Toast
+    @Binding var showToast : Bool
+    @Binding var toastMessage : String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(heading)
@@ -26,7 +30,7 @@ struct MovieCardContainerView: View {
                         if movies.count > row, let movie = movies[row] {
                             NavigationLink(
                                 destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
-                                MovieCardView(movieViewModel: movie)
+                                MovieCardView(movieViewModel: movie, showToast: $showToast, toastMessage: $toastMessage)
                             }.buttonStyle(PlainButtonStyle())
                         }
                     }
@@ -37,7 +41,9 @@ struct MovieCardContainerView: View {
 }
 
 struct MovieCardContainerView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        MovieCardContainerView(heading: "Top Rated", isMovie: true, movies: [MovieViewModel]())
+        
+        MovieCardContainerView(heading: "Top Rated", isMovie: true, movies: [MovieViewModel](), showToast: .constant(false), toastMessage: .constant(""))
     }
 }

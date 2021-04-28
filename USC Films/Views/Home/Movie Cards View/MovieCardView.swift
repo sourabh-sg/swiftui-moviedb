@@ -15,11 +15,17 @@ struct MovieCardView: View {
     @State var bookmarkImage = "bookmark"
     @State var bookmarkMenuText = "Add to WatchList"
     
+    // Toast
+    @Binding var showToast : Bool
+    @Binding var toastMessage : String
+    
     var watchList =  WatchListViewModel()
     
+    /*
     init(movieViewModel: MovieViewModel) {
         self.movieViewModel = movieViewModel
     }
+ */
     
     var body: some View {
         
@@ -58,8 +64,14 @@ struct MovieCardView: View {
 
                 if isBookmarked {
                     watchList.removeFromWatchList(id: movieViewModel.id)
+                    // Show toast
+                    toastMessage = "\(movieViewModel.title) was removed from Watchlist"
+                    showToast = true
                 } else {
                     watchList.addToWatchList(id:movieViewModel.id, image: movieViewModel.image, mediaType: movieViewModel.mediaType)
+                    // Show toast
+                    toastMessage = "\(movieViewModel.title) was added to Watchlist"
+                    showToast = true
                 }
                 
                 isBookmarked.toggle()

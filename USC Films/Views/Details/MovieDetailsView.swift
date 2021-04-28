@@ -174,6 +174,7 @@ struct MovieDetailsView: View {
                     .onAppear(perform: {
                         isBookmarked = watchList.isBookmarked(movie: id)
                     })
+                    
                 }
             }
         }.overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)

@@ -13,6 +13,10 @@ struct HomeView: View {
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
     
+    // Toast
+    @State var showToast = false
+    @State var toastMessage = ""
+    
     // Movies
     @ObservedObject var nowPlayingMovies = NowPlayingMoviesData()
     @ObservedObject var topRatedMovies = TopRatedMoviesData()
@@ -52,15 +56,15 @@ struct HomeView: View {
                                     CarouselHeader(title: carouselTitle)
                                     ImageContentView(movies: trendingShows.shows, isMovie: false)
                                 }
-                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows)
-                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows)
+                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected,movies: topRatedShows.shows, showToast: $showToast, toastMessage: $toastMessage)
+                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularShows.shows, showToast: $showToast, toastMessage: $toastMessage)
                             } else {
                                 VStack(alignment: .leading, spacing: 10) {
                                     CarouselHeader(title: carouselTitle)
                                     ImageContentView(movies: nowPlayingMovies.movies, isMovie: true)
                                 }
-                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies)
-                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies)
+                                MovieCardContainerView(heading: "Top Rated", isMovie: !self.tvselected, movies: topRatedMovies.movies, showToast: $showToast, toastMessage: $toastMessage)
+                                MovieCardContainerView(heading: "Popular", isMovie: !self.tvselected, movies: popularMovies.movies, showToast: $showToast, toastMessage: $toastMessage)
                             }
                               
                             VStack(alignment: .center, spacing: 0) {
@@ -94,8 +98,9 @@ struct HomeView: View {
                                                     .foregroundColor(.blue)
                                             }
                         )
-                    )
                     
+                    )
+                    .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
                     
                 }
                         
