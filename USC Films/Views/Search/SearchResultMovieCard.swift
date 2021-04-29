@@ -67,10 +67,10 @@ struct SearchResultMovieCard: View {
     }
 }
 
-/*
+
 struct SearchResultMovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultMovieCard()
+        SearchResultMovieCard(movieVM: MovieViewModel.twostatesVM)
     }
 }
- */
+ 

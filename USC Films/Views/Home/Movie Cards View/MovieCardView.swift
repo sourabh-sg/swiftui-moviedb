@@ -104,10 +104,9 @@ struct MovieCardView: View {
     }
 }
 
-/*
+
 struct MovieCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardView(imageName: "tomandjerry", movie: Movie())
+        MovieCardView(movieViewModel: MovieViewModel.knphVM, showToast: .constant(false), toastMessage: .constant(""))
     }
 }
-*/

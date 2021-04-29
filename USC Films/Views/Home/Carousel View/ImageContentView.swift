@@ -57,6 +57,6 @@ struct ImageContentView: View {
 
 struct ImageContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageContentView(movies: [MovieViewModel](), isMovie: true)
+        ImageContentView(movies: MovieViewModel.movies, isMovie: true)
     }
 }

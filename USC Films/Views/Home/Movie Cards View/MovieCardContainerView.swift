@@ -44,6 +44,6 @@ struct MovieCardContainerView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        MovieCardContainerView(heading: "Top Rated", isMovie: true, movies: [MovieViewModel](), showToast: .constant(false), toastMessage: .constant(""))
+        MovieCardContainerView(heading: "Top Rated", isMovie: true, movies: MovieViewModel.movies, showToast: .constant(false), toastMessage: .constant(""))
     }
 }

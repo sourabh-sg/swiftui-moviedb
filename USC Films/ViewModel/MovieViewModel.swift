@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct MovieViewModel: Identifiable, Hashable {
     
@@ -33,9 +34,26 @@ struct MovieViewModel: Identifiable, Hashable {
         }
         // Image URL
         // https://image.tmdb.org/t/p/w500/poster_path
-        self.image = "http://image.tmdb.org/t/p/w500/" + movieModel.image
-        self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieModel.backdropImage
+//        self.image = "http://image.tmdb.org/t/p/w500/" + movieModel.image
+//        self.backdropImage = "http://image.tmdb.org/t/p/w500/" + movieModel.backdropImage
+        self.image = movieModel.image
+        self.backdropImage = movieModel.backdropImage
         // Media type: "movie" or "tv"
         self.mediaType = movieModel.mediaType
     }
+}
+
+
+// Sample data - Add few sample movie view model data for use in view previews
+//  This post suggests to create extension for preview data: https://useyourloaf.com/blog/swiftui-preview-data/
+extension MovieViewModel {
+    // Kaho na pyaar hai VM
+    static let knphVM = MovieViewModel(movieModel: Movie(parameter: JSON(["id": "16987", "poster_path": "http://image.tmdb.org/t/p/w500//alALytPcaZyQkzOjnRgHMSRv8fq.jpg", "media_type": "movie", "name": "Kaho Naa... Pyaar Hai", "vote_average": 6.6, "date": "2000-14-01", "backdrop_path": "http://image.tmdb.org/t/p/w500/https://image.tmdb.org/t/p/original/cdhSX4PHnE3WEQsqlOt7qciaApV.jpg"])))
+    
+    // Two states VM
+    static let twostatesVM = MovieViewModel(movieModel: Movie(parameter: JSON(["id": "259720", "poster_path": "http://image.tmdb.org/t/p/w500//oiVcEZmvXMbDzpYTSzXKi03N9sl.jpg", "media_type": "movie", "name": "2 States", "vote_average": 6.6, "date": "2014-18-04", "backdrop_path": "https://image.tmdb.org/t/p/original/ko21gTfAYegiLXKAZ9K5JGRJtWz.jpg"])))
+    
+    // Array of two movie VMs
+    static let movies = [knphVM, twostatesVM]
+    
 }
