@@ -187,6 +187,7 @@ struct CastView: View {
                             VStack(alignment: .center, spacing: 15) {
                                 if !actorVM.image.isEmpty {
                                     KFImage(URL(string: actorVM.image))
+                                        .loadImmediately()
                                         .placeholder {
                                             Image("cast_placeholder")
                                             .resizable()

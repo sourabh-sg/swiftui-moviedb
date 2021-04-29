@@ -38,6 +38,7 @@ struct RecommendationSectionView: View {
                             NavigationLink(
                                 destination: MovieDetailsView(id: movie.id, isMovie: isMovie)) {
                                 KFImage(URL(string: movie.image)!)
+                                    .loadImmediately()
                                     .placeholder {
                                         Image("movie_placeholder")
                                         .resizable()

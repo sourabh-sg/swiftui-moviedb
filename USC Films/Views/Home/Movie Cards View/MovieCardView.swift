@@ -31,6 +31,7 @@ struct MovieCardView: View {
         
         VStack(alignment: .center, spacing: 10) {
             KFImage(URL(string: self.movieViewModel.image)!)
+                .loadImmediately()
                 .placeholder {
                     Image("movie_placeholder")
                     .resizable()
