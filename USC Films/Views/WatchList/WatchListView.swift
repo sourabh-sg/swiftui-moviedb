@@ -55,6 +55,14 @@ struct WatchListView: View {
                                         .resizable()
                                     }
                                     .frame(height: 177)
+                                    .onDrag({
+                                        
+                                        watchList.currentItem = listItem
+                                        
+                                        // Setting ID for sample
+                                        return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
+                                    })
+                                    .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
                                     .contextMenu(menuItems: {
                                         Button(action: {
                                             watchList.removeFromWatchList(id: listItem.id)
@@ -67,14 +75,6 @@ struct WatchListView: View {
                                                 .foregroundColor(Color.blue)
                                         }
                                     })
-                                    .onDrag({
-                                        
-                                        watchList.currentItem = listItem
-                                        
-                                        // Setting ID for sample
-                                        return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
-                                    })
-                                    .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
                                 
                             }.buttonStyle(PlainButtonStyle())
                            
