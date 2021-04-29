@@ -178,7 +178,7 @@ struct CastView: View {
                 .font(Font.system(size: 26, weight: .bold))
             
             // Names
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     let count = min(10, self.cast.count)
                     ForEach(0..<count) { i in

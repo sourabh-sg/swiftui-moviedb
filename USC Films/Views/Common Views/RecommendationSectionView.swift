@@ -29,7 +29,7 @@ struct RecommendationSectionView: View {
                 Text(isMovie ? "Recommended Movies" : "Recommended TV shows")
                     .font(Font.system(size: 26, weight: .bold))
                 
-                ScrollView(.horizontal, showsIndicators: true) {
+                ScrollView(.horizontal) {
                     HStack(spacing: 40) {
                         ForEach(0..<self.recommendedMovies.movies.count) { i in
                             

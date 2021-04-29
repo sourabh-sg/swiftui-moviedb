@@ -48,7 +48,7 @@ struct HomeView: View {
                 } else {
                     
                     // Show data
-                    ScrollView(.vertical, showsIndicators: true) {
+                    ScrollView(.vertical) {
                         VStack(spacing: 10) {
                             
                             if tvselected {
@@ -79,11 +79,11 @@ struct HomeView: View {
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
                                     
-                            }.padding(.bottom, 10)
+                            }
+                            .padding([.top, .bottom], 10)
                         }
                     }
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
+                    .padding([.leading, .trailing], 20)
                     .navigationBarTitle("USC Films")
                     .navigationBarItems(trailing:
                                             Button(action: {
@@ -113,7 +113,7 @@ struct HomeView: View {
                         self.trendingShows.getData()
                         self.topRatedShows.getData()
                         self.popularShows.getData()
-                    }
+                }
             }
         }
     }

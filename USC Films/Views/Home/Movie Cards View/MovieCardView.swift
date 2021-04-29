@@ -47,7 +47,7 @@ struct MovieCardView: View {
 //                    .foregroundColor(.black)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
-                
+                    
                 Text(self.movieViewModel.releaseYear)
                     .font(Font.system(size: 12))
                     .foregroundColor(.gray)
