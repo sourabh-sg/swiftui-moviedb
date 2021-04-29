@@ -33,8 +33,9 @@ struct ImageContentView: View {
                                     .aspectRatio(contentMode: .fit)
                                 }
                                 .resizable()
-                                .blur(radius: 40)
+                                .blur(radius: 30)
                                 .frame(width: width, height: height)
+                                .clipped()
                             
                             KFImage(URL(string: movies[row].image)!)
                                 .placeholder {
