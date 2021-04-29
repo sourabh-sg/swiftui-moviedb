@@ -16,7 +16,7 @@ struct ReviewViewModel {
     init(review: Review) {
         self.author = review.author
         self.reviewText = review.reviewText
-        self.rating  = "\(review.rating * 0.5)" // Convert to out of 5
+        self.rating  = "\(round(review.rating * 0.5 * 10)/10)" // Convert to out of 5, round up and show only first decimal digit
         
         // Convert dateString to targetted format
         // First convert given string to Swift's date format

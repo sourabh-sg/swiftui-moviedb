@@ -24,7 +24,7 @@ struct MovieDetailsViewModel: Identifiable {
         self.title = movieDetailsModel.title
         // Convert ratings to 5
         // And show only one decimal digit (https://www.hackingwithswift.com/example-code/strings/how-to-specify-floating-point-precision-in-a-string)
-        self.rating = String(format: "%.1f", (movieDetailsModel.rating * 0.5))
+        self.rating = String(format: "%.1f", round(movieDetailsModel.rating * 0.5 * 10) / 10.0) // Show and round only the first decimal digit
         // Fetch year from release date - first 4 letters
         let str = movieDetailsModel.releaseDate
         var releaseYearString = ""
