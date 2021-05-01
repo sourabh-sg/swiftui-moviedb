@@ -12,6 +12,7 @@ struct HomeView: View {
     // TV vs Movie
     @State var tvselected: Bool = false
     @State var carouselTitle = "Now Playing"
+    @State var navBarTitle = "Movies"
     
     // Toast
     @State var showToast = false
@@ -84,16 +85,17 @@ struct HomeView: View {
                         }
                     }
                     .padding([.leading, .trailing], 20)
-                    .navigationBarTitle("USC Films")
+                    .navigationBarTitle(navBarTitle)
                     .navigationBarItems(trailing:
                                             Button(action: {
                                                 //Action
                                                 tvselected.toggle()
                                                 carouselTitle = (tvselected ? "Trending" : "Now Playing")
+                                                navBarTitle = (tvselected ? "TV Shows" : "Movies")
                                                 
                                             }, label: {
                                                 
-                                                Text((tvselected ? "Movies" : "TV shows"))
+                                                Text((tvselected ? "Movies" : "TV Shows"))
                                                     .font(Font.system(size: 16))
                                                     .foregroundColor(.blue)
                                             }
