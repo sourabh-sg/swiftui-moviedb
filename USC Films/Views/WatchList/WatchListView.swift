@@ -88,7 +88,7 @@ struct WatchListView: View {
                     watchList.reloadWatchList()
                 }
                 .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

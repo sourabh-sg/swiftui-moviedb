@@ -53,6 +53,7 @@ struct SearchView: View {
             }
             .navigationBarTitle("Search")
         }.background(Color.white)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
 }
