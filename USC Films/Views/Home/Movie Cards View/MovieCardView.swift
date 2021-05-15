@@ -58,7 +58,7 @@ struct MovieCardView: View {
             Spacer()
                         
         }
-        .background(Color.white)
+//        .background(Color.white)
         .contentShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .contextMenu {
             Button(action: {

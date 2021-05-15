@@ -22,7 +22,6 @@ struct ReviewCard: View {
             VStack(alignment: .leading) {
                 Text("A review by \(review.author)")
                     .font(Font.system(size: 18, weight: .bold))
-                    .foregroundColor(.black)
                 
                 Text("Written by \(review.author) on \(review.reviewDate)")
                     .font(Font.system(size: 18))
@@ -35,14 +34,12 @@ struct ReviewCard: View {
                     .font(.system(size: 19))
                 Text("\(review.rating)/5.0")
                     .font(.system(size: 19))
-                    .foregroundColor(.black)
             }
             
             // Description
             HStack {
                 Text(review.reviewText)
                     .font(.system(size: 16))
-                    .foregroundColor(.black)
                     .lineLimit(3)
                 Spacer()
             }
