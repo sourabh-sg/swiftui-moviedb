@@ -31,30 +31,31 @@ struct MovieDetailsView: View {
     }
     
     var body: some View {
-        
         Group {
-            
             // Show loading view on load
             if !self.movieDetails.didLoadMovieDetails {
-            LoadingView()
-                .onAppear(perform: {
-                    // Call fetch to load details data
-                    movieDetails.getData(for: self.id, isMovie: self.isMovie)
-                    movieDetails.getVideoData(for: self.id, isMovie: self.isMovie)
-                    movieCast.getData(for: self.id, isMovie: self.isMovie)
-                    reviewsData.getData(for: self.id, isMovie: self.isMovie)
-                })
+                LoadingView()
+                    .onAppear(perform: {
+                        // Call fetch to load details data
+                        movieDetails.getData(for: self.id, isMovie: self.isMovie)
+                        movieDetails.getVideoData(for: self.id, isMovie: self.isMovie)
+                        movieCast.getData(for: self.id, isMovie: self.isMovie)
+                        reviewsData.getData(for: self.id, isMovie: self.isMovie)
+                    })
             } else {
-                
                 if self.movieDetails.basicDetails != nil {
                     
+                    GeometryReader { geometry in
+                        let width = geometry.size.width
+                        let height = width * 0.5
                     ScrollView() {
+                        
                         LazyVStack(alignment: .leading, spacing: 10) {
                             if self.movieDetails.videoDetails != nil {
                                 if self.movieDetails.videoDetails!.videoKey.count > 0 {
                                     // Youtube player
                                     YouTubePlayer(text: self.movieDetails.videoDetails!.videoKey)
-                                        .frame(height: 208)
+                                        .frame(height: height)
                                 }
                             }
                             // Movie/TV Show Title
@@ -77,7 +78,7 @@ struct MovieDetailsView: View {
                                     .font(Font.system(size: 18))
                                 Text("\(self.movieDetails.basicDetails!.rating)/5.0")
                                     .font(Font.system(size: 18))
-                            }
+                            }//: HStack
                             // Description
                             if self.movieDetails.basicDetails!.overview.count > 0 {
                                 LongText(self.movieDetails.basicDetails!.overview)
@@ -100,10 +101,11 @@ struct MovieDetailsView: View {
                             
                             Spacer()
                         
-                        }.padding(.leading, 15)
+                        }//: LazyVStack
+                        .padding(.leading, 15)
                         .padding(.trailing, 15)
                         
-                    }
+                    }//: SCROLL
                     .navigationBarItems(trailing:
                                             HStack {
                                                 
@@ -128,14 +130,15 @@ struct MovieDetailsView: View {
                                                         .font(Font.system(size: 18, weight: .bold))
                                                         .foregroundColor((isBookmarked ? .blue: .black))
                                                 }
-                                                                                        
+                                                
                                                 // FB Share
                                                 let fbUrlString = "https://www.facebook.com/sharer/sharer.php?u=https://www.themoviedb.org/movie/\(id)"
                                                 Link(destination: URL(string: fbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) {
                                                     Image("facebook-app-symbol")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
-                                                }.frame(width: 20, height: 20, alignment: .center)
+                                                }//: Link
+                                                .frame(width: 20, height: 20, alignment: .center)
                                                 
                                                 // Twitter Share
                                                 let twitUrlString = "https://twitter.com/intent/tweet?text=Check out this link&url=https://www.themoviedb.org/movie/\(id)&hashtags=CSCI571USCFilms"
@@ -143,17 +146,19 @@ struct MovieDetailsView: View {
                                                     Image("twitter")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
-                                                }.frame(width: 20, height: 20, alignment: .center)
+                                                }//: Link
+                                                .frame(width: 20, height: 20, alignment: .center)
                                                 
                                             }
                     )
                     .onAppear(perform: {
                         isBookmarked = watchList.isBookmarked(movie: id)
                     })
-                    
-                }
-            }
-        }.overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
+                    }
+                }//: Condition - Movie Data not nil
+            }//: Condition - Data loaded
+        }//: GROUP
+        .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
     }
 }
 
