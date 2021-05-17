@@ -33,62 +33,64 @@ struct WatchListView: View {
                 }
         } else {
             
-            NavigationView {
-                
-                ScrollView {
-                    
-                    LazyVGrid(columns: columns, spacing: 3) {
-                        
-                        ForEach(watchList.list) { listItem in
-                            
-                            // Find media type
-                            let mediaType = listItem.mediaType
-                            let isMovie = (mediaType == "movie") ? true : false
-                            
-                            NavigationLink(
-                                destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
+            GeometryReader { geometry in
+                NavigationView {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 3) {
+                            ForEach(watchList.list) { listItem in
+                                // Find media type
+                                let mediaType = listItem.mediaType
+                                let isMovie = (mediaType == "movie") ? true : false
                                 
-                                KFImage(URL(string: listItem.image)!)
-                                    .resizable()
-                                    .placeholder {
-                                        Image("movie_placeholder")
+                                NavigationLink(
+                                    destination: MovieDetailsView(id: listItem.id, isMovie: isMovie)) {
+                                    
+                                    // Calculate height
+                                    // 3 grid items in a row; spacings 2*3; padding 20
+                                    let height = (geometry.size.width/3 - 6 - 20) * 1.5
+                                    
+                                    KFImage(URL(string: listItem.image)!)
                                         .resizable()
-                                    }
-                                    .frame(height: 177)
-                                    .onDrag({
-                                        
-                                        watchList.currentItem = listItem
-                                        
-                                        // Setting ID for sample
-                                        return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
-                                    })
-                                    .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
-                                    .contextMenu(menuItems: {
-                                        Button(action: {
-                                            watchList.removeFromWatchList(id: listItem.id)
-                                            // Show toast
-                                            toastMessage = "\(listItem.title) was removed from Watchlist"
-                                            showToast = true
-                                            
-                                        }) {
-                                            Label("Remove from WatchList", systemImage: "bookmark.fill")
-                                                .foregroundColor(Color.blue)
+                                        .placeholder {
+                                            Image("movie_placeholder")
+                                            .resizable()
                                         }
-                                    })
-                                
-                            }.buttonStyle(PlainButtonStyle())
-                           
-                        }
-                        
-                    }.padding(.leading)
-                    .padding(.trailing)
-                    
-                }.navigationBarTitle("Watchlist")
-                .onAppear {
-                    watchList.reloadWatchList()
-                }
-                .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
-            }.navigationViewStyle(StackNavigationViewStyle())
+                                        .frame(height: height)
+                                        .onDrag({
+                                            
+                                            watchList.currentItem = listItem
+                                            
+                                            // Setting ID for sample
+                                            return NSItemProvider(contentsOf: URL(string: "\(listItem.id)")!)!
+                                        })
+                                        .onDrop(of: [.item], delegate: DropViewDelegate(item: listItem, watchListVM: watchList))
+                                        .contextMenu(menuItems: {
+                                            Button(action: {
+                                                watchList.removeFromWatchList(id: listItem.id)
+                                                // Show toast
+                                                toastMessage = "\(listItem.title) was removed from Watchlist"
+                                                showToast = true
+                                                
+                                            }) {
+                                                Label("Remove from WatchList", systemImage: "bookmark.fill")
+                                                    .foregroundColor(Color.blue)
+                                            }
+                                        })
+                                    
+                                }//: Navigation Link
+                                .buttonStyle(PlainButtonStyle())
+                            }//: Loop
+                        }//: Grid
+                        .padding([.leading, .trailing])
+                    }//: Scroll
+                    .navigationBarTitle("Watchlist")
+                    .onAppear {
+                        watchList.reloadWatchList()
+                    }
+                    .overlay(overlayView: ToastView(dataModel: ToastDataModel(title: toastMessage), show: $showToast), show: $showToast)
+                }//: Navigation View
+                .navigationViewStyle(StackNavigationViewStyle())
+            }//: GeometryReader
         }
     }
 }
